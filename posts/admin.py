@@ -11,8 +11,8 @@ class PostAdmin(admin.ModelAdmin):
         'content',
         'post_type',
         'edited',
-        'created_at',
-        'updated_at'
+        'created',
+        'updated'
     )
     list_filter = ['author', 'post_type', 'edited']
 
@@ -24,7 +24,7 @@ class CommentAdmin(admin.ModelAdmin):
         'post',
         'content',
         'edited',
-        'created_at',
-        'updated_at'
+        'created',
+        'updated'
     )
     list_filter = ['author', 'edited']

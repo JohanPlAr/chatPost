@@ -22,7 +22,7 @@ class Post(models.Model):
     shares = models.ManyToManyField(User, related_name="post_share", blank= True)
 
     class Meta:
-        ordering = ["-created_on"]
+        ordering = ["-created"]
 
     def __str__(self):
         return self.content
@@ -36,31 +36,34 @@ class Post(models.Model):
     def number_of_shares(self):
         return self.shares.count()
     
-    def get_comments(self):
-        return self.comments.all()
+    def number_of_comments(self):
+        return self.comments.count()
     
+    def comments(self):
+        return self.comments
+    
+
+
+
 class Comment(models.Model):
     author = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='comments', null=True)
-    post = models.ForeignKey(Post, on_delete=CASCADE, related_name='comments')
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
     content = models.TextField(max_length=550)
     edited = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     status = models.IntegerField(choices=STATUS, default=0)
-    likes = models.ManyToManyField(User, related_name="post_like", blank= True)
-    dislikes = models.ManyToManyField(User, related_name="post_dislike", blank= True)
+    likes = models.ManyToManyField(User, related_name="comment_like", blank= True)
+    dislikes = models.ManyToManyField(User, related_name="comment_dislike", blank= True)
 
     class Meta:
-        ordering = ['created_at']
+        ordering = ['created']
 
-        def __str__(self):
-            return self.content
-        
-        def number_of_likes(self):
-            return self.likes.count()
-
-        def number_of_dislikes(self):
-            return self.dislikes.count()
+    def __str__(self):
+        return self.content
     
-        def number_of_shares(self):
-            return self.shares.count()
+    def number_of_likes(self):
+        return self.likes.count()
+
+    def number_of_dislikes(self):
+        return self.dislikes.count()
