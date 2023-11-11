@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 from posts.models import Post, Comment
-from rooms.models import Room,
+from rooms.models import Room
 
 
 def home(request):

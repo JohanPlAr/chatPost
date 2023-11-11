@@ -3,14 +3,22 @@
 {% block content %}
 
 <a href="{% url 'create_room'%}">Create Room</a>
+<a href="{% url 'create_post'%}">Create Post</a>
 
 {% for post in posts %}
         <p>Post: {{ post.content }}</p>
+        Likes: {{ post.number_of_likes }}
+        Dislikes: {{ post.number_of_dislikes }}
+        Shares: {{ post.number_of_shares }}
+        <a href="{% url 'edit_post' post.id %}">Edit</a>
+        <a href="{% url 'delete_post' post.id %}">Delete</a>
         {% for comment in comments %}
             {% if comment.post == post %}
-                Comments: {{comment}}
+                <p>Comments: {{comment}}</p>
             {% endif %}
+          
         {% endfor %}
+      
     {% endfor %}
 
 
@@ -18,7 +26,7 @@
 <div>
 
 <span>@{{room.host.username}}</span>
-    <h5>{{room.id}} -- <a href="{%url 'room' room.id%}">{{room.name}}</a></h5>
+    <h5>{{room.id}} -- <a href="{%url 'room_id' room.id%}">{{room.name}}</a></h5>
     <small>{{room.topic.name}}</small>
     <a href="{% url 'edit_room' room.id %}">Edit</a>
     <a href="{% url 'delete_room' room.id %}">Delete</a>
