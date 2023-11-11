@@ -8,13 +8,13 @@ class PostAdmin(admin.ModelAdmin):
     """Post model admin page configuration"""
     list_display = (
         'author',
+      #  'room',
         'content',
-        'post_type',
         'edited',
         'created',
         'updated'
     )
-    list_filter = ['author', 'post_type', 'edited']
+    list_filter = ['author', 'edited']
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):

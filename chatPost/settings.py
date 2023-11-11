@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'base',
     'posts',
+    'rooms',
 ]
 
 MIDDLEWARE = [

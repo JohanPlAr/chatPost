@@ -2,8 +2,17 @@
 
 {% block content %}
 
-{% url 'public_wall' %}
+{% for post in posts %}
+        <p>Post: {{ post.content }}</p>
+        {% for comment in comments %}
+            {% if comment.post == post %}
+                Comments: {{comment}}
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
 
- 
-{% endfor %}
+    {% for room in rooms %}
+    <p>{{room.name}}</p>
+    {% endfor %}
+    <a href="{% url 'create_room'%}">Create Room</a>
 {% endblock %}
