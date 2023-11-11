@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>{{room.name}}</h1>
+{%for post in posts%}
+    {% if post.room == room %} 
+    
+        <div>    
+            {{post.content}}
+        </div>
+    
+    {% endif %}
+{%endfor%}
+    {% endblock %}
