@@ -2,8 +2,17 @@
 
 {% block content %}
 
+</form>
+
+<a href="{% url 'home' %}">All</a>
+{%for topic in topics %}
+<a href="{% url 'home' %}?q={{topic.name}}">{{topic.name}}</a>
+{%endfor%}
+<hr>
 <a href="{% url 'create_room'%}">Create Room</a>
 <a href="{% url 'create_post'%}">Create Post</a>
+<hr>
+
 
 {% for post in posts %}
         <p>Post: {{ post.content }}</p>
@@ -12,16 +21,23 @@
         Shares: {{ post.number_of_shares }}
         <a href="{% url 'edit_post' post.id %}">Edit</a>
         <a href="{% url 'delete_post' post.id %}">Delete</a>
+        <a href="{% url 'create_comment'%}">Comment</a>
+        
         {% for comment in comments %}
             {% if comment.post == post %}
                 <p>Comments: {{comment}}</p>
+                Likes: {{ comment.number_of_likes }}
+                Dislikes: {{ comment.number_of_dislikes }}
+                <a href="{% url 'edit_comment' comment.id %}">Edit</a>
+                <a href="{% url 'delete_comment' comment.id %}">Delete</a>
             {% endif %}
           
         {% endfor %}
-      
+        <hr>
     {% endfor %}
 
-
+Available Rooms: {{room_count}}
+<hr>
     {% for room in rooms %}
 <div>
 

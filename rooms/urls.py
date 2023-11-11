@@ -6,4 +6,5 @@ urlpatterns = [
     path('create', views.createRoom, name="create_room"),
     path('delete/<str:pk>', views.deleteRoom, name="delete_room"),
     path('<str:pk>', views.room, name="room_id"),
+    path('post/', include('posts.urls'), name="post"),
     ]

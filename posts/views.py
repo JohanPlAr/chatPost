@@ -30,7 +30,7 @@ def editPost(request, pk):
 def deletePost(request, pk):
     post = Post.objects.get(id=pk)
     if request.method == "POST":
-        room.delete()
+        post.delete()
         return redirect('home')
 
     return render(request, 'rooms/delete.html', {'obj':post})
