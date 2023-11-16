@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 from . models import Post
 from .forms import PostForm
 
 
 # Create your views here.
+@login_required(login_url='login')
 def createPost(request):
     form = PostForm()
     if request.method == "POST":
@@ -15,9 +18,15 @@ def createPost(request):
     context = {'form':form}
     return render(request, 'posts/post_form.html', context)
 
+
+@login_required(login_url='login')
 def editPost(request, pk):
     post = Post.objects.get(id=pk)
     form = PostForm(instance=post)
+
+    if request.user != post.author:
+        return HttpResponse('User access denied')
+
     if request.method == "POST":
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
@@ -27,8 +36,13 @@ def editPost(request, pk):
     context = {'form':form}
     return render(request, 'posts/post_form.html', context)
 
+@login_required(login_url='login')
 def deletePost(request, pk):
     post = Post.objects.get(id=pk)
+
+    if request.user != post.author:
+        return HttpResponse('User access denied')
+
     if request.method == "POST":
         post.delete()
         return redirect('home')
