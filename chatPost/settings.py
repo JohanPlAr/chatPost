@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'posts',
     'rooms',
     'comments',
+    'registerLoginLogout',
 ]
 
 MIDDLEWARE = [

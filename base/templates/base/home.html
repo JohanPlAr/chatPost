@@ -19,12 +19,15 @@
         Likes: {{ post.number_of_likes }}
         Dislikes: {{ post.number_of_dislikes }}
         Shares: {{ post.number_of_shares }}
-        <a href="{% url 'edit_post' post.id %}">Edit</a>
-        <a href="{% url 'delete_post' post.id %}">Delete</a>
         <a href="{% url 'create_comment'%}">Comment</a>
         
         {% for comment in comments %}
             {% if comment.post == post %}
+            {% for comment in comments %}
+        {% endfor %}
+        {{ forloop.counter }}
+        <a href="{% url 'edit_post' post.id %}">Edit</a>
+        <a href="{% url 'delete_post' post.id %}">Delete</a>
                 <p>Comments: {{comment}}</p>
                 Likes: {{ comment.number_of_likes }}
                 Dislikes: {{ comment.number_of_dislikes }}
@@ -33,6 +36,7 @@
             {% endif %}
           
         {% endfor %}
+      
         <hr>
     {% endfor %}
 
