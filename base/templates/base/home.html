@@ -2,19 +2,19 @@
 
 {% block content %}
 
+<form method="GET" action="{%url 'home'%}">
+    <input type="text" name="q" placeholder="Search Rooms..."/>
 </form>
 
-<a href="{% url 'home' %}">All</a>
-{%for topic in topics %}
-<a href="{% url 'home' %}?q={{topic.name}}">{{topic.name}}</a>
-{%endfor%}
 <hr>
 <a href="{% url 'create_room'%}">Create Room</a>
 <a href="{% url 'create_post'%}">Create Post</a>
 <hr>
 
 
-{% for post in posts %}
+<!-- {% for post in posts %}
+        @{{post.author}}
+        {{post.created|timesince}} ago   
         <p>Post: {{ post.content }}</p>
         Likes: {{ post.number_of_likes }}
         Dislikes: {{ post.number_of_dislikes }}
@@ -44,7 +44,7 @@
         {% endfor %}
       
         <hr>
-    {% endfor %}
+    {% endfor %} -->
 
 Available Rooms: {{room_count}}
 <hr>

@@ -1,0 +1,33 @@
+{% for post in posts %}
+{% if post.room == room %} 
+<div class="card col-xl-10 col-mb-11 col-sm-12">
+    <img class="card-img-top" src="https://www.salesforce.com/content/dam/blogs/ca/Blog%20Posts/social-media-post.jpg" alt="Card image cap">
+    <div class="card-body">
+      <small>@{{post.author}} {{post.created|timesince}} ago</small>
+      <p class="card-text">{{ post.content }}</p>
+      Likes: {{ post.number_of_likes }}
+      Dislikes: {{ post.number_of_dislikes }}
+      Shares: {{ post.number_of_shares }}
+      {% for comment in comments %}
+      {% if comment.post == post %}
+      {% endif %}
+      {% endfor %}
+      comments: {{ forloop.counter }}  
+      
+     
+    <div>
+      <a type="" href="{% url 'create_comment'%}" class="btn btn-info" role="button">Comment</a>
+      {% if post.author == request.user %}
+      <a href="{% url 'edit_post' post.id %}">Edit</a>
+      <a href="{% url 'delete_post' post.id %}">Delete</a>
+      {% endif %}
+    </div>
+    </div>
+</div>
+{% endif %} 
+
+{% endfor %}
+ 
+        
+        
+        

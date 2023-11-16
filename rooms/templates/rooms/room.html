@@ -3,13 +3,17 @@
 {% block content %}
 
 <h1>{{room.name}}</h1>
-{%for post in posts%}
+{% include 'posts/posts.html' %}
+<!-- {%for post in posts%}
     {% if post.room == room %} 
     
-        <div>    
-            {{post.content}}
+        <div>
+            @{{post.author}}
+            {{post.created|timesince}} ago    
+           <p>{{post.content}}</p>
+<hr>
         </div>
     
     {% endif %}
 {%endfor%}
-    {% endblock %}
+    {% endblock %} -->

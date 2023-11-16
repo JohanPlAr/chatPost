@@ -20,8 +20,8 @@ def createRoom(request):
     return render(request, 'rooms/room_form.html', context)
 
 def room(request, pk):
-    posts = Post.objects.all()
     room = Room.objects.get(id=pk)
+    posts = room.post_room.all()
     context = {'room': room, 'posts':posts,}
     return render(request, 'rooms/room.html', context)
 

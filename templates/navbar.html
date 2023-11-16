@@ -2,7 +2,10 @@
     <h1>chatPost</h1>
 </a>
 
-
+<a href="{% url 'home' %}">All</a>
+{%for topic in topics %}
+<a href="{% url 'home' %}?q={{topic.name}}">{{topic.name}}</a>
+{%endfor%}
 
 <form method="GET" action="{%url 'home'%}" >
     <input type="text" name="q" placeholder="Search Rooms..."/>
