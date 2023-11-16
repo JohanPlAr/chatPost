@@ -26,13 +26,20 @@
             {% for comment in comments %}
         {% endfor %}
         {{ forloop.counter }}
+        {% if comment.author == request.user %}
         <a href="{% url 'edit_post' post.id %}">Edit</a>
         <a href="{% url 'delete_post' post.id %}">Delete</a>
+        {% else %}
+       
+        {% endif %}
                 <p>Comments: {{comment}}</p>
                 Likes: {{ comment.number_of_likes }}
                 Dislikes: {{ comment.number_of_dislikes }}
+                {% if request.user.is_authenticated %}
+                {% else %}
                 <a href="{% url 'edit_comment' comment.id %}">Edit</a>
                 <a href="{% url 'delete_comment' comment.id %}">Delete</a>
+                {% endif %}
             {% endif %}
           
         {% endfor %}
@@ -48,8 +55,11 @@ Available Rooms: {{room_count}}
 <span>@{{room.host.username}}</span>
     <h5>{{room.id}} -- <a href="{%url 'room_id' room.id%}">{{room.name}}</a></h5>
     <small>{{room.topic.name}}</small>
+    {% if room.host == request.user %}
     <a href="{% url 'edit_room' room.id %}">Edit</a>
     <a href="{% url 'delete_room' room.id %}">Delete</a>
+    {% else %}
+    {% endif %}
     <hr>
 </div>
 {% endfor %}
