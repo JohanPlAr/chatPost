@@ -58,7 +58,16 @@ def likePost(request, pk):
     if user in post.likes.all():
         post.likes.remove(user)
     else:
-        post.likes.add(user)    
+        post.likes.add(user)
     return redirect('room_id',room)
 
-    
+@login_required(login_url='login')
+def dislikePost(request, pk):
+    post = Post.objects.get(id=pk)
+    room = post.room.pk
+    user = request.user
+    if user in post.dislikes.all():
+        post.dislikes.remove(user)
+    else:
+        post.dislikes.add(user)
+    return redirect('room_id',room)

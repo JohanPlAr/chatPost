@@ -1,15 +1,19 @@
 {% for post in posts %}
 {% if post.room == room %} 
-<div class="card col-xl-10 col-mb-11 col-sm-12">
+<div class="card col-xl-10 col-mb-11 col-sm-12" id="scroll{{post.pk}}">
     <img class="card-img-top" src="https://www.salesforce.com/content/dam/blogs/ca/Blog%20Posts/social-media-post.jpg" alt="Card image cap">
     <div class="card-body">
       <small>@{{post.author}} {{post.created|timesince}} ago</small>
       <p class="card-text">{{ post.content }}</p>
-      <form id="like_form" action="{% url 'like_post' post.pk %}" method="POST">
+        <form id="like_post{{post.pk}}" action="{% url 'like_post' post.pk %}" method="POST">
         {% csrf_token%}
-        <a href="#" onclick="document.getElementById('like_form').submit()" class="text-decoration-none"><i class="bi bi-hand-thumbs-up"></i>{{ post.number_of_likes }}</a>
+        <a href="#" onclick="document.getElementById('like_post{{post.pk}}').submit()" class="text-decoration-none"><i class="bi bi-hand-thumbs-up"></i>{{ post.number_of_likes }}</a>
        </form>
-      Dislikes: {{ post.number_of_dislikes }}
+       <form id="dislike_form" action="{% url 'dislike_post' post.pk %}" method="POST">
+        {% csrf_token%}
+        <a href="#" onclick="document.getElementById('dislike_form').submit()" class="text-decoration-none"><i class="bi bi-hand-thumbs-down"></i>{{ post.number_of_dislikes }}</a>
+       </form>
+    
       Shares: {{ post.number_of_shares }}
       {% for comment in comments %}
       {% if comment.post == post %}
