@@ -1,3 +1,4 @@
+ 
 <div class="container-fluid">
     <div class="row flex-nowrap">
         <div class="col-auto col-md-3 col-xl-2 px-sm-1 px-0 bg-primary">
@@ -13,37 +14,40 @@
                 {% endif %}
 
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-                    <li class="nav-item">
+                    <li class="nav-item"> 
                         <a href="{%url 'home'%}" class="nav-link align-middle px-0 text-white">
                             <i class="fs-4 bi-house"></i><span class="ms-1 d-none d-sm-inline">Home</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white collapsed" aria-expanded="false">
-                            <i class="fs-4 bi bi-hash"></i> <span class="ms-1 d-none d-sm-inline">Topics</span> </a>
-                    </li>
-                        <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                
+                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white collapsed">
+                            <i class="fs-4 bi bi-hash"></i> <span class="ms-1 d-none d-sm-inline">Topics</span></a>
+                    
+                        <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                             <li class="w-100">
-                                <a href="{% url 'home' %}" class="text-white text-decoration-none"  aria-expanded="false">All</a>
+                                <a href="{% url 'home' %}" class="text-white text-decoration-none">All</a>
                             </li>
-{%for topic in topics %}
-<li>
-<a href="{% url 'home' %}?q={{topic.name}}" class="nav-link px-0  text-white"><span class="d-none d-sm-inline" aria-expanded="false"> {{ forloop.counter }}. {{topic.name}}</span></a>
-</li>
-{%endfor%}
-</ul>
+                            {%for topic in topics %}
+                            <li>
+                                <a href="{% url 'home' %}?q={{topic.name}}" class="nav-link px-0 text-white">
+                                    <span class="d-none d-sm-inline"> {{forloop.counter}}. {{topic.name}}</span></a>
+                            </li>
+                            {%endfor%}
+                        </ul>
                         <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white">
                             <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Your Rooms</span></a>
                         <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+                            {%for room in rooms%}
+                            {% if request.user == room.host %}
                             <li class="w-100">
-                                <a href="#" class="nav-link px-0 text-white"> <span class="d-none d-sm-inline">Item</span> 1</a>
+                                <a href="{%url 'room_id' room.id%}" class="nav-link px-0 text-white">
+                                    <span class="d-none d-sm-inline">{{room.name}}</span></a>
                             </li>
-                            <li>
-                                <a href="#" class="nav-link px-0 text-white"> <span class="d-none d-sm-inline">Item</span> 2</a>
-                            </li>
+                            {%endif%}
+                            {%endfor%}
                         </ul>
-                    </li>
-                    <li>
+                    
+                    
                         <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white">
                             <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Products</span> </a>
                             <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
@@ -84,5 +88,3 @@
                 </div>
             </div>
         </div>
-  
-   
