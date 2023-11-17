@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 from . models import Post
 from .forms import PostForm
 
@@ -48,3 +49,16 @@ def deletePost(request, pk):
         return redirect('home')
 
     return render(request, 'rooms/delete.html', {'obj':post})
+
+@login_required(login_url='login')
+def likePost(request, pk):
+    post = Post.objects.get(id=pk)
+    room = post.room.pk
+    user = request.user
+    if user in post.likes.all():
+        post.likes.remove(user)
+    else:
+        post.likes.add(user)    
+    return redirect('room_id',room)
+
+    
