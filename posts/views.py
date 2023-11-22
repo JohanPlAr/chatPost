@@ -10,6 +10,7 @@ from .forms import PostForm
 # Create your views here.
 
 
+
 @login_required(login_url='login')
 def createPost(request):
     form = PostForm()

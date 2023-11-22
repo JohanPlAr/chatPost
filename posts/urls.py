@@ -8,4 +8,4 @@ urlpatterns = [
     path('comment/', include('comments.urls'), name='comment'),
     path('post_like/<str:pk>', views.likePost, name='like_post'),
     path('post_dislike/<str:pk>', views.dislikePost, name='dislike_post'),
-    ]
+        ]

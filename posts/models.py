@@ -34,3 +34,6 @@ class Post(models.Model):
     
     def number_of_shares(self):
         return self.shares.count()
+    
+    def number_of_comments(self):
+        return self.commentsPost.count()

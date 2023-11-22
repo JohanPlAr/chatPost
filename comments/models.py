@@ -28,3 +28,5 @@ class Comment(models.Model):
 
     def number_of_dislikes(self):
         return self.dislikes.count()
+    
+ 

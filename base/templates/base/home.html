@@ -11,41 +11,6 @@
 <a href="{% url 'create_post'%}">Create Post</a>
 <hr>
 
-
-<!-- {% for post in posts %}
-        @{{post.author}}
-        {{post.created|timesince}} ago   
-        <p>Post: {{ post.content }}</p>
-        Likes: {{ post.number_of_likes }}
-        Dislikes: {{ post.number_of_dislikes }}
-        Shares: {{ post.number_of_shares }}
-        <a href="{% url 'create_comment'%}">Comment</a>
-        
-        {% for comment in comments %}
-            {% if comment.post == post %}
-            {% for comment in comments %}
-        {% endfor %}
-        {{ forloop.counter }}
-        {% if post.author == request.user %}
-        <a href="{% url 'edit_post' post.id %}">Edit</a>
-        <a href="{% url 'delete_post' post.id %}">Delete</a>
-              
-        {% endif %}
-                <p>Comments: {{comment}}</p>
-                Likes: {{ comment.number_of_likes }}
-                Dislikes: {{ comment.number_of_dislikes }}
-                {% if comment.author == request.user %}
-                <a href="{% url 'edit_comment' comment.id %}">Edit</a>
-                <a href="{% url 'delete_comment' comment.id %}">Delete</a>
-                {% endif %}
-                            
-            {% endif %}
-          
-        {% endfor %}
-      
-        <hr>
-    {% endfor %} -->
-
 Available Rooms: {{room_count}}
 <hr>
     {% for room in rooms %}
