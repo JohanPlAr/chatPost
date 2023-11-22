@@ -3,10 +3,13 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from . models import Post
+from comments.models import Comment
 from .forms import PostForm
 
 
 # Create your views here.
+
+
 @login_required(login_url='login')
 def createPost(request):
     form = PostForm()

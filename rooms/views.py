@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from . forms import RoomForm
 from . models import Room, Topic
-from posts.models import Post 
+from comments.models import Comment
 
 # Create your views here.
 
@@ -23,8 +23,9 @@ def room(request, pk):
     room = Room.objects.get(id=pk)
     rooms = Room.objects.all()
     posts = room.post_room.all()
+    comments = Comment.objects.all()
     topics = Topic.objects.all()
-    context = {'room': room, 'posts':posts, 'topics':topics, 'rooms':rooms}
+    context = {'room': room, 'posts':posts, 'topics':topics, 'rooms':rooms, 'comments':comments}
     return render(request, 'rooms/room.html', context)
 
 @login_required(login_url='login')

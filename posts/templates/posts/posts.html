@@ -1,47 +1,78 @@
 {% for post in posts %}
-{% if post.room == room %} 
-<div class="card col-xl-10 col-mb-11 col-sm-12" id="scroll{{post.pk}}">
-    <img class="card-img-top p-1 rounded-3" src="https://www.salesforce.com/content/dam/blogs/ca/Blog%20Posts/social-media-post.jpg" alt="Card image cap">
+{% if post.room == room %}
+<div class="card col-xl-10 col-mb-11 col-sm-12 mb-3" id="scroll{{post.pk}}">
+    <img class="card-img-top p-1 rounded-3" src="https://www.salesforce.com/content/dam/blogs/ca/Blog%20Posts/social-media-post.jpg" 
+    alt="Card image cap">
     <div class="card-body">
       <small>@{{post.author}} {{post.created|timesince}} ago</small>
-      <p class="card-text">{{ post.content }}</p>
-      <div class="post-details">  
-        <a href="#postcomments" data-bs-toggle="collapse" class="nav-link collapsed"><i class="bi bi-chat"></i> </a>
-        <ul class="collapse nav" id="postcomments">
-          
-            <li class="">
-              <a href="#" class="text-decoration-none"></a>
-          </li>
-        </ul>
-      Shares: {{ post.number_of_shares }}
-<div>
-      
-     
-</div>       
-     
-    
-      <a type="" href="{% url 'create_comment'%}" class="btn btn-info" role="button">Comment</a>
       {% if post.author == request.user %}
       <a href="{% url 'edit_post' post.id %}">Edit</a>
       <a href="{% url 'delete_post' post.id %}">Delete</a>
+            
       {% endif %}
-      <form id="like_post{{post.pk}}" action="{% url 'like_post' post.pk %}" method="POST">
+      <p class="card-text">{{ post.content }}</p>
+      <div class="post-details">
+        
+       <a href="#postcomments{{post.pk}}" data-bs-toggle="collapse" class="nav-link collapsed"><i class="bi bi-chat"></i> </a>
+     
+      
+      Shares: {{ post.number_of_shares }}
+
+       
+   
+       <form id="like_post{{post.pk}}" action="{% url 'like_post' post.pk %}" method="POST">
         {% csrf_token%}
         <a href="#" onclick="document.getElementById('like_post{{post.pk}}').submit()" class="text-decoration-none"><i class="bi bi-hand-thumbs-up"></i>{{ post.number_of_likes }}</a>
        </form>
     
        <form id="dislike_form" action="{% url 'dislike_post' post.pk %}" method="POST">
-        {% csrf_token%}
+        {% csrf_token %}
         <a href="#" onclick="document.getElementById('dislike_form').submit()" class="text-decoration-none"><i class="bi bi-hand-thumbs-down"></i>{{ post.number_of_dislikes }}</a>
        </form>
     </div>
     </div>
+   
+    <ul class="collapse nav" id="postcomments{{post.pk}}">
+        
+        <li class="w-100">
+            <hr>
+            <a type="" href="{% url 'create_comment'%}" class=>Comment</a><br>
+        </li>
+   
+      
+    {% for comment in comments %}
+    {% if comment.post == post %}
+
+  
+        <li class="w-100">
+            <small>@{{comment.author}} {{comment.created|timesince}} ago</small><br>
+          {{ comment.content }}</p>
+        </li>
+        <form id="like_comment{{comment.pk}}" action="{% url 'like_comment' comment.pk%}" method="POST">
+            {% csrf_token%}
+            <a href="#" onclick="document.getElementById('like_comment{{comment.pk}}').submit()" class="text-decoration-none">
+                <i class="bi bi-hand-thumbs-up"></i>{{comment.number_of_likes}}</a>
+           </form>
+        
+           <form id="dislike_comment" action="{% url 'dislike_comment' comment.pk%}" method="POST">
+            {% csrf_token%}
+            <a href="#" onclick="document.getElementById('dislike_comment').submit()" class="text-decoration-none">
+                <i class="bi bi-hand-thumbs-down"></i>{{comment.number_of_dislikes}}</a>
+           </form>
+        <hr>
+      
+    
+
+{%endif%}
+{%endfor%}
+</ul>
 
 </div>
+
 {% endif %} 
 
 {% endfor %}
- 
+
         
         
         
