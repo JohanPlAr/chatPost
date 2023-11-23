@@ -47,21 +47,23 @@ def deleteComment(request, pk):
 @login_required(login_url='login')
 def likeComment(request, pk):
     comment = Comment.objects.get(id=pk)
-    post = comment.post.pk
+    post = comment.post
     user = request.user
+    room = post.room.id
     if user in comment.likes.all():
         comment.likes.remove(user)
     else:
         comment.likes.add(user)
-    return redirect('room_id',post)
+    return redirect('room_id',room)
 
 @login_required(login_url='login')
 def dislikeComment(request, pk):
     comment = Comment.objects.get(id=pk)
-    post = comment.post.pk
+    post = comment.post
     user = request.user
+    room = post.room.id
     if user in comment.dislikes.all():
         comment.dislikes.remove(user)
     else:
         comment.dislikes.add(user)
-    return redirect('room_id',post)
+    return redirect('room_id',room)

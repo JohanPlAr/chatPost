@@ -17,8 +17,10 @@ Available Rooms: {{room_count}}
 <div>
 
 <span>@{{room.host.username}}</span>
-    <h5>{{room.id}} -- <a href="{%url 'room_id' room.id%}">{{room.name}}</a></h5>
-    <small>{{room.topic.name}}</small>
+    
+    <h5><a href="{%url 'room_id' room.id%}">{{room.name}}</a> </h5>
+    
+    <small>{{room.topic.name}} - Posts: {{room.number_of_posts}}</small>
     {% if room.host == request.user %}
     <a href="{% url 'edit_room' room.id %}">Edit</a>
     <a href="{% url 'delete_room' room.id %}">Delete</a>

@@ -12,7 +12,7 @@ class Post(models.Model):
     room = models.ForeignKey(Room, on_delete=models.CASCADE, related_name='post_room', default=False)
     content = models.TextField(max_length=550)
     edited = models.BooleanField(default=False)
-    image = CloudinaryField('post-image', default='placeholder')
+    image = CloudinaryField('post-image', default='https://res.cloudinary.com/ddurovnhl/image/upload/v1700729202/samples/l83wf54aeup6jmn0xbou.png')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     status = models.IntegerField(choices=STATUS, default=0)
@@ -37,3 +37,6 @@ class Post(models.Model):
     
     def number_of_comments(self):
         return self.commentsPost.count()
+    
+    def post_image(self):
+        return self.image

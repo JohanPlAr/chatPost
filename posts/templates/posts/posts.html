@@ -1,7 +1,7 @@
 {% for post in posts %}
 {% if post.room == room %}
 <div class="card col-xl-10 col-mb-11 col-sm-12 mb-3" id="scroll{{post.pk}}">
-    <img class="card-img-top p-1 rounded-3" src="https://www.salesforce.com/content/dam/blogs/ca/Blog%20Posts/social-media-post.jpg" 
+    <img class="card-img-top p-1 rounded-3" src="{{post.image.url}}" 
     alt="Card image cap">
     <div class="card-body">
       <small>@{{post.author}} {{post.created|timesince}} ago</small>
@@ -22,12 +22,14 @@
    
        <form id="like_post{{post.pk}}" action="{% url 'like_post' post.pk %}" method="POST">
         {% csrf_token%}
-        <a href="#" onclick="document.getElementById('like_post{{post.pk}}').submit()" class="text-decoration-none"><i class="bi bi-hand-thumbs-up"></i>{{ post.number_of_likes }}</a>
+        <a href="#" onclick="document.getElementById('like_post{{post.pk}}').submit()" class="text-decoration-none">
+            <i class="bi bi-hand-thumbs-up"></i>{{ post.number_of_likes }}</a>
        </form>
     
-       <form id="dislike_form" action="{% url 'dislike_post' post.pk %}" method="POST">
+       <form id="dislike_post{{post.pk}}" action="{% url 'dislike_post' post.pk %}" method="POST">
         {% csrf_token %}
-        <a href="#" onclick="document.getElementById('dislike_form').submit()" class="text-decoration-none"><i class="bi bi-hand-thumbs-down"></i>{{ post.number_of_dislikes }}</a>
+        <a href="#" onclick="document.getElementById('dislike_post{{post.pk}}').submit()" class="text-decoration-none">
+            <i class="bi bi-hand-thumbs-down"></i>{{ post.number_of_dislikes }}</a>
        </form>
     </div>
     </div>
@@ -48,17 +50,19 @@
             <small>@{{comment.author}} {{comment.created|timesince}} ago</small><br>
           {{ comment.content }}</p>
         </li>
+        <div class="comment-details">
         <form id="like_comment{{comment.pk}}" action="{% url 'like_comment' comment.pk%}" method="POST">
             {% csrf_token%}
             <a href="#" onclick="document.getElementById('like_comment{{comment.pk}}').submit()" class="text-decoration-none">
                 <i class="bi bi-hand-thumbs-up"></i>{{comment.number_of_likes}}</a>
            </form>
         
-           <form id="dislike_comment" action="{% url 'dislike_comment' comment.pk%}" method="POST">
+           <form id="dislike_comment{{comment.pk}}" action="{% url 'dislike_comment' comment.pk%}" method="POST">
             {% csrf_token%}
-            <a href="#" onclick="document.getElementById('dislike_comment').submit()" class="text-decoration-none">
+            <a href="#" onclick="document.getElementById('dislike_comment{{comment.pk}}').submit()" class="text-decoration-none">
                 <i class="bi bi-hand-thumbs-down"></i>{{comment.number_of_dislikes}}</a>
            </form>
+        </div>
         <hr>
       
     

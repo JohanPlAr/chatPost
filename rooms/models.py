@@ -26,3 +26,6 @@ class Room(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def number_of_posts(self):
+        return self.post_room.count()

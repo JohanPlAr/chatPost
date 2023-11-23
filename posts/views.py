@@ -57,7 +57,7 @@ def deletePost(request, pk):
 @login_required(login_url='login')
 def likePost(request, pk):
     post = Post.objects.get(id=pk)
-    room = post.room.pk
+    room = post.room.id
     user = request.user
     if user in post.likes.all():
         post.likes.remove(user)
@@ -68,7 +68,7 @@ def likePost(request, pk):
 @login_required(login_url='login')
 def dislikePost(request, pk):
     post = Post.objects.get(id=pk)
-    room = post.room.pk
+    room = post.room.id
     user = request.user
     if user in post.dislikes.all():
         post.dislikes.remove(user)
