@@ -1,14 +1,13 @@
- 
-<div class="container-fluid">
-    <div class="row flex-nowrap">
-        <div class="col-auto col-md-3 col-xl-2 px-sm-1 px-0 bg-primary">
-            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-                <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+ <div class="col-auto col-lg-3 col-xl-2 px-sm-1 px-0 bg-primary">
+    <nav>
+            <div class="d-flex flex-column align-items-center align-items-xs-start px-3 pt-2 text-white min-vh-100 position-sticky">
+                <a href="/" class="mb-md-0 me-md-auto text-white text-decoration-none">
                     <span class="fs-5">chatPost</span>
                 </a>
 
                       {% if request.user.is_authenticated %}
-                <span class="ms-1 d-none d-sm-inline">Hi! {{ request.user.username|capfirst }}, you are logged in.</span> <a href="{% url 'logout' %}" class="text-white">Logout</a> 
+                <span class="ms-1 d-none d-xs-inline">Hi! {{ request.user.username|capfirst }}</span> 
+                <a href="{% url 'logout' %}" class="text-white">Logout</a> 
                 {% else %}
                 <a href="{% url 'login' %}" class="text-white">Login</a>
                 {% endif %}
@@ -16,12 +15,12 @@
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li class="nav-item"> 
                         <a href="{%url 'home'%}" class="nav-link align-middle px-0 text-white">
-                            <i class="fs-4 bi-house"></i><span class="ms-1 d-none d-sm-inline">Home</span>
+                            <i class="fs-4 bi-house"></i><span class="ms-1 d-none d-md-inline-block">Home</span>
                         </a>
                     </li>
                 
                         <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white collapsed">
-                            <i class="fs-4 bi bi-hash"></i> <span class="ms-1 d-none d-sm-inline">Topics</span></a>
+                            <i class="fs-4 bi bi-hash"></i> <span class="ms-1 d-none d-md-inline-block">Topics</span></a>
                     
                         <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                             <li class="w-100">
@@ -30,18 +29,18 @@
                             {%for topic in topics %}
                             <li>
                                 <a href="{% url 'home' %}?q={{topic.name}}" class="nav-link px-0 text-white">
-                                    <span class="d-none d-sm-inline"> {{forloop.counter}}. {{topic.name}}</span></a>
+                                    <span class="text-white"> {{forloop.counter}}. {{topic.name}}</span></a>
                             </li>
                             {%endfor%}
                         </ul>
                         <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white">
-                            <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Your Rooms</span></a>
+                            <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-md-inline-block">Your Rooms</span></a>
                         <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
                             {%for room in rooms%}
                             {% if request.user == room.host %}
                             <li class="w-100">
                                 <a href="{%url 'room_id' room.id%}" class="nav-link px-0 text-white">
-                                    <span class="d-none d-sm-inline">{{room.name}}</span></a>
+                                    <span class="text-white">{{room.name}}</span></a>
                             </li>
                             {%endif%}
                             {%endfor%}
@@ -49,32 +48,32 @@
                     
                     
                         <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white">
-                            <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Products</span> </a>
+                            <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-md-inline-block">Products</span> </a>
                             <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
                             <li class="w-100">
-                                <a href="#" class="nav-link px-0 text-white"> <span class="d-none d-sm-inline">Product</span> 1</a>
+                                <a href="#" class="nav-link px-0 text-white"> <span class="text-white">Product</span> 1</a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link px-0 text-white"> <span class="d-none d-sm-inline">Product</span> 2</a>
+                                <a href="#" class="nav-link px-0 text-white"> <span class="text-white">Product</span> 2</a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link px-0  text-white"> <span class="d-none d-sm-inline">Product</span> 3</a>
+                                <a href="#" class="nav-link px-0  text-white"> <span class="text-white">Product</span> 3</a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link px-0  text-white"> <span class="d-none d-sm-inline">Product</span> 4</a>
+                                <a href="#" class="nav-link px-0  text-white"> <span class="text-white">Product</span> 4</a>
                             </li>
                         </ul>
                     </li>
                     <li>
                         <a href="#" class="nav-link px-0 align-middle  text-white">
-                            <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Friends</span> </a>
+                            <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-md-inline-block">Friends</span> </a>
                     </li>
                 </ul>
                 <hr>
                 <div class="dropdown pb-4">
                     <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
-                        <span class="d-none d-sm-inline mx-1">loser</span>
+                        <img src="https://res.cloudinary.com/ddurovnhl/image/upload/v1700734201/cqoev47nse19dfgkdrwr.png" alt="profilepicture" width="30" height="30" class="rounded-circle">
+                        <span class="d-none d-sm-inline mx-1">{{request.user}}</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
                         <li><a class="dropdown-item text-white" href="#">New project...</a></li>
@@ -87,4 +86,6 @@
                     </ul>
                 </div>
             </div>
+        </nav>
         </div>
+    

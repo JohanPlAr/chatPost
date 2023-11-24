@@ -15,25 +15,32 @@
     <title>ChatPost</title>
 </head>
 <body>
- 
-    
+    <!-- Container including sidebar and room/post area -->
+<div class="container-fluid">
+    <div class="row flex-nowrap">
     {% include 'sidebar.html'%}
-    <div class="col py-3">
-        {% if messages %}
+  
+        
+
+        <main class="">
+            {% if messages %}
         <ul class="messages">
             {% for message in messages %}
             <li>{{ message }}</li>
             {% endfor %}
         </ul>
         {% endif %}
-        <main class="col-8">
-    
+        <div class="container">
+            <div class="row">
+                <div class="col">
             {% block content %}
         
         
             {% endblock content%}
         </div>
-    </div>
+        <!-- Closing tags for container including sidebar and post/room area -->
+        </div>
+        </div>
         </main>
     
 

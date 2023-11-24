@@ -1,7 +1,7 @@
 {% for post in posts %}
 {% if post.room == room %}
-<div class="card col-xl-10 col-mb-11 col-sm-12 mb-3" id="scroll{{post.pk}}">
-    <img class="card-img-top p-1 rounded-3" src="{{post.image.url}}" 
+<div class="card col-xl-6 col-mb-9 col-sm-12 mb-3 " id="scroll{{post.pk}}">
+    <img class="card-img-top p-1 rounded-3 " src="{{post.image.url}}" 
     alt="Card image cap">
     <div class="card-body">
       <small>@{{post.author}} {{post.created|timesince}} ago</small>
