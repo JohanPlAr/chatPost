@@ -4,4 +4,4 @@ from .models import Comment
 class CommentForm(ModelForm):
     class Meta:
         model = Comment
-        fields = '__all__'
+        exclude = ('author','post','edited','status','likes','dislikes')

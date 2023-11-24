@@ -26,7 +26,6 @@ def createPost(request):
     context = {'form':form}
     return render(request, 'posts/post_form.html', context)
 
-
 @login_required(login_url='login')
 def editPost(request, pk):
     post = Post.objects.get(id=pk)

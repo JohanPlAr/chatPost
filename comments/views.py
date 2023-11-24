@@ -11,11 +11,15 @@ from .forms import CommentForm
 # Create your views here.
 
 @login_required(login_url='login')
-def createComment(request):
+def createComment(request, pk):
     form = CommentForm()
     if request.method == "POST":
         form = CommentForm(request.POST)
         if form.is_valid():
+            instance = form.save(commit=False)
+            instance.author = request.user
+            instance.status = 1
+            instance.post = Post.objects.get(id=pk)
             form.save()
             return redirect('home')
         

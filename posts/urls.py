@@ -6,6 +6,6 @@ urlpatterns = [
     path('create', views.createPost, name="create_post"),
     path('delete/<str:pk>', views.deletePost, name="delete_post"),
     path('comment/', include('comments.urls'), name='comment'),
-    path('post_like/<str:pk>', views.likePost, name='like_post'),
-    path('post_dislike/<str:pk>', views.dislikePost, name='dislike_post'),
+    path('post-like/<str:pk>', views.likePost, name='like_post'),
+    path('post-dislike/<str:pk>', views.dislikePost, name='dislike_post'),
         ]

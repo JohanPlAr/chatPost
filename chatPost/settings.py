@@ -21,6 +21,8 @@ if os.path.isfile("env.py"):
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
+# Cloudinary imports
+import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 
@@ -154,3 +156,9 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CLOUDINARY_STORAGE = {
+    'cloud_name' : os.environ.get('CLOUD_NAME'),
+    'api_key' : os.environ.get('API_KEY'),
+    'api_secret' : os.environ.get('API_SECRET')
+}
