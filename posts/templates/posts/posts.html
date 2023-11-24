@@ -47,7 +47,20 @@
 
   
         <li class="w-100">
-            <small>@{{comment.author}} {{comment.created|timesince}} ago</small><br>
+           
+            <small>@{{comment.author}}  
+                {%if comment.edited == True %} 
+                {{comment.created|timesince}} ago  
+                {%else%}
+                edited {{comment.updated|timesince}} ago 
+                {%endif%}
+            </small>
+            {% if comment.author == request.user %}
+            <br>
+            <a href="{% url 'edit_comment' comment.pk %}">Edit</a>
+            <a href="{% url 'delete_comment' comment.pk %}">Delete</a>
+            {%endif%}
+            <br>
           {{ comment.content }}</p>
         </li>
         <div class="comment-details">
