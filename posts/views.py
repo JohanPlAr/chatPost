@@ -15,9 +15,12 @@ from .forms import PostForm
 def createPost(request):
     form = PostForm()
     if request.method == "POST":
-        form = PostForm(request.POST)
+        form = PostForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            instance = form.save(commit=False)
+            instance.author = request.user
+            print(instance.author, instance.room, instance.image)
+            instance.save()
             return redirect('home')
         
     context = {'form':form}
@@ -35,6 +38,8 @@ def editPost(request, pk):
     if request.method == "POST":
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
+            instance = form.save(commit=False)
+            instance.edited = True
             form.save()
             return redirect('home')
     
