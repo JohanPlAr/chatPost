@@ -1,7 +1,12 @@
+<div class="row">
+    <div class="col-10 col-xs-12">
+    <div class="container">
+        <div class="row justify-content-start">
 {% for post in posts %}
 {% if post.room == room %}
-<div class="card col-xl-6 col-mb-9 col-sm-12 mb-3 " id="scroll{{post.pk}}">
-    <img class="card-img-top p-1 rounded-3 " src="{{post.image.url}}" 
+
+<div class="card col-12 col-md-10 col-lg-8 col-xl-6 mx-3 mb-3" id="scroll{{post.pk}}">
+    <img class="card-img-top rounded-3 post-image" src="{{post.image.url}}" 
     alt="Card image cap">
     <div class="card-body">
       <small>@{{post.author}} {{post.created|timesince}} ago</small>
@@ -89,7 +94,10 @@
 {% endif %} 
 
 {% endfor %}
-
+</div>
+</div>
+</div>
+</div>
         
         
         
