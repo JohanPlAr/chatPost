@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from . forms import ProfileForm
 
 # Create your views here.
 
@@ -48,3 +50,18 @@ def registerView(request):
         else:
             messages.error(request, 'Registration failed')
     return render(request, 'base/register_login.html', context)
+
+@login_required(login_url='login')
+def createProfile(request):
+    form = ProfileForm
+    if request.method == "POST":
+        form = ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.user = request.user
+            instance.save()
+            return redirect('home')
+
+    context = {'form':form,}
+    return render(request, 'registerLoginLogout/create_profile.html', context
+)

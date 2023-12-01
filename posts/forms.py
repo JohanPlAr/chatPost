@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from django import forms
+from cloudinary.forms import CloudinaryFileField
 from .models import Post
 
 

@@ -3,8 +3,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from . models import Post
-from comments.models import Comment
 from .forms import PostForm
+from cloudinary.uploader import upload_image
 
 
 # Create your views here.
