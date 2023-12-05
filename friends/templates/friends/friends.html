@@ -1,19 +1,56 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<p>Number of friends: {{number_of_friends}}</p>
+Friends: 
+{%for friend in friends_list %}
+<p>{{friend}}</p>
+{%for f_request in all_requests%}
+{%if friend == f_request.receiver and request.user == f_request.sender%}
+<form method="post" action="{% url 'remove_friend' f_request.id %}">
+    {% csrf_token %}
+    <input type="hidden" name="status" value="2">
+    <button type="submit">Remove</button>
+  </form>
+  {%elif friend == f_request.sender and request.user == f_request.receiver%}
+<form method="post" action="{% url 'remove_friend' f_request.id %}">
+    {% csrf_token %}
+    <input type="hidden" name="status" value="2">
+    <button type="submit">Remove</button>
+  </form>
+{%endif%}
+{%endfor%}
+{%endfor%}
+
 {%for received in received_requests %}
-<h3>{{received.receiver|capfirst}}s recieved Friend Requests:</h3>
+<h3>{{received.receiver|capfirst}}s received Friend Requests:</h3>
 <p>Sender: {{received.sender}}
 </p>
-<p>Status: {%if received.status == 0 %}pending{%endif%}
+<p>Status: {%if received.status == 0 %}pending
+            {%elif received.status == 1 %}accepted
+  {%else%}
+  denied
+            {%endif%}
 </p>
 
+{%if received.status == 0%}
 <form method="post" action="{% url 'accept_friend_request' received.id %}">
     {% csrf_token %}
     <input type="hidden" name="status" value="1">
     <button type="submit">Accept</button>
   </form>
-<hr>
+<form method="post" action="{% url 'decline_friend_request' received.id %}">
+    {% csrf_token %}
+    <input type="hidden" name="status" value="2">
+    <button type="submit">Decline</button>
+  </form>
+
+  {%endif%}
 {%endfor%}
+Pending:
+{%for sent in sent_requests%}
+<p>{{sent.receiver}}</p>
+{%endfor%}
+
 
 {% endblock content %}

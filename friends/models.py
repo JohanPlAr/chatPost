@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models import Q
 
 STATUS = ((0, "Pending"),(1, "Accepted"),(2, "Declined"))
 
@@ -19,7 +20,3 @@ class FriendRequest(models.Model):
         FriendRequest.objects.filter(
             receiver=user, status=0
         ).update(status=2)
-
-    def number_of_accepted(self, user):
-        FriendRequest.objects.filter(receiver=user, status=1).count() + FriendRequest.objects.filter(sender=user, status=1).count()
-
