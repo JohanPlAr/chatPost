@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'rooms',
     'comments',
     'registerLoginLogout',
+    'friends',
 ]
 
 MIDDLEWARE = [

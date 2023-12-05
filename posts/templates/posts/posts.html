@@ -11,11 +11,12 @@
     alt="Card image cap">
     <div class="card-body">
         {% if post.author.profile.avatar.url %}
-      <img src='{{post.author.profile.avatar.url}}' 
-      alt="profilepicture" width="30" height="30" class="rounded-circle">
+        <a href="{%url 'friend_request' post.author.id %}"><img src='{{post.author.profile.avatar.url}}' 
+            alt="profilepicture" width="30" height="30" class="rounded-circle"></a>
+        
       {%else%}
-      <img src='https://res.cloudinary.com/ddurovnhl/image/upload/v1701246735/default_avatar_poro4z.png' 
-      alt="profilepicture" width="30" height="30" class="rounded-circle">
+      <a href="{%url 'friend_request' post.author.id %}"><img src='https://res.cloudinary.com/ddurovnhl/image/upload/v1701246735/default_avatar_poro4z.png' 
+      alt="profilepicture" width="30" height="30" class="rounded-circle"></a>
       {%endif%}
       <small>@{{post.author}} {{post.created|timesince}} ago</small>
       {% if post.author == request.user %}

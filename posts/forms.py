@@ -1,4 +1,4 @@
-from django.forms import ModelForm
+from django.forms import ModelForm, ImageField
 from cloudinary.forms import CloudinaryFileField
 from .models import Post
 
