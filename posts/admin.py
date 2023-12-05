@@ -12,6 +12,6 @@ class PostAdmin(admin.ModelAdmin):
         'content',
         'edited',
         'created',
-        'updated'
+        'updated',
     )
     list_filter = ['author', 'edited']

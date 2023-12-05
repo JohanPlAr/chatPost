@@ -19,8 +19,8 @@ def createPost(request):
         if form.is_valid():
             instance = form.save(commit=False)
             instance.author = request.user
-            print(instance.author, instance.room, instance.image)
             instance.save()
+            instance.room.participants.add(request.user)
             return redirect('home')
         
     context = {'form':form}

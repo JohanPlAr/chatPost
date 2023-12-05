@@ -5,11 +5,12 @@
     <input type="text" name="q" placeholder="Search Rooms..."/>
 </form>
 <hr>
-<a href="{% url 'create_room'%}">Create Room</a>
 <a href="{% url 'create_post'%}">Create Post</a>
 <hr>
 <h1>{{room.name}}</h1>
 {% include 'posts/posts.html' %}
+
+{% include 'room/participants.html'%}
 <!-- {%for post in posts%}
     {% if post.room == room %} 
     

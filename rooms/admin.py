@@ -12,7 +12,8 @@ class RoomAdmin(admin.ModelAdmin):
     'description',    
     'status',
     'updated',
-    'created',  
+    'created',
+ 
     )
     list_filter = ['host', 'topic', 'name']
 
