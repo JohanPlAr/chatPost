@@ -38,6 +38,7 @@ def logoutUser(request):
 def registerView(request):
     page = 'register'
     form = UserCreationForm
+    profile_form = ProfileForm
     context = {'page':page, 'form':form,}
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -45,6 +46,7 @@ def registerView(request):
             user = form.save(commit=False)
             user.username = user.username.lower()
             user.save()
+            user.profile.create()
             login(request, user)
             return redirect('home')
         else:

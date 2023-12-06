@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-from django.urls import reverse
 from . models import Post
 from rooms.models import Room
 from .forms import PostForm
@@ -24,7 +23,7 @@ def createPost(request, pk):
             instance.room = post_room
             instance.save()
             instance.room.participants.add(request.user)
-            return redirect('home')
+            return redirect('room_id', post_room.id)
         
     context = {'form':form}
     return render(request, 'posts/post_form.html', context)

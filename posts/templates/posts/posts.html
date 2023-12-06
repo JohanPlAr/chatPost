@@ -6,7 +6,6 @@
         <hr>
         <a href="{% url 'create_post' room.pk%}">Create Post</a>
         <hr>    
-{{room.id}}
 {% for post in posts %}
 {% if forloop.first %}
 <h1 class="text-center">{{room.name}}</h1>

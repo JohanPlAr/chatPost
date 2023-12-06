@@ -1,18 +1,20 @@
 
-    
-        <div class="col-1">
-<h3>Participants</h3>
+  
+        <div class="col-2 bg-primary d-flex flex-column participants">
+            <div class="participants">  
+<h4 class="text-white mt-3">Participants</h4>
          {%for participant in participants%}
          {%if participant.profile%}
-         {{participant.profile.user}}
-         <img src='{{participant.profile.avatar.url}}' 
+        <img src='{{participant.profile.avatar.url}}' 
             alt="profilepicture" width="30" height="30" class="rounded-circle">
+            <small class="text-white">{{participant.profile.user}}</small>
          {%else%}
-         {{participant}}
-      <img src='https://res.cloudinary.com/ddurovnhl/image/upload/v1701246735/default_avatar_poro4z.png' 
+        <img src='https://res.cloudinary.com/ddurovnhl/image/upload/v1701246735/default_avatar_poro4z.png' 
       alt="profilepicture" width="30" height="30" class="rounded-circle">
+      {{participant}}
       {%endif%}
         {%endfor%}        
         </div>
+</div>
     </div>
 </div>
