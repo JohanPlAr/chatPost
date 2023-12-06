@@ -23,15 +23,30 @@
   
         
 
-        <main class="">
-            {% if messages %}
-        <ul class="messages">
+        <main class="w-100">
+            <!-- Error messages -->
+            <div class="alert-info">
+              
+           
+      
             {% for message in messages %}
-            <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
+            {% if messages.error %}
+            <div class="alert alert-danger">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <strong>Error!</strong> {{ message }}
+               
+            </div>
+            
+        {%else%}
+        <div class="alert alert-success">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <strong>Success!</strong> {{ message }}
+           
+        </div>
         {% endif %}
-     
+        {% endfor %}
+    </div>
+
             {% block content %}
         
         

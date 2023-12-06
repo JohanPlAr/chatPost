@@ -9,7 +9,10 @@ class Profile(models.Model):
     last_name = models.CharField(max_length=50, default='last-name')
     bio = models.TextField(max_length=500, null=True, blank=True)
     email = models.EmailField(max_length=254)
-    avatar = CloudinaryField('avatar', default='https://res.cloudinary.com/ddurovnhl/image/upload/v1701246735/default_avatar_poro4z.png')
+    avatar = CloudinaryField(
+        'avatar', 
+        default='https://res.cloudinary.com/ddurovnhl/image/upload/v1701246735/default_avatar_poro4z.png'
+        )
 
 
     def __str__(self):

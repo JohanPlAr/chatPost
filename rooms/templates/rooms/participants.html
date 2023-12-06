@@ -1,17 +1,25 @@
 
   
-        <div class="col-2 bg-primary d-flex flex-column participants">
-            <div class="participants">  
-<h4 class="text-white mt-3">Participants</h4>
+        <div class="col-auto col-xl-2 bg-primary participants">
+            <div class="participants rounded-3 d-flex flex-column align-items-center xl-align-items-start">  
+<span class="fs-5 text-white">Participants</span>
          {%for participant in participants%}
          {%if participant.profile%}
+         <div class="w-30">
+            <p>
         <img src='{{participant.profile.avatar.url}}' 
             alt="profilepicture" width="30" height="30" class="rounded-circle">
-            <small class="text-white">{{participant.profile.user}}</small>
+            <small class="text-white d-lg-none">{{participant.profile.user}}</small>
+        </p>
+        
          {%else%}
+         
+        <p>
         <img src='https://res.cloudinary.com/ddurovnhl/image/upload/v1701246735/default_avatar_poro4z.png' 
       alt="profilepicture" width="30" height="30" class="rounded-circle">
-      {{participant}}
+      <small class="text-white">{{participant}}</small>
+    </p>
+    </div>
       {%endif%}
         {%endfor%}        
         </div>

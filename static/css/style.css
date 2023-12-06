@@ -2,10 +2,11 @@
 nav {  
     position: -webkit-sticky;
     position: sticky;
-    top: 0;}
+    top: 0;
+}
 
 .post-card {
-    margin-right:5vw; 
+    margin-right:5vw;
     margin-left:5vw; 
 }
 
@@ -29,4 +30,13 @@ nav {
 .participants {  
     position: -webkit-sticky;
     position: sticky;
-    top: 0;}
+    top: 0;
+    border-top-right-radius: 0.5rem;    
+}
+
+@media only screen and (max-width: 768px) {
+.post-card {   margin-right:8vw;
+        margin-left:0vw; 
+    }
+      
+    }

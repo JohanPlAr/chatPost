@@ -21,8 +21,9 @@
 <div>
     <form action="" method="post">
         {% csrf_token %}
-     
-       {{ form.as_p }}
+     <p>Username: {{ form.username }}</p>
+    <p>Password: {{ form.password1 }}</p>
+       <p>Repeat Password: {{ form.password2 }}</p>
 
         <input type="submit" value="Register">
     </form>
