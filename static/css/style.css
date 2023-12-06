@@ -4,6 +4,10 @@ nav {
     position: sticky;
     top: 0;}
 
+.post-card {
+    margin-right:5vw; 
+    margin-left:5vw; 
+}
 
 .post-details {
     width: 100%;
@@ -17,7 +21,6 @@ nav {
 }
 
 .post-image {
-    margin-top: 10px;
     max-height: 30vh;
     object-fit: scale-down;
     background-color: darkgrey;

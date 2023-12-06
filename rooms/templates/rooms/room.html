@@ -1,16 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<form method="GET" action="{%url 'home'%}" >
-    <input type="text" name="q" placeholder="Search Rooms..."/>
-</form>
-<hr>
-<a href="{% url 'create_post'%}">Create Post</a>
-<hr>
-<h1>{{room.name}}</h1>
 {% include 'posts/posts.html' %}
 
-{% include 'room/participants.html'%}
+{% include 'rooms/participants.html'%}
 <!-- {%for post in posts%}
     {% if post.room == room %} 
     

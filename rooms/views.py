@@ -25,7 +25,8 @@ def room(request, pk):
     posts = room.post_room.all()
     comments = Comment.objects.all()
     topics = Topic.objects.all()
-    context = {'room': room, 'posts':posts, 'topics':topics, 'rooms':rooms, 'comments':comments}
+    participants = room.participants.all()
+    context = {'room': room, 'posts':posts, 'topics':topics, 'rooms':rooms, 'comments':comments, 'participants':participants}
     return render(request, 'rooms/room.html', context)
 
 @login_required(login_url='login')

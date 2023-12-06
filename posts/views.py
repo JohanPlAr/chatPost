@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from . models import Post
+from rooms.models import Room
 from .forms import PostForm
 from cloudinary.uploader import upload_image
 
@@ -12,13 +13,15 @@ from cloudinary.uploader import upload_image
 
 
 @login_required(login_url='login')
-def createPost(request):
+def createPost(request, pk):
     form = PostForm()
+    post_room = Room.objects.get(id=pk)
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             instance = form.save(commit=False)
             instance.author = request.user
+            instance.room = post_room
             instance.save()
             instance.room.participants.add(request.user)
             return redirect('home')
@@ -48,6 +51,7 @@ def editPost(request, pk):
 @login_required(login_url='login')
 def deletePost(request, pk):
     post = Post.objects.get(id=pk)
+    room = post.room.id
 
     if request.user != post.author:
         return HttpResponse('User access denied')

@@ -1,14 +1,24 @@
 <div class="row">
-    <div class="col-10 col-xs-12">
-    <div class="container">
-        <div class="row justify-content-start">
+    <div class="col-12 col-md-10 col-lg-8 col-xl-6">
+        <form method="GET" action="{%url 'home'%}" >
+            <input type="text" name="q" placeholder="Search Rooms..."/>
+        </form>
+        <hr>
+        <a href="{% url 'create_post' room.pk%}">Create Post</a>
+        <hr>    
+{{room.id}}
 {% for post in posts %}
+{% if forloop.first %}
+<h1 class="text-center">{{room.name}}</h1>
+
+{% endif %}
 {% if post.room == room %}
 
-<div class="card col-12 col-md-10 col-lg-8 col-xl-6 mx-3 mb-3" id="scroll{{post.pk}}">
-  
+<div class="card mb-3 post-card" id="scroll{{post.pk}}">
+<div class="m-3">  
     <img class="card-img-top rounded-3 post-image" src="{{post.image.url}}" 
     alt="Card image cap">
+</div>
     <div class="card-body">
         {% if post.author.profile.avatar.url %}
         <a href="{%url 'friend_request' post.author.id %}"><img src='{{post.author.profile.avatar.url}}' 
@@ -104,9 +114,7 @@
 
 {% endfor %}
 </div>
-</div>
-</div>
-</div>
+
         
         
         
