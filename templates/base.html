@@ -24,27 +24,21 @@
         
 
         <main class="w-100">
+            
             <!-- Error messages -->
             <div class="alert-info">
-              
-           
-      
-            {% for message in messages %}
-            {% if messages.error %}
-            <div class="alert alert-danger">
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                <strong>Error!</strong> {{ message }}
-               
-            </div>
             
-        {%else%}
-        <div class="alert alert-success">
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            <strong>Success!</strong> {{ message }}
-           
-        </div>
-        {% endif %}
-        {% endfor %}
+     
+     
+    {%for message in messages%}
+
+            <div class="alert alert-{{message.tags}} d-inline-block">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <strong>{{message.tags|capfirst}}!</strong> {{ message|capfirst  }}
+
+                           </div>
+    
+{%endfor%}
     </div>
 
             {% block content %}

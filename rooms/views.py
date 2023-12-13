@@ -13,6 +13,7 @@ def createRoom(request):
     if request.method == "POST":
         form = RoomForm(request.POST)
         if form.is_valid():
+            form.commit
             form.save()
             return redirect('home')
         

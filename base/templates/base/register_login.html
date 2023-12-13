@@ -3,32 +3,47 @@
 {% block content %}
 
 {%if page == 'login'%}
-<div>
-    <form action="" method="post">
+
+<div class="mx-5 col-auto d-flex dropdown-menu">
+    <div class="px-4 py-3 ">
+        <h4 class="text-center">Login</h4>
+    <form action="" method="post" class="d-flex flex-column align-items-center">
         {% csrf_token %}
-        <label>Username:</label>
-        <input type="text" name="username" placeholder="Enter Username">
-
-        <label>Password:</label>
-        <input type="password" name="password" placeholder="Enter Password">
-
-        <input type="submit" value="Login">
+        <p class="form-group">
+        <label for="username">Username</label>
+        <input type="text" name="username" placeholder="Enter Username" id="username">
+    </p>
+    <p class="form-group">
+        <label for="password">Password</label>
+        <input type="password" name="password" placeholder="Enter Password" id="password">
+    </p>
+    <div>
+        <button type="submit" value="Login" class="btn btn-primary">Sign in</button>
+    </div>
     </form>
-    <p>Not signed up yet?</p>
+    <hr>
+    <p class="text-center">Not a member?
     <a href="{%url 'register'%}">Sign up</a>
+</p>
+</div>
 </div>
 {%else%}
-<div>
-    <form action="" method="post">
+<div class="mx-5 col-auto d-flex dropdown-menu">
+    <div class="px-4 py-3">
+        <h4 class="text-center">Register</h4>
+    <form action="" method="post" class="d-flex flex-column align-items-center">
         {% csrf_token %}
-     <p>Username: {{ form.username }}</p>
-    <p>Password: {{ form.password1 }}</p>
-       <p>Repeat Password: {{ form.password2 }}</p>
-
-        <input type="submit" value="Register">
+     <p>Username {{ form.username }}</p>
+    <p>Password {{ form.password1 }}</p>
+       <p>Repeat {{ form.password2 }}</p>
+       <button type="submit" value="Register" class="btn btn-primary">Sign up</button>
+       
     </form>
-    <p>Already a member?</p>
+    <hr>
+    <p class="text-center">Already a member?
     <a href="{%url 'login'%}">Login</a>
+</p>
+</div>
 </div>
 {%endif%}
 {% endblock content %}
