@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
+from django.contrib.messages import constants as messages
+
 
 if os.path.isfile("env.py"):
    import env
@@ -162,4 +164,12 @@ CLOUDINARY_STORAGE = {
     'cloud_name' : os.environ.get('CLOUD_NAME'),
     'api_key' : os.environ.get('API_KEY'),
     'api_secret' : os.environ.get('API_SECRET')
+}
+
+MESSAGE_TAGS = {
+    messages.DEBUG: 'secondary',
+    messages.INFO: 'info',
+    messages.SUCCESS: 'success',
+    messages.WARNING: 'warning',
+    messages.ERROR: 'danger',
 }
