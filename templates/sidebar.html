@@ -1,23 +1,15 @@
- <div class="col-1 col-lg-3 col-xl-2 px-sm-1 px-0 bg-primary">
+<div class="col-auto col-lg-3 col-xl-2 px-sm-1 px-0 bg-primary">
     <nav>
      
             <div class="d-flex flex-column align-items-center align-items-xs-start px-3 pt-2 text-white min-vh-100 position-sticky">
-                <div class="d-flex flex-column w-50">
-                    <a href="/" class="mb-md-0 me-md-auto text-white text-decoration-none">
-                        <span class="fs-5">chatPost</span>
-                    </a>
-                      
-
-                      {% if request.user.is_authenticated %}
-                <span class="ms-1">Hi! {{ request.user.username|capfirst }}</span>
-                <p>
-                <a href="{% url 'logout' %}" class="text-white">Logout</a> 
-                {% else %}
-                <a href="{% url 'login' %}" class="text-white">Login</a>
-                {% endif %}
-            </p>
-            
-            </div>   
+                <a href="/" class="mb-md-0 text-white text-decoration-none">
+                    <img class="logo md-img-fluid" src="https://res.cloudinary.com/ddurovnhl/image/upload/v1702384899/logo_mz9sdl.png" alt="" width="60" height="60">
+            <!-- <span class="fs-5 d-none d-md-inline"></span>chatPost</span> -->
+                </a>
+                
+       
+     
+             
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li class="nav-item"> 
                         <a href="{%url 'home'%}" class="nav-link align-middle px-0 text-white">
@@ -59,15 +51,38 @@
                             <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-lg-inline-block">Friends</span></a>
                     </li>
                 </ul>
+              
+               
                 <hr>
-            <div class="position-relative bottom-0">
+                
+            <div class="d-flex flex-column align-items-center align-items-xs-start bottom-0 pb-4">
+                <ul id="content" class="text-small shadow bg-secondary md-w-auto px-3 list-unstyled" style="display: none;">
+                    <li>This content will be toggled</li>
+                  </ul>
+                  {% if request.user.is_authenticated %}
+                  <a href="#" class="d-flex text-white text-decoration-none" 
+                id="toggleLink">
+                        
+                    <img src='{{request.user.profile.avatar.url}}'
+                    alt="" width="30" height="30" class="rounded-circle">
+                    <span class="d-none d-lg-inline mx-1">{{request.user}}</span>
+                </a>
+                {%endif%}
+                {% if request.user.is_authenticated %}
+                <p>
+                <a href="{% url 'logout' %}" class="text-white"><small>Logout</small></a> 
+                {% else %}
+                <a href="{% url 'login' %}" class="text-white"><small>Login</small></a>
+                {% endif %}
+            </p>
+<!--                 
                 <div class="dropdown pb-4">
                     <a href="" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" 
                     id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="true">
                             
                         <img src='{{request.user.profile.avatar.url}}'
                         alt="" width="30" height="30" class="rounded-circle">
-                        <span class="d-none d-sm-inline mx-1">{{request.user}}</span>
+                        <span class="d-none d-md-inline mx-1">{{request.user}}</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark text-small shadow show" 
                     aria-labelledby="dropdownUser1" style="">
@@ -78,9 +93,11 @@
                         <li><a class="dropdown-item" href="#">Sign out</a></li>
                       </ul>
                 
-                </div>
+                </div> -->
             </div>
+        
             </div>
         </nav>
         </div>
+    
     

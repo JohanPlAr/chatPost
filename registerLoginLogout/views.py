@@ -22,7 +22,7 @@ def loginView(request):
 
         if user is not None:
             login(request, user)
-            messages.success(request, f"{user} is logged in")
+            messages.success(request, f"{user} is signed in")
             return redirect('home')
         else:
             messages.error(request, "Username or Password does not exist")
@@ -59,7 +59,7 @@ def createProfile(request):
         if form.is_valid():
             instance = form.save(commit=False)
             instance.user = request.user
-            instance.update()
+            instance.save()
             return redirect('home')
         else:
             messages.error(request, form.errors)
