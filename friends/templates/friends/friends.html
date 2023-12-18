@@ -14,11 +14,12 @@
     {%if friend.pk == friend_profile.pk%}
 <img src="{{friend_profile.avatar.url}}" alt="" width="80" height="80">
 
-    {%endif%}
-    {%endfor%}
+   
     <input type="hidden" name="status" value="2">
     <button type="submit">Remove</button>
-    <a href="{% url 'view_profile' f_request.id %}">View Profile</a>
+    <a href="{% url 'new' friend_profile.user_id %}">View Profile</a>
+    {%endif%}
+    {%endfor%}
   </form>
 <hr>
   {%elif friend == f_request.sender and request.user == f_request.receiver%}
@@ -28,11 +29,12 @@
     {%if friend.pk == friend_profile.pk%}
 <img src="{{friend_profile.avatar.url}}" alt="" width="80" height="80">
 
-    {%endif%}
-    {%endfor%}
+  
     <input type="hidden" name="status" value="2">
     <button type="submit">Remove</button>
-    <a href="{% url 'view_profile' f_request.id %}">View Profile</a>
+    <a href="{% url 'new' friend_profile.user_id %}">View Profile</a>
+    {%endif%}
+    {%endfor%}
   </form>
   <hr>
 {%endif%}

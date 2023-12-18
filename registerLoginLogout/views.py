@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from . forms import ProfileForm
 from . models import Profile
 from friends.models import FriendRequest
+from rooms.models import Room
 
 # Create your views here.
 
@@ -53,8 +54,9 @@ def registerView(request):
     return render(request, 'base/register_login.html', context)
 
 @login_required(login_url='login')
-def createProfile(request):
-    form = ProfileForm
+def createProfile(request, pk):
+    profile = Profile.objects.get(user_id=pk)
+    form = ProfileForm(instance=profile)
     if request.method == "POST":
         form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
@@ -73,5 +75,25 @@ def profileView(request, pk):
     f_request = FriendRequest.objects.get(pk=pk)
     f_profile_sender = Profile.objects.get(pk=f_request.sender.pk)
     f_profile_receiver = Profile.objects.get(pk=f_request.receiver.pk)
-    context = {'profiles':profiles, "f_profile_sender":f_profile_sender, 'f_profile_receiver':f_profile_receiver}
+    rooms = Room.objects.all()
+    context = {'profiles':profiles,
+               "f_profile_sender":f_profile_sender, 
+               'f_profile_receiver':f_profile_receiver,
+               'rooms':rooms
+               }
     return render(request, 'registerLoginLogout/profile.html', context)
+
+def new(request, pk):
+    profile = Profile.objects.get(user_id=pk)
+    friends_list =[]
+    rooms = Room.objects.all()
+    accepted_received_requests = FriendRequest.objects.filter(receiver=request.user, status=1)
+    for instance in accepted_received_requests:
+        friends_list.append(instance.sender)
+    accepted_sent_requests = FriendRequest.objects.filter(sender=request.user, status=1)
+    for instance in accepted_sent_requests:
+        friends_list.append(instance.receiver)
+    context = {'profile':profile,
+               'friends_list':friends_list,
+               'rooms':rooms,}
+    return render(request, 'registerLoginLogout/all_profiles.html', context)

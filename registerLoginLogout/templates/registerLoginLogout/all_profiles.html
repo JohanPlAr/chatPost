@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="d-flex flex-column"></div>
+{%if profile.user in friends_list%}
+<div>
+    <h3>{{profile.user|capfirst}}</h3> 
+</div>
+<div>
+<img src="{{profile.avatar.url}}" alt="" width="200" height="200">
+</div>
+<div>
+<strong>Email</strong>: {{profile.email}}
+</div>
+<strong>First Name:</strong> {{profile.first_name}}
+<div>
+<strong>Last Name:</strong> {{profile.last_name}}
+</div>
+<div>
+<strong>Bio:</strong> {{profile.bio}}
+</div>
+<strong>{{profile.user|capfirst}}s Rooms:</strong><br>
+{%for room in rooms%}
+{%if profile.user == room.host%}
+<a href="{%url 'room_id' room.pk%}">{{room}}</a>
+{%endif%}
+{%endfor%}
+{%else%}
+<div>
+<h3>{{profile.user|capfirst}}</h3>
+</div>
+<div>
+<img src="{{profile.avatar.url}}" alt="" width="200" height="200" class="rounded-3">
+</div>
+<strong>{{profile.user|capfirst}}s rooms:</strong><br>
+{%for room in rooms%}
+{%if room.status == 0 %}
+
+{%elif profile.user == room.host%}
+<a href="{%url 'room_id' room.pk%}">{{room}}</a>
+<br>
+{%else%}
+<a href="#">{{room}}</a> <small class="text-danger">No Access</small>
+<br>
+
+
+{%endif%}
+{%endfor%}
+{%endif%}
+{%endblock%}

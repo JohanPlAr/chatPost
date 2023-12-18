@@ -1,9 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
+{% if room.status == 0 %}
 
 {% include 'posts/posts.html' %}
 
 {% include 'rooms/participants.html'%}
+{%endif%}
+
+{% if room.status == 1 %}
+{% if room.host in friends_list or room.host == request.user%}
+{% include 'posts/posts.html' %}
+
+{% include 'rooms/participants.html'%}
+{%endif%}
+{%endif%}
+
+
 <!-- {%for post in posts%}
     {% if post.room == room %} 
     

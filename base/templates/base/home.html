@@ -15,7 +15,8 @@ Available Rooms: {{room_count}}
     {% for room in rooms %}
 <div>
 
-<span>@{{room.host.username}}</span>
+    <a href="{%url 'new' room.host.pk %}" class="text-decoration-none"><img src='{{room.host.profile.avatar.url}}'
+    alt="" width="30" height="30" class="rounded-circle"> <span>@{{room.host.username}}</span></a>
     
     <h5><a href="{%url 'room_id' room.id%}">{{room.name}}</a> </h5>
     

@@ -5,6 +5,8 @@ from . forms import RoomForm
 from . models import Room, Topic
 from comments.models import Comment
 from comments.forms import CommentForm
+from django.contrib import messages
+from friends.models import FriendRequest
 
 # Create your views here.
 
@@ -18,7 +20,8 @@ def createRoom(request):
             instance.host = request.user
             instance.save()
             instance.participants.add(request.user)
-            return redirect('home')
+            messages.success(request, f"{instance} was successfully created")
+            return redirect('room_id', instance.id)
         
     context = {'form':form}
     return render(request, 'rooms/room_form.html', context)
@@ -27,18 +30,27 @@ def createRoom(request):
 def room(request, pk):
     room = Room.objects.get(id=pk)
     rooms = Room.objects.all()
+    friends_list =[]
+    accepted_received_requests = FriendRequest.objects.filter(receiver=request.user, status=1)
+    for instance in accepted_received_requests:
+        friends_list.append(instance.sender)
+    accepted_sent_requests = FriendRequest.objects.filter(sender=request.user, status=1)
+    for instance in accepted_sent_requests:
+        friends_list.append(instance.receiver)
     posts = room.post_room.all()
     comment_form = CommentForm
     comments = Comment.objects.all()
     topics = Topic.objects.all()
     participants = room.participants.all()
-    context = {'room': room, 
+    context = {'room': room,
                'posts':posts, 
                'topics':topics, 
                'rooms':rooms, 
                'comments':comments,
                'comment_form': comment_form, 
-               'participants':participants}
+               'participants':participants,
+               'friends_list':friends_list,
+               }
     return render(request, 'rooms/room.html', context)
 
 @login_required(login_url='login')

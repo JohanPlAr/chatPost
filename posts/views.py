@@ -4,7 +4,10 @@ from django.contrib.auth.decorators import login_required
 from . models import Post
 from rooms.models import Room
 from .forms import PostForm
-from cloudinary.uploader import upload_image
+from cloudinary import CloudinaryResource
+
+
+ 
 
 
 # Create your views here.
@@ -21,7 +24,11 @@ def createPost(request, pk):
             instance = form.save(commit=False)
             instance.author = request.user
             instance.room = post_room
-            instance.save()
+            json_response = { "public_id": "test" }
+            # Populate CloudinaryResource object using the upload response
+            result = CloudinaryResource(public_id=json_response['public_id'])
+            instance.image = result.get_prep_value()                
+            input(result)
             instance.room.participants.add(request.user)
             return redirect('room_id', post_room.id)
         

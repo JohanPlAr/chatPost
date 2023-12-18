@@ -6,11 +6,9 @@
         <hr>
         <a href="{% url 'create_post' room.pk%}">Create Post</a>
         <hr>    
+        <h1 class="text-center">{{room.name}}</h1>
+        <p class="text-center">{{room.description}}</p>
 {% for post in posts %}
-{% if forloop.first %}
-<h1 class="text-center">{{room.name}}</h1>
-
-{% endif %}
 {% if post.room == room %}
 
 <div class="card mb-3 post-card" id="scroll{{post.pk}}">
@@ -61,20 +59,21 @@
         
         <li class="w-100">
             <hr>
-        <form action="" method="post">
+        <form action="" method="post" class="comment-form">
             {% csrf_token %}
+
             {{comment_form.as_p}}
-            
-            <input type="submit" value="Submit"/>
-            </form>
+            <a href="{%url 'create_comment' post.pk%}" type="button" class="button">Send
+            </a>
+    
+        </form>
         </li>
-      
     {% for comment in comments %}
     {% if comment.post == post %}
 
   
-        <li class="w-100">
-           
+        <li class="w-100 m-3">
+           <hr>
             <small>@{{comment.author}}  
                 {%if comment.edited == True %} 
                 {{comment.created|timesince}} ago  
@@ -102,8 +101,9 @@
             <a href="#" onclick="document.getElementById('dislike_comment{{comment.pk}}').submit()" class="text-decoration-none">
                 <i class="bi bi-hand-thumbs-down"></i>{{comment.number_of_dislikes}}</a>
            </form>
+        
         </div>
-        <hr>
+
       
     
 

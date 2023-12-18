@@ -1,31 +1,59 @@
 {% block content %}
 
-<p>
+<div class="d-flex flex-column">
     {%if f_profile_receiver.user == request.user%}
-Friend: {{f_profile_sender.user}} <br>
-<img src="{{f_profile_sender.avatar.url}}" alt="" width="200" height="200" class="rounded-3">
-<br>
+<div>
+    <h3>{{f_profile_sender.user|capfirst}}</h3> 
+</div>
+<div>
+<img src="{{f_profile_sender.avatar.url}}" alt="" width="200" height="200">
+</div>
+<div>
+Email: {{f_profile_sender.email}}
+</div>
 First Name: {{f_profile_sender.first_name}}
-<br>
+<div>
 Last Name: {{f_profile_sender.last_name}}
-<br>
+</div>
+<div>
 Bio:{{f_profile_sender.bio}}
-<br>
-
-{%else%}
-
-<img src="{{f_profile_receiver.avatar.url}}" alt="" width="200" height="200" class="rounded-3">
-<br>
-First Name: {{f_profile_receiver.first_name}}
-<br>
-Last Name: {{f_profile_receiver.last_name}}
-<br>
-Bio:{{f_profile_receiver.bio}}
-<br>
-Friend: {{f_profile_receiver.user}}
-<br>
-
+</div>
+Users rooms:
+{%for room in rooms%}
+{%if f_profile_sender.user == room.host%}
+{{room}}
 
 {%endif%}
-</p>
+{%endfor%}
+
+{%else%}
+<div>
+<h3>{{f_profile_receiver.user|capfirst}}</h3>
+</div>
+<div>
+<img src="{{f_profile_receiver.avatar.url}}" alt="" width="200" height="200" class="rounded-3">
+</div>
+<div>
+Email: {{f_profile_receiver.email}}
+</div>
+<div>
+First Name: {{f_profile_receiver.first_name}}
+</div>
+<div>
+Last Name: {{f_profile_receiver.last_name}}
+</div>
+<div>
+Bio:{{f_profile_receiver.bio}}
+</div>
+
+Users rooms:
+{%for room in rooms%}
+{%if f_profile_receiver.user == room.host%}
+{{room}}
+
+{%endif%}
+{%endfor%}
+{%endif%}
+
+</div>
 {% endblock content %}

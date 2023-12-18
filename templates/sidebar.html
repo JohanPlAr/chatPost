@@ -7,7 +7,11 @@
             <!-- <span class="fs-5 d-none d-md-inline"></span>chatPost</span> -->
                 </a>
                 
-       
+                {% if request.user.is_authenticated %}
+               
+                {% else %}
+                <a href="{% url 'login' %}" class="text-white"><small>Login</small></a>
+                {% endif %}
      
              
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
@@ -57,9 +61,23 @@
                 
             <div class="d-flex flex-column align-items-center align-items-xs-start bottom-0 pb-4">
                 {% if request.user.is_authenticated %}
-                <ul id="content" class="text-small shadow bg-secondary md-w-auto px-3 list-unstyled rounded-1" style="display: none;">
-                    <li><a href="{% url 'create_profile'%}" class="text-decoration-none text-white">Manage Profile</a></li>
-                  </ul>
+                <!-- Profile Menu displayed when user clicks on avatar or username -->
+                <ul id="content" class="text-small text-center bg-secondary md-w-auto p-3 list-unstyled rounded-1" style="display: none;">
+                    <li>
+                        <a href="{% url 'create_profile' request.user.pk %}" class="text-decoration-none text-white">
+                        Manage Profile
+                    </a>
+                        <hr class="bg-white">
+                    </li>
+                    <li>
+                        <a href="{% url 'new' request.user.pk %}" class="text-decoration-none text-white">
+                    View Profile                    
+                    </a>
+                        <hr class="bg-white">
+                    </li>
+                  <li>
+                    <a href="{% url 'logout' %}" class=" text-decoration-none text-white">Logout</a> </li>
+                </ul>
                  
                   <a href="#" class="d-flex text-white text-decoration-none" 
                 id="toggleLink">
@@ -69,32 +87,9 @@
                     <span class="d-none d-lg-inline mx-1">{{request.user|capfirst}}</span>
                 </a>
                 {%endif%}
-                {% if request.user.is_authenticated %}
-                <p>
-                <a href="{% url 'logout' %}" class="text-white"><small>Logout</small></a> 
-                {% else %}
-                <a href="{% url 'login' %}" class="text-white"><small>Login</small></a>
-                {% endif %}
-            </p>
-<!--                 
-                <div class="dropdown pb-4">
-                    <a href="" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" 
-                    id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="true">
-                            
-                        <img src='{{request.user.profile.avatar.url}}'
-                        alt="" width="30" height="30" class="rounded-circle">
-                        <span class="d-none d-md-inline mx-1">{{request.user}}</span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow show" 
-                    aria-labelledby="dropdownUser1" style="">
-                        <li><a class="dropdown-item" href="#">New project...</a></li>
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Sign out</a></li>
-                      </ul>
-                
-                </div> -->
+           
+     
+
             </div>
         
             </div>

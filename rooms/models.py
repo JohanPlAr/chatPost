@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-STATUS = ((0, "Draft"),(1, "Published"))
+STATUS = ((0, "Public"),(1, "Friends Only"))
 
 
 # Create your models here.
