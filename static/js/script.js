@@ -1,12 +1,13 @@
 // Keep scroll position when reloading page  
-document.addEventListener("DOMContentLoaded", function(event) { 
-  var scrollpos = sessionStorage.getItem('scrollpos');
-  if (scrollpos) window.scrollTo(0, scrollpos);
-});
 
-window.onbeforeunload = function(e) {
-  localStorage.setItem('scrollpos', window.scrollY);
-};
+    document.addEventListener("DOMContentLoaded", function(event) { 
+        var scrollpos = sessionStorage.getItem('scrollpos');
+        if (scrollpos) window.scrollTo(0, scrollpos);
+    });
+
+    window.onbeforeunload = function(e) {
+        sessionStorage.setItem('scrollpos', window.scrollY);
+    };
 
 
 // Toggle sidebar profile menu

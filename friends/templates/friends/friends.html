@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<p>Number of friends: {{number_of_friends}}</p>
-Friends: 
+<p><h3>Number of friends: {{number_of_friends}}</h3></p>
+
 {%for friend in friends_list %}
 <p>{{friend}}</p>
 {%for f_request in all_requests%}
@@ -20,6 +20,7 @@ Friends:
     <button type="submit">Remove</button>
     <a href="{% url 'view_profile' f_request.id %}">View Profile</a>
   </form>
+<hr>
   {%elif friend == f_request.sender and request.user == f_request.receiver%}
 <form method="post" action="{% url 'remove_friend' f_request.id %}">
     {% csrf_token %}
@@ -33,6 +34,7 @@ Friends:
     <button type="submit">Remove</button>
     <a href="{% url 'view_profile' f_request.id %}">View Profile</a>
   </form>
+  <hr>
 {%endif%}
 {%endfor%}
 {%endfor%}

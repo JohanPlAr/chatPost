@@ -16,8 +16,8 @@ def createRoom(request):
         if form.is_valid():
             instance = form.save(commit=False)
             instance.host = request.user
-            instance.participants = request.user
-            form.save()
+            instance.save()
+            instance.participants.add(request.user)
             return redirect('home')
         
     context = {'form':form}

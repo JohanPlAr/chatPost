@@ -61,9 +61,6 @@
         
         <li class="w-100">
             <hr>
-            <a type="" href="{% url 'create_comment' post.pk%}" class=>Comment</a><br>
-        </li>
-        <li>
         <form action="" method="post">
             {% csrf_token %}
             {{comment_form.as_p}}
