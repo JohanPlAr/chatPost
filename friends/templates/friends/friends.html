@@ -9,14 +9,29 @@ Friends:
 {%if friend == f_request.receiver and request.user == f_request.sender%}
 <form method="post" action="{% url 'remove_friend' f_request.id %}">
     {% csrf_token %}
+    
+    {%for friend_profile in friend_profiles %}
+    {%if friend.pk == friend_profile.pk%}
+<img src="{{friend_profile.avatar.url}}" alt="" width="80" height="80">
+
+    {%endif%}
+    {%endfor%}
     <input type="hidden" name="status" value="2">
     <button type="submit">Remove</button>
+    <a href="{% url 'view_profile' f_request.id %}">View Profile</a>
   </form>
   {%elif friend == f_request.sender and request.user == f_request.receiver%}
 <form method="post" action="{% url 'remove_friend' f_request.id %}">
     {% csrf_token %}
+    {%for friend_profile in friend_profiles %}
+    {%if friend.pk == friend_profile.pk%}
+<img src="{{friend_profile.avatar.url}}" alt="" width="80" height="80">
+
+    {%endif%}
+    {%endfor%}
     <input type="hidden" name="status" value="2">
     <button type="submit">Remove</button>
+    <a href="{% url 'view_profile' f_request.id %}">View Profile</a>
   </form>
 {%endif%}
 {%endfor%}
@@ -50,6 +65,17 @@ Friends:
 Pending:
 {%for sent in sent_requests%}
 <p>{{sent.receiver}}</p>
+{%for profile in profiles%}
+{%if sent.receiver.pk == profile.pk%}
+<img src="{{profile.avatar.url}}" alt="" width="80" height="80">
+<form method="post" action="{% url 'remove_friend' sent.pk %}">
+  {% csrf_token %}
+<input type="hidden" name="status" value="2">
+    <button type="submit">Remove</button>
+  </form>
+
+{%endif%}
+{%endfor%}
 {%endfor%}
 
 

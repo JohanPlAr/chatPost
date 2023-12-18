@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import FriendRequest
+from registerLoginLogout.models import Profile
 
 @login_required(login_url='login')
 def friendRequest(request, pk):
@@ -27,6 +28,8 @@ def friendRequest(request, pk):
 @login_required(login_url='login')
 def friendsList(request):
     friends_list =[]
+    friend_profiles = []
+    profiles = Profile.objects.all()
     all_requests = FriendRequest.objects.all()
     received_requests = FriendRequest.objects.filter(receiver=request.user, status=0)
     sent_requests = FriendRequest.objects.filter(sender=request.user, status=0)
@@ -36,15 +39,23 @@ def friendsList(request):
     number_of_friends = accepted_received_requests.count() + accepted_sent_requests.count()
     for instance in accepted_sent_requests:
         friends_list.append(instance.receiver)
+        pk = instance.receiver.id
+        friend_profile = Profile.objects.get(pk=pk)
+        friend_profiles.append(friend_profile)
     for instance in accepted_received_requests:
         friends_list.append(instance.sender)
+        pk = instance.sender.id
+        friend_profile = Profile.objects.get(pk=pk)
+        friend_profiles.append(friend_profile)     
     context = {
         'all_requests':all_requests,
         'friends_list':friends_list,
         'number_of_friends':number_of_friends,
         'sent_requests':sent_requests,
         'received_requests':received_requests,
-        'denied_requests':denied_requests
+        'denied_requests':denied_requests,
+        'profiles': profiles,
+        'friend_profiles':friend_profiles
                }
     return render(request, 'friends/friends.html', context)
 

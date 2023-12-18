@@ -1,7 +1,31 @@
-{% extends 'base.html' %}
-
 {% block content %}
 
-{%for profile in profiles%}
+<p>
+    {%if f_profile_receiver.user == request.user%}
+Friend: {{f_profile_sender.user}} <br>
+<img src="{{f_profile_sender.avatar.url}}" alt="" width="200" height="200" class="rounded-3">
+<br>
+First Name: {{f_profile_sender.first_name}}
+<br>
+Last Name: {{f_profile_sender.last_name}}
+<br>
+Bio:{{f_profile_sender.bio}}
+<br>
 
+{%else%}
+
+<img src="{{f_profile_receiver.avatar.url}}" alt="" width="200" height="200" class="rounded-3">
+<br>
+First Name: {{f_profile_receiver.first_name}}
+<br>
+Last Name: {{f_profile_receiver.last_name}}
+<br>
+Bio:{{f_profile_receiver.bio}}
+<br>
+Friend: {{f_profile_receiver.user}}
+<br>
+
+
+{%endif%}
+</p>
 {% endblock content %}

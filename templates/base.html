@@ -26,7 +26,7 @@
         <main class="w-100">
             
             <!-- Error messages -->
-            <div class="alert-info">
+            <div class="alert-info m-1">
             
      
      
@@ -34,7 +34,7 @@
 
             <div class="alert alert-{{message.tags}} d-inline-block">
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                <strong>{{message.tags|capfirst}}!</strong> {{ message|capfirst  }}
+               {{ message|capfirst  }}
 
                            </div>
     
@@ -54,6 +54,7 @@
 
 
 <script src="/static/js/script.js"></script>
+
 </body>
 
 </html>

@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-12 col-md-10 col-lg-8 col-xl-6">
+    <div class="col-9 col-sm-8 col-md-7 col-lg-6 col-xl-5 align-items-center">
         <form method="GET" action="{%url 'home'%}" >
             <input type="text" name="q" placeholder="Search Rooms..."/>
         </form>
@@ -63,7 +63,14 @@
             <hr>
             <a type="" href="{% url 'create_comment' post.pk%}" class=>Comment</a><br>
         </li>
-   
+        <li>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{comment_form.as_p}}
+            
+            <input type="submit" value="Submit"/>
+            </form>
+        </li>
       
     {% for comment in comments %}
     {% if comment.post == post %}

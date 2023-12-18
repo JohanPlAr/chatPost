@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from . forms import RoomForm
 from . models import Room, Topic
 from comments.models import Comment
+from comments.forms import CommentForm
 
 # Create your views here.
 
@@ -13,21 +14,31 @@ def createRoom(request):
     if request.method == "POST":
         form = RoomForm(request.POST)
         if form.is_valid():
-            form.commit
+            instance = form.save(commit=False)
+            instance.host = request.user
+            instance.participants = request.user
             form.save()
             return redirect('home')
         
     context = {'form':form}
     return render(request, 'rooms/room_form.html', context)
 
+@login_required(login_url='login')
 def room(request, pk):
     room = Room.objects.get(id=pk)
     rooms = Room.objects.all()
     posts = room.post_room.all()
+    comment_form = CommentForm
     comments = Comment.objects.all()
     topics = Topic.objects.all()
     participants = room.participants.all()
-    context = {'room': room, 'posts':posts, 'topics':topics, 'rooms':rooms, 'comments':comments, 'participants':participants}
+    context = {'room': room, 
+               'posts':posts, 
+               'topics':topics, 
+               'rooms':rooms, 
+               'comments':comments,
+               'comment_form': comment_form, 
+               'participants':participants}
     return render(request, 'rooms/room.html', context)
 
 @login_required(login_url='login')

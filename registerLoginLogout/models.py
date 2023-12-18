@@ -13,7 +13,3 @@ class Profile(models.Model):
         'avatar', 
         default='https://res.cloudinary.com/ddurovnhl/image/upload/v1701246735/default_avatar_poro4z.png'
         )
-
-
-    def __str__(self):
-        return self.email

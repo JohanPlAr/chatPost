@@ -6,6 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from . forms import ProfileForm
 from . models import Profile
+from friends.models import FriendRequest
 
 # Create your views here.
 
@@ -66,3 +67,11 @@ def createProfile(request):
     context = {'form':form,}
     return render(request, 'registerLoginLogout/create_profile.html', context
 )
+
+def profileView(request, pk):
+    profiles = Profile.objects.all()
+    f_request = FriendRequest.objects.get(pk=pk)
+    f_profile_sender = Profile.objects.get(pk=f_request.sender.pk)
+    f_profile_receiver = Profile.objects.get(pk=f_request.receiver.pk)
+    context = {'profiles':profiles, "f_profile_sender":f_profile_sender, 'f_profile_receiver':f_profile_receiver}
+    return render(request, 'registerLoginLogout/profile.html', context)
