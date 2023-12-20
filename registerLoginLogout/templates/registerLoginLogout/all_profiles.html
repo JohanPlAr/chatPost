@@ -2,7 +2,8 @@
 
 {% block content %}
 <div class="d-flex flex-column"></div>
-{%if profile.user in friends_list%}
+<!-- Lists friends Profile details -->
+{%if profile.user in friends_list or request.user == profile.user%}
 <div>
     <h3>{{profile.user|capfirst}}</h3> 
 </div>
@@ -19,12 +20,18 @@
 <div>
 <strong>Bio:</strong> {{profile.bio}}
 </div>
-<strong>{{profile.user|capfirst}}s Rooms:</strong><br>
+<strong>{{profile.user|capfirst}}'s rooms:</strong><br>
 {%for room in rooms%}
-{%if profile.user == room.host%}
-<a href="{%url 'room_id' room.pk%}">{{room}}</a>
+{%if room.status == 0 and room.host == profile.user %}
+<a href="{%url 'room_id' room.pk%}">{{room}}</a><br>
+{%elif room.status == 1 and room.host == profile.user%}
+<a href="{%url 'room_id' room.pk%}">{{room}}</a> <small class="text-success">Friends Only</small>
+<br>
+
+
 {%endif%}
 {%endfor%}
+<!-- Lists reduced details of non friend and offers to send a request-->
 {%else%}
 <div>
 <h3>{{profile.user|capfirst}}</h3>
@@ -32,19 +39,43 @@
 <div>
 <img src="{{profile.avatar.url}}" alt="" width="200" height="200" class="rounded-3">
 </div>
-<strong>{{profile.user|capfirst}}s rooms:</strong><br>
-{%for room in rooms%}
-{%if room.status == 0 %}
+    {% for received in received_requests%}
+        {%if profile.user == recieved.sender %}
+   
+            <a href="{%url 'accept_friend_request' received.pk %}" class="btn btn-success my-3 mr-3">Accept Request</a>  
 
-{%elif profile.user == room.host%}
-<a href="{%url 'room_id' room.pk%}">{{room}}</a>
-<br>
-{%else%}
-<a href="#">{{room}}</a> <small class="text-danger">No Access</small>
-<br>
+            <a href="{%url 'decline_friend_request' received.pk %}" class="btn btn-warning my-3 mr-3">Decline Request</a>  
+        {%endif%}
+    {%endfor%}
 
+    {%if sent_requests%}
+       
+        Request pending... <br>
+        {%for sent in sent_requests%}
+        <form method="post" action="{% url 'remove_friend' sent.pk %}">
+            {% csrf_token %}
+          <input type="hidden" name="status" value="2">
+              <button type="submit">Remove</button>
+        </form>
+        <br>
+        {%endfor%}    
+    {%else%}
+        <a href="{%url 'friend_request' profile.user.pk %}" class="btn btn-secondary my-3">Friend Request</a>
+    <br>   
+    {%endif%}
 
+    <strong>{{profile.user|capfirst}}'s rooms:</strong><br>
+    {%for room in rooms%}
+        {%if room.status == 0 and room.host == profile.user %}
+    <a href="{%url 'room_id' room.pk%}">{{room}}</a><br>
+        {%elif room.status == 1 and room.host == profile.user%}
+    <a href="#">{{room}}</a> <small class="text-danger">Friends Only</small>
+    <br>
+    
+    
+        {%endif%}
+    {%endfor%}
 {%endif%}
-{%endfor%}
-{%endif%}
+
+
 {%endblock%}

@@ -86,6 +86,8 @@ def profileView(request, pk):
 def new(request, pk):
     profile = Profile.objects.get(user_id=pk)
     friends_list =[]
+    received_requests = []
+    sent_requests = []
     rooms = Room.objects.all()
     accepted_received_requests = FriendRequest.objects.filter(receiver=request.user, status=1)
     for instance in accepted_received_requests:
@@ -93,7 +95,15 @@ def new(request, pk):
     accepted_sent_requests = FriendRequest.objects.filter(sender=request.user, status=1)
     for instance in accepted_sent_requests:
         friends_list.append(instance.receiver)
+    pending_received_requests = FriendRequest.objects.filter(receiver=request.user, sender=pk, status=0)
+    for instance in pending_received_requests:
+        received_requests.append(instance)
+    pending_sent_requests = FriendRequest.objects.filter(sender=request.user, receiver=pk, status=0)
+    for instance in pending_sent_requests:
+        sent_requests.append(instance)
     context = {'profile':profile,
                'friends_list':friends_list,
-               'rooms':rooms,}
+               'rooms':rooms,
+               'received_requests':received_requests,
+               'sent_requests':sent_requests}
     return render(request, 'registerLoginLogout/all_profiles.html', context)

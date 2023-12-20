@@ -7,7 +7,7 @@
         <a href="{% url 'create_post' room.pk%}">Create Post</a>
         <hr>    
         <h1 class="text-center">{{room.name}}</h1>
-        <p class="text-center">{{room.description}}</p>
+        <p class="text-center"><img src="{{room.host.avatar.url}}" alt="">{{room.description}}</p>
 {% for post in posts %}
 {% if post.room == room %}
 
@@ -34,7 +34,9 @@
       <p class="card-text">{{ post.content }}</p>
       <div class="post-details">
         
-       <a href="#postcomments{{post.pk}}" data-bs-toggle="collapse" class="nav-link collapsed"><i class="bi bi-chat"></i>{{post.number_of_comments}} </a>
+       <a href="#postcomments{{post.pk}}" data-bs-toggle="collapse" class="nav-link collapsed">
+        <i class="bi bi-chat"></i>{{post.number_of_comments}} 
+    </a>
      
       
       Shares: {{ post.number_of_shares }}
