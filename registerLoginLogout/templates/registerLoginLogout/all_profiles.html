@@ -1,14 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-<div class="d-flex flex-column"></div>
+<div class="col-auto d-flex dropdown-menu mx-sm-5">
+    <div class="px-4 py-3">
 <!-- Lists friends Profile details -->
 {%if profile.user in friends_list or request.user == profile.user%}
-<div>
 
-    <h3>{{profile.user|capfirst}}</h3> 
-</div>
+    <h3 class="text-center">{{profile.user|capfirst}}</h3> 
+
 <div>
 <img src="{{profile.avatar.url}}" alt="" width="200" height="200">
 </div>
@@ -17,8 +16,10 @@
         <form method="post" action="{% url 'remove_friend' friend_request.pk%}">
             {% csrf_token %}
           <input type="hidden" name="status" value="2">
+          <div class="d-flex justify-content-center">
               <button type="submit" class="btn btn-danger mt-3">Remove</button>
-        </form>
+            </div>
+            </form>
         <br>
   {%endif%}
 <div>
@@ -45,7 +46,8 @@
 <!-- Lists reduced details of non friend and offers to send a request-->
 {%else%}
 <div>
-<h3>{{profile.user|capfirst}}</h3>
+<div>
+<h3 class="text-center">{{profile.user|capfirst}}</h3>
 </div>
 <div>
 <img src="{{profile.avatar.url}}" alt="" width="200" height="200" class="rounded-3">
@@ -65,8 +67,8 @@
         {%for sent in sent_requests%}
         <form method="post" action="{% url 'remove_friend' sent.pk %}">
             {% csrf_token %}
-          <input type="hidden" name="status" value="2">
-              <button type="submit">Remove</button>
+          <input type="hidden" name="status" value="2" >
+              <button type="submit" class="btn btn-danger">Remove</button>
         </form>
         <br>
         {%endfor%}    
@@ -87,6 +89,10 @@
         {%endif%}
     {%endfor%}
 {%endif%}
-
+<div class="d-flex justify-content-center">
 <a href="{%url 'friends_list'%}" class="btn btn-primary mt-3">All Friends List</a>
+</div>
+</div>
+    </div>
+</div>
 {%endblock%}

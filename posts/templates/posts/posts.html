@@ -4,10 +4,16 @@
             <input type="text" name="q" placeholder="Search Rooms..."/>
         </form>
         <hr>
-        <a href="{% url 'create_post' room.pk%}">Create Post</a>
-        <hr>    
+        <a href="{% url 'create_post' room.pk%}" class="btn btn-primary">Create Post</a>
+        <hr> 
+   
+        {%for profile in profiles%}
+        {%if room.host == profile.user%}
         <h1 class="text-center">{{room.name}}</h1>
-        <p class="text-center"><img src="{{room.host.avatar.url}}" alt="">{{room.description}}</p>
+        <p class="text-center"><small>Host:</small><br><img src="{{profile.avatar.url}}" alt="" width="40" height="40" class="rounded-circle">{{room.description}}</p>
+        {%endif%}
+        {%endfor%}
+        
 {% for post in posts %}
 {% if post.room == room %}
 

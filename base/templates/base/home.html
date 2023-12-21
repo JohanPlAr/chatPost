@@ -7,7 +7,7 @@
 </form>
 
 <hr>
-<a href="{% url 'create_room'%}">Create Room</a>
+<a href="{% url 'create_room'%}" class="btn btn-primary">Create Room</a>
 <hr>
 
 Available Rooms: {{room_count}}
@@ -22,8 +22,8 @@ Available Rooms: {{room_count}}
     
     <small>{{room.topic.name}} - Posts: {{room.number_of_posts}}</small>
     {% if room.host == request.user %}
-    <a href="{% url 'edit_room' room.id %}">Edit</a>
-    <a href="{% url 'delete_room' room.id %}">Delete</a>
+    <a href="{% url 'edit_room' room.id %}" class="btn btn-primary">Edit</a>
+    <a href="{% url 'delete_room' room.id %}"class="btn btn-danger">Delete</a>
 
     {% endif %}
     <hr>

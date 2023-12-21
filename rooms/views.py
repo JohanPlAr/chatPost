@@ -8,6 +8,7 @@ from comments.models import Comment
 from comments.forms import CommentForm
 from django.contrib import messages
 from friends.models import FriendRequest
+from registerLoginLogout.models import Profile
 
 # Create your views here.
 
@@ -43,6 +44,7 @@ def room(request, pk):
     comments = Comment.objects.all()
     topics = Topic.objects.all()
     participants = room.participants.all()
+    profiles = Profile.objects.all()
     if request.method == "POST":
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -60,6 +62,7 @@ def room(request, pk):
                'comment_form': comment_form, 
                'participants':participants,
                'friends_list':friends_list,
+               'profiles':profiles,
                }
     return render(request, 'rooms/room.html', context)
 
