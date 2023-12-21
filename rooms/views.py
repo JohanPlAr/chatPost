@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from . forms import RoomForm
 from . models import Room, Topic
+from posts.models import Post
 from comments.models import Comment
 from comments.forms import CommentForm
 from django.contrib import messages
@@ -42,6 +43,15 @@ def room(request, pk):
     comments = Comment.objects.all()
     topics = Topic.objects.all()
     participants = room.participants.all()
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.author = request.user
+            instance.status = 1
+            post_pk = request.POST.get('post')
+            instance.post = Post.objects.get(id=post_pk)
+            form.save()
     context = {'room': room,
                'posts':posts, 
                'topics':topics, 
