@@ -25,5 +25,5 @@ var alert = document.querySelector('.timeout');
 
 // Set a timeout to remove the alert after 3 seconds
 setTimeout(function() {
-  timeout.remove();
+  alert.remove();
 }, 3000);

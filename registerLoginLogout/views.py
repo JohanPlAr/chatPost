@@ -63,10 +63,10 @@ def createProfile(request, pk):
             instance = form.save(commit=False)
             instance.user = request.user
             instance.save()
-            return redirect('home')
+            return redirect('new', request.user.pk)
         else:
             messages.error(request, form.errors)
-    context = {'form':form,}
+    context = {'form':form, 'profile':profile}
     return render(request, 'registerLoginLogout/create_profile.html', context
 )
 
@@ -101,7 +101,14 @@ def new(request, pk):
     pending_sent_requests = FriendRequest.objects.filter(sender=request.user, receiver=pk, status=0)
     for instance in pending_sent_requests:
         sent_requests.append(instance)
+    try:
+        friend_request = FriendRequest.objects.get(receiver=pk, sender=request.user)
+    except:
+        try: friend_request = FriendRequest.objects.get(sender=pk, receiver=request.user)
+        except: friend_request = request.user
+
     context = {'profile':profile,
+               'friend_request':friend_request,
                'friends_list':friends_list,
                'rooms':rooms,
                'received_requests':received_requests,

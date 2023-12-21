@@ -1,12 +1,42 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h3>Manage profile</h3>
-<form action="" enctype="multipart/form-data" method="post">
+<div class="col-auto d-flex dropdown-menu">
+    <div class="px-4 py-3">
+        <h4 class="text-center">Manage Profile</h4>
+<div class="d-flex justify-content-center mt-3">
+        <img src="{{profile.avatar.url}}" alt="" width="80" height="80" class="rounded-circle">
+      </div>
+        <form action="" method="post" class="d-flex flex-column" enctype="multipart/form-data">
         {% csrf_token %}
-      
-    {{form.as_p}}
-    <input type="submit" value="Submit"/>
-</form>
+<p>
+        <label for="bio"><strong>Bio:</strong></label><br>
+        <input type="text" name="bio" id="bio" value="{{profile.bio}}" class="w-100">
+    </p>
+    <p class="form-group">
+        <label for="first_name"><strong>First Name:</strong></label><br>
+        <input type="first_name" name="first_name" id="first_name" value="{{profile.first_name}}" class="w-100">
+    </p>
+    <p class="form-group">
+        <label for="last_name"><strong>Last Name:</strong></label><br>
+        <input type="last_name" name="last_name" id="last_name" value="{{profile.last_name}}" class="w-100">
+    </p>
+    <p class="form-group">
+        <label for="email"><strong>Email:</strong></label><br>
+        <input type="email" name="email" id="email" value="{{profile.email}}" class="w-100">
+    </p>
+   
+    <label for="avatar"><strong>Change Avatar:</strong></label><br>
+    <input type="file" name="avatar" id="avatar" value="{{profile.avatar}}" class="w-100">
+</p>
+
+    <div class="d-flex justify-content-center">
+        <button type="submit" value="submit" class="btn btn-primary">Save</button>
+    </div>
+    </form>
 
 {% endblock content %}
+
+
+
+

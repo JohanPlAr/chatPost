@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from .models import FriendRequest
 from registerLoginLogout.models import Profile
 
+
 @login_required(login_url='login')
 def friendRequest(request, pk):
 # Handles friend request

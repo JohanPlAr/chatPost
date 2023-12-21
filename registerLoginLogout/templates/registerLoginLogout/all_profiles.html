@@ -1,15 +1,26 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
 <div class="d-flex flex-column"></div>
 <!-- Lists friends Profile details -->
 {%if profile.user in friends_list or request.user == profile.user%}
 <div>
+
     <h3>{{profile.user|capfirst}}</h3> 
 </div>
 <div>
 <img src="{{profile.avatar.url}}" alt="" width="200" height="200">
 </div>
+<!-- Remove Friend button-->
+   {%if profile.user != request.user%}
+        <form method="post" action="{% url 'remove_friend' friend_request.pk%}">
+            {% csrf_token %}
+          <input type="hidden" name="status" value="2">
+              <button type="submit" class="btn btn-danger mt-3">Remove</button>
+        </form>
+        <br>
+  {%endif%}
 <div>
 <strong>Email</strong>: {{profile.email}}
 </div>
@@ -77,5 +88,5 @@
     {%endfor%}
 {%endif%}
 
-
+<a href="{%url 'friends_list'%}" class="btn btn-primary mt-3">All Friends List</a>
 {%endblock%}

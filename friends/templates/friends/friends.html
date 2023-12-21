@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
 <p><h3>Number of friends: {{number_of_friends}}</h3></p>
 
 {%for friend in friends_list %}
@@ -13,11 +14,11 @@
     {%for friend_profile in friend_profiles %}
     {%if friend.pk == friend_profile.pk%}
 <img src="{{friend_profile.avatar.url}}" alt="" width="80" height="80">
-
+<a href="{% url 'new' friend_profile.user_id %}" class="btn btn-primary">View Profile</a>
    
     <input type="hidden" name="status" value="2">
-    <button type="submit">Remove</button>
-    <a href="{% url 'new' friend_profile.user_id %}">View Profile</a>
+    <button type="submit" class="btn btn-danger">Remove</button>
+   
     {%endif%}
     {%endfor%}
   </form>
@@ -29,10 +30,10 @@
     {%if friend.pk == friend_profile.pk%}
 <img src="{{friend_profile.avatar.url}}" alt="" width="80" height="80">
 
-  
+<a href="{% url 'new' friend_profile.user_id %}" class="btn btn-primary">View Profile</a>
     <input type="hidden" name="status" value="2">
-    <button type="submit">Remove</button>
-    <a href="{% url 'new' friend_profile.user_id %}">View Profile</a>
+    <button type="submit" class="btn btn-danger">Remove</button>
+ 
     {%endif%}
     {%endfor%}
   </form>
@@ -42,40 +43,39 @@
 {%endfor%}
 
 {%for received in received_requests %}
-<h3>{{received.receiver|capfirst}}s received Friend Requests:</h3>
-<p>Sender: {{received.sender}}
-</p>
-<p>Status: {%if received.status == 0 %}pending
-            {%elif received.status == 1 %}accepted
-  {%else%}
-  denied
-            {%endif%}
-</p>
+<h3>Friend Requests:</h3>
 
+<p>{{received.sender|capfirst}}
+</p>
+<img src="{{received.sender.profile.avatar.url}}
+" alt="" width="80" height="80">
 {%if received.status == 0%}
-<form method="post" action="{% url 'accept_friend_request' received.id %}">
+<form method="post" action="{% url 'accept_friend_request' received.id %}" class="d-inline">
     {% csrf_token %}
     <input type="hidden" name="status" value="1">
-    <button type="submit">Accept</button>
+    <button type="submit" class="btn btn-success">Accept</button>
   </form>
-<form method="post" action="{% url 'decline_friend_request' received.id %}">
+<form method="post" action="{% url 'decline_friend_request' received.id %}" class="d-inline">
     {% csrf_token %}
     <input type="hidden" name="status" value="2">
-    <button type="submit">Decline</button>
+    <button type="submit" class="btn btn-danger">Decline</button>
   </form>
 
   {%endif%}
 {%endfor%}
-Pending:
+
 {%for sent in sent_requests%}
+{%if forloop.first%}
+Pending:
+{%endif%}
 <p>{{sent.receiver}}</p>
 {%for profile in profiles%}
 {%if sent.receiver.pk == profile.pk%}
 <img src="{{profile.avatar.url}}" alt="" width="80" height="80">
-<form method="post" action="{% url 'remove_friend' sent.pk %}">
+<form method="post" action="{% url 'remove_friend' sent.pk %}" class="d-inline">
   {% csrf_token %}
 <input type="hidden" name="status" value="2">
-    <button type="submit">Remove</button>
+    <button type="submit" class="btn btn-primary">Remove</button>
   </form>
 
 {%endif%}
