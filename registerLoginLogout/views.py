@@ -63,7 +63,7 @@ def createProfile(request, pk):
             instance = form.save(commit=False)
             instance.user = request.user
             instance.save()
-            return redirect('new', request.user.pk)
+            return redirect('view_profile', request.user.pk)
         else:
             messages.error(request, form.errors)
     context = {'form':form, 'profile':profile}
