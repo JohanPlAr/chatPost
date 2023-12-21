@@ -15,15 +15,15 @@ Available Rooms: {{room_count}}
     {% for room in rooms %}
 <div>
 
-    <a href="{%url 'new' room.host.pk %}" class="text-decoration-none"><img src='{{room.host.profile.avatar.url}}'
+    <a href="{%url 'view_profile' room.host.pk %}" class="text-decoration-none"><img src='{{room.host.profile.avatar.url}}'
     alt="" width="30" height="30" class="rounded-circle"> <span>@{{room.host.username}}</span></a>
     
     <h5><a href="{%url 'room_id' room.id%}">{{room.name}}</a> </h5>
     
     <small>{{room.topic.name}} - Posts: {{room.number_of_posts}}</small>
     {% if room.host == request.user %}
-    <a href="{% url 'edit_room' room.id %}" class="btn btn-primary">Edit</a>
-    <a href="{% url 'delete_room' room.id %}"class="btn btn-danger">Delete</a>
+    <a href="{% url 'edit_room' room.id %}" class="btn btn-primary btn-sm">Edit</a>
+    <a href="{% url 'delete_room' room.id %}"class="btn btn-danger btn-sm">Delete</a>
 
     {% endif %}
     <hr>

@@ -71,19 +71,6 @@ def createProfile(request, pk):
 )
 
 def profileView(request, pk):
-    profiles = Profile.objects.all()
-    f_request = FriendRequest.objects.get(pk=pk)
-    f_profile_sender = Profile.objects.get(pk=f_request.sender.pk)
-    f_profile_receiver = Profile.objects.get(pk=f_request.receiver.pk)
-    rooms = Room.objects.all()
-    context = {'profiles':profiles,
-               "f_profile_sender":f_profile_sender, 
-               'f_profile_receiver':f_profile_receiver,
-               'rooms':rooms
-               }
-    return render(request, 'registerLoginLogout/profile.html', context)
-
-def new(request, pk):
     profile = Profile.objects.get(user_id=pk)
     friends_list =[]
     received_requests = []

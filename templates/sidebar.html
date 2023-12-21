@@ -62,7 +62,12 @@
             <div class="d-flex flex-column align-items-center align-items-xs-start bottom-0 pb-4">
                 {% if request.user.is_authenticated %}
                 <!-- Profile Menu displayed when user clicks on avatar or username -->
-                <ul id="content" class="text-small text-center bg-secondary md-w-auto p-3 list-unstyled rounded-1" style="display: none;">
+                
+                <ul id="content" class="sidebar-menu text-small text-center bg-secondary md-w-auto p-3 list-unstyled rounded-1" style="display: none;">
+                   <!-- Closing button inside Menu -->
+                    <div class="d-flex justify-content-end" data-bs-theme="dark">
+                    <button class="btn-close" onclick="hideMenu()"></button>
+                </div>
                     <li>
                         <a href="{% url 'create_profile' request.user.pk %}" class="text-decoration-none text-white">
                         Manage Profile
@@ -70,7 +75,7 @@
                         <hr class="bg-white">
                     </li>
                     <li>
-                        <a href="{% url 'new' request.user.pk %}" class="text-decoration-none text-white">
+                        <a href="{% url 'view_profile' request.user.pk %}" class="text-decoration-none text-white">
                     View Profile                    
                     </a>
                         <hr class="bg-white">

@@ -63,18 +63,22 @@
 
     {%if sent_requests%}
        
-        Request pending... <br>
+        <span class="text-center">Request pending...</span> <br>
         {%for sent in sent_requests%}
         <form method="post" action="{% url 'remove_friend' sent.pk %}">
             {% csrf_token %}
-          <input type="hidden" name="status" value="2" >
+          <div class="d-flex justify-content-center">
+            <input type="hidden" name="status" value="2" >
               <button type="submit" class="btn btn-danger">Remove</button>
-        </form>
+            </div>
+            </form>
         <br>
         {%endfor%}    
     {%else%}
-        <a href="{%url 'friend_request' profile.user.pk %}" class="btn btn-secondary my-3">Friend Request</a>
-    <br>   
+    <div class="d-flex justify-content-center">
+        <a href="{%url 'friend_request' profile.user.pk %}" class="btn btn-primary my-3">Friend Request</a>
+    </div>
+     
     {%endif%}
 
     <strong>{{profile.user|capfirst}}'s rooms:</strong><br>

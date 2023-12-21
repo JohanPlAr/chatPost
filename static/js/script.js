@@ -19,6 +19,12 @@ function toggleDisplay(element) {
     toggleDisplay(document.getElementById('content'));
   });
 
+// Close button inside sidebar profile menu  
+function hideMenu() {
+    var list = document.getElementById("content");
+        list.style.display = "none";
+    }
+
 
 // Select the timeout element
 var alert = document.querySelector('.timeout');
@@ -27,3 +33,5 @@ var alert = document.querySelector('.timeout');
 setTimeout(function() {
   alert.remove();
 }, 3000);
+
+
