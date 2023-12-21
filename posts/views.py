@@ -23,13 +23,9 @@ def createPost(request, pk):
         if form.is_valid():
             instance = form.save(commit=False)
             instance.author = request.user
-            instance.room = post_room
-            json_response = { "public_id": "test" }
-            # Populate CloudinaryResource object using the upload response
-            result = CloudinaryResource(public_id=json_response['public_id'])
-            instance.image = result.get_prep_value()                
-            input(result)
+            instance.room = post_room               
             instance.room.participants.add(request.user)
+            form.save()
             return redirect('room_id', post_room.id)
         
     context = {'form':form}
