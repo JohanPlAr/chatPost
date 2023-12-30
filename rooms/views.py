@@ -92,5 +92,5 @@ def deleteRoom(request, pk):
         room.delete()
         return redirect('home')
 
-    return render(request, 'rooms/delete.html', {'obj':room})
+    return render(request, 'delete.html', {'obj':room})
 

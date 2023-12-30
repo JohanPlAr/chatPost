@@ -46,7 +46,7 @@ def deleteComment(request, pk):
         comment.delete()
         return redirect('home')
 
-    return render(request, 'rooms/delete.html', {'obj':comment})
+    return render(request, 'delete.html', {'obj':comment})
 
 @login_required(login_url='login')
 def likeComment(request, pk):

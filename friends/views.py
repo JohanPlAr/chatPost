@@ -28,59 +28,30 @@ def friendRequest(request, pk):
 
 @login_required(login_url='login')
 def friendsList(request):
-    friends_list =[]
-    friend_profiles = []
-    profiles = Profile.objects.all()
-    all_requests = FriendRequest.objects.all()
-    received_requests = FriendRequest.objects.filter(receiver=request.user, status=0)
-    sent_requests = FriendRequest.objects.filter(sender=request.user, status=0)
-    denied_requests = FriendRequest.objects.filter(receiver=request.user, status=2)
-    accepted_received_requests = FriendRequest.objects.filter(receiver=request.user, status=1)
-    accepted_sent_requests = FriendRequest.objects.filter(sender=request.user, status=1)
-    number_of_friends = accepted_received_requests.count() + accepted_sent_requests.count()
-    for instance in accepted_sent_requests:
-        friends_list.append(instance.receiver)
-        pk = instance.receiver.id
-        friend_profile = Profile.objects.get(pk=pk)
-        friend_profiles.append(friend_profile)
-    for instance in accepted_received_requests:
-        friends_list.append(instance.sender)
-        pk = instance.sender.id
-        friend_profile = Profile.objects.get(pk=pk)
-        friend_profiles.append(friend_profile)     
-    context = {
-        'all_requests':all_requests,
-        'friends_list':friends_list,
-        'number_of_friends':number_of_friends,
-        'sent_requests':sent_requests,
-        'received_requests':received_requests,
-        'denied_requests':denied_requests,
-        'profiles': profiles,
-        'friend_profiles':friend_profiles
-               }
-    return render(request, 'friends/friends.html', context)
+
+    return render(request, 'friends/friends.html')
 
 @login_required(login_url='login')
 def accept_friend_request(request, pk):
     
     friend_request_id = FriendRequest.objects.get(pk=pk)
     friend_request_id.accept_friend_request(request.user)
-    friend_data = FriendRequest.objects.all()
-    context = {'friend_data':friend_data}
-    return render(request, 'friends/friends.html', context)
+    return render(request, 'friends/friends.html')
 
 @login_required(login_url='login')
 def decline_friend_request(request, pk):
     
     friend_request_id = FriendRequest.objects.get(pk=pk)
     friend_request_id.decline_friend_request(request.user)
-    friend_data = FriendRequest.objects.all()
-    context = {'friend_data':friend_data}
-    return render(request, 'friends/friends.html', context)
+    return render(request, 'friends/friends.html')
 
 def remove_friend(request, pk):
     friend = FriendRequest.objects.get(pk=pk)
+    if friend.receiver == request.user:
+        friend_name = friend.sender
+    else:
+        friend_name = friend.receiver
     if request.method == 'POST':
         friend.delete()
-
-    return render(request, 'friends/friends.html')
+        return render(request, 'friends/friends.html')
+    return render(request, 'delete.html', {'obj':friend_name})

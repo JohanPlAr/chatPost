@@ -1,12 +1,10 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-from . models import Post
-from rooms.models import Room
-from .forms import PostForm
 from django.contrib import messages
-
- 
+from rooms.models import Room
+from . models import Post
+from .forms import PostForm
 
 
 # Create your views here.
@@ -68,7 +66,7 @@ def deletePost(request, pk):
         post.delete()
         return redirect('home')
 
-    return render(request, 'rooms/delete.html', {'obj':post})
+    return render(request, 'delete.html', {'obj':post})
 
 @login_required(login_url='login')
 def likePost(request, pk):
