@@ -62,6 +62,8 @@ def createProfile(request, pk):
         if form.is_valid():
             instance = form.save(commit=False)
             instance.user = request.user
+            if "default_avatar" in str(instance.avatar):
+                instance.avatar = profile.avatar.url
             instance.save()
             return redirect('view_profile', request.user.pk)
         else:
@@ -70,6 +72,8 @@ def createProfile(request, pk):
     return render(request, 'registerLoginLogout/create_profile.html', context
 )
 
+
+@login_required(login_url='login')
 def profileView(request, pk):
     profile = Profile.objects.get(user_id=pk)
     friends_list =[]

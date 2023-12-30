@@ -1,10 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content%}
-<form action="" enctype="multipart/form-data" method="post">
-{% csrf_token %}
-{{form.as_p}}
+<div class="col-auto d-flex dropdown-menu mx-sm-5">
+    <div class="px-4 py-3">
+        <h4 class="text-center">Edit Post</h4>
 
-<input type="submit" value="Submit"/>
+        <form action="" enctype="multipart/form-data" method="post" class="d-flex flex-column">
+{% csrf_token %}
+Content:
+{{form.content}}
+<br>
+{{form.image}}
+<div class="d-flex justify-content-center">
+<input type="submit" value="Submit" class="btn btn-primary mt-3">
+
+</div>
 </form>
 {% endblock content %}

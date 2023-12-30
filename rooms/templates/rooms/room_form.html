@@ -7,9 +7,17 @@
 
         <form action="" method="post" class="d-flex flex-column">
 {% csrf_token %}
-
-{{form.as_p}}
-<div class="d-flex justify-content-center">
+Name:
+{{form.name}}
+Topic:
+{{form.topic}}
+Description:
+<div class=" ">
+{{form.description}}
+</div>
+Access:
+{{form.status}}
+<div class="d-flex justify-content-center mt-3">
 <input type="submit" value="Submit"/ class="btn btn-primary">
 
 </div>

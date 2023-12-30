@@ -34,4 +34,15 @@ setTimeout(function() {
   alert.remove();
 }, 3000);
 
+// modal
+var modal = document.getElementById('modal');
+var openModal = document.getElementById('openModal');
+var closeBtn = document.getElementsByClassName('close')[0];
 
+openModal.onclick = function() {
+  modal.style.display = "block";
+}
+
+closeBtn.onclick = function() {
+  modal.style.display = "none";
+}
