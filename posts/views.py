@@ -4,8 +4,7 @@ from django.contrib.auth.decorators import login_required
 from . models import Post
 from rooms.models import Room
 from .forms import PostForm
-from cloudinary import CloudinaryResource
-
+from django.contrib import messages
 
  
 
@@ -25,8 +24,13 @@ def createPost(request, pk):
             instance.author = request.user
             instance.room = post_room               
             instance.room.participants.add(request.user)
-            form.save()
-            return redirect('room_id', post_room.id)
+            try:
+                form.save()
+                messages.success(request, 'Post published')
+                return redirect('room_id', post_room.id)
+            except:
+                messages.error(request, 'Whoops something went wrong')
+                return redirect('room_id', post_room.id)
         
     context = {'form':form}
     return render(request, 'posts/post_form.html', context)
@@ -34,10 +38,11 @@ def createPost(request, pk):
 @login_required(login_url='login')
 def editPost(request, pk):
     post = Post.objects.get(id=pk)
+    room_id = post.room.id
     form = PostForm(instance=post)
 
     if request.user != post.author:
-        return HttpResponse('User access denied')
+        messages.error(request, 'User access denied')
 
     if request.method == "POST":
         form = PostForm(request.POST, instance=post)
@@ -45,7 +50,8 @@ def editPost(request, pk):
             instance = form.save(commit=False)
             instance.edited = True
             form.save()
-            return redirect('home')
+            messages.success(request, 'Post Edited')
+            return redirect('room_id', room_id)
     
     context = {'form':form}
     return render(request, 'posts/post_form.html', context)
