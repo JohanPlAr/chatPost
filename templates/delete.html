@@ -2,13 +2,17 @@
 
 {% block content %}
 
+<div class="card w-25 p-3 mt-3">
 <form action="" method="post">
 {% csrf_token %}
+<h3 class="text-center">Delete?</h3>
 <p>Are you sure you want to delete "{{obj}}"?</p>
+<div class="d-flex justify-content-around">
 <a href="{{request.META.HTTP_REFERER}}" class="btn btn-secondary">Go Back</a>
 <input class="btn btn-primary" type="submit" value="confirm">
+</div>
 </form>
-
+</div>
 
 
 {% endblock %}

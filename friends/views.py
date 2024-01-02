@@ -40,7 +40,7 @@ def friendRequest(request, pk):
     if sender_id == receiver_id:
         return HttpResponse("You can't friend yourself")
     FriendRequest.objects.create(sender=sender_id, receiver=receiver_id, status=0)
-    return redirect('home')
+    return redirect('friends_list')
 
 @login_required(login_url='login')
 def accept_friend_request(request, pk):

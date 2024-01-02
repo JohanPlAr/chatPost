@@ -1,15 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+<!-- User Search bar-->
 <form method="GET" action="{%url 'friends_list'%}">
   <input type="text" name="q" placeholder="Search Users..."/>
 </form>
-
+<!-- Search bar reuslts -->
+<ul>
 {% for searched_user in user_search%}
-<a href="{%url 'view_profile' searched_user.pk%}">{{searched_user.username|capfirst}}</a><br>
+<li><a href="{%url 'view_profile' searched_user.pk%}">{{searched_user.username|capfirst}}</a></li>
 {%endfor%}
-
+</ul>
 <p><h3>Number of friends: {{number_of_friends}}</h3></p>
 
 {%for friend in friends_list %}
@@ -19,7 +20,7 @@
     
     {%for friend_profile in friend_profiles %}
     {%if friend.pk == friend_profile.pk%}
-<img src="{{friend_profile.avatar.url}}" alt="" width="80" height="80">
+<img src="{{friend_profile.avatar.url}}" alt="" width="80" height="80" class="rounded-circle">
 <a href="{% url 'view_profile' friend_profile.user_id %}" class="btn btn-primary btn-sm">View Profile</a>
    
     <a href="{% url 'remove_friend' f_request.id %}" class="btn btn-danger btn-sm">Remove</a>
@@ -30,7 +31,7 @@
   {%elif friend == f_request.sender and request.user == f_request.receiver%}
     {%for friend_profile in friend_profiles %}
     {%if friend.pk == friend_profile.pk%}
-<img src="{{friend_profile.avatar.url}}" alt="" width="80" height="80">
+<img src="{{friend_profile.avatar.url}}" alt="" width="80" height="80" class="rounded-circle">
 
 <a href="{% url 'view_profile' friend_profile.user_id %}" class="btn btn-primary btn-sm">View Profile</a>
 
@@ -49,7 +50,7 @@
 <p>{{received.sender|capfirst}}
 </p>
 <img src="{{received.sender.profile.avatar.url}}
-" alt="" width="80" height="80">
+" alt="" width="80" height="80" class="rounded-circle">
 {%if received.status == 0%}
 <form method="post" action="{% url 'accept_friend_request' received.id %}" class="d-inline">
     {% csrf_token %}
@@ -59,7 +60,7 @@
 <form method="post" action="{% url 'decline_friend_request' received.id %}" class="d-inline">
     {% csrf_token %}
     <input type="hidden" name="status" value="2">
-    <button type="submit" class="btn btn-danger">Decline</button>
+    <button type="submit" class="btn btn-danger btn-sm">Decline</button>
   </form>
 
   {%endif%}
@@ -73,7 +74,7 @@
 <p>{{sent.receiver|capfirst}}</p>
 {%for profile in profiles%}
 {%if sent.receiver.pk == profile.pk%}
-<img src="{{profile.avatar.url}}" alt="" width="80" height="80">
+<img src="{{profile.avatar.url}}" alt="" width="80" height="80" class="rounded-circle">
 <a href="{% url 'view_profile' profile.pk %}" class="btn btn-primary btn-sm">View Profile</a>
     <a href="{% url 'remove_friend' sent.pk %}"class="btn btn-danger btn-sm">Remove</a>
 
