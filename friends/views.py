@@ -3,6 +3,22 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import FriendRequest
 from registerLoginLogout.models import Profile
+from django.db.models import Q
+
+
+
+@login_required(login_url='login')
+def friendsList(request):
+    if request.GET.get('q') == None:
+        user_search = []
+    else:
+        q = request.GET.get('q')
+        user_search = User.objects.filter(
+            Q(username__icontains=q)
+                                )
+    context = {'user_search': user_search}
+    
+    return render(request, 'friends/friends.html', context)
 
 
 @login_required(login_url='login')
@@ -25,11 +41,6 @@ def friendRequest(request, pk):
         return HttpResponse("You can't friend yourself")
     FriendRequest.objects.create(sender=sender_id, receiver=receiver_id, status=0)
     return redirect('home')
-
-@login_required(login_url='login')
-def friendsList(request):
-
-    return render(request, 'friends/friends.html')
 
 @login_required(login_url='login')
 def accept_friend_request(request, pk):

@@ -2,6 +2,13 @@
 
 {% block content %}
 
+<form method="GET" action="{%url 'friends_list'%}">
+  <input type="text" name="q" placeholder="Search Users..."/>
+</form>
+
+{% for searched_user in user_search%}
+<a href="{%url 'view_profile' searched_user.pk%}">{{searched_user.username|capfirst}}</a><br>
+{%endfor%}
 
 <p><h3>Number of friends: {{number_of_friends}}</h3></p>
 
@@ -60,7 +67,8 @@
 
 {%for sent in sent_requests%}
 {%if forloop.first%}
-Pending:
+<hr>
+<strong>Pending:</strong>
 {%endif%}
 <p>{{sent.receiver|capfirst}}</p>
 {%for profile in profiles%}
