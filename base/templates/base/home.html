@@ -13,12 +13,23 @@
 Available Rooms: {{room_count}}
 <hr>
     {% for room in rooms %}
-<div>
+
 
     <a href="{%url 'view_profile' room.host.pk %}" class="text-decoration-none"><img src='{{room.host.profile.avatar.url}}'
     alt="" width="30" height="30" class="rounded-circle"> <span>@{{room.host.username}}</span></a>
-    
-    <h5><a href="{%url 'room_id' room.id%}">{{room.name}}</a> </h5>
+  
+ 
+    <h5><a href="{%url 'room_id' room.id%}">{{room.name}}</a></h5>
+    {%if room.status == 1%}
+    {%if room.host in friends_list or request.user == room.host%}
+    <small class="text-success">Friends Only</small><br>
+    {%else%}
+    <small class="text-danger">Friends Only</small><br>
+    {%endif%}
+    {%else%}
+    <small class="text-primary">Public</small><br>
+    {%endif%}
+
     
     <small>{{room.topic.name}} - Posts: {{room.number_of_posts}}</small>
     {% if room.host == request.user %}
@@ -27,6 +38,5 @@ Available Rooms: {{room_count}}
 
     {% endif %}
     <hr>
-</div>
 {% endfor %}
 {% endblock %}
