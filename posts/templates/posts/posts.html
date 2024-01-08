@@ -2,7 +2,7 @@
 {% for post in posts %}
 {% if post.room == room %}
 
-<div class="card mb-3 post-card" id="scroll{{post.pk}}">
+<div class="card mb-3 post-card d-flex justify-content-center" id="scroll{{post.pk}}">
 <div class="m-3">  
     <img class="card-img-top rounded-3 post-image" src="{{post.image.url}}" 
     alt="Card image cap">

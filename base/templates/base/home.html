@@ -9,8 +9,11 @@
 <hr>
 <a href="{% url 'create_room'%}" class="btn btn-primary">Create Room</a>
 <hr>
-
-Available Rooms: {{room_count}}
+{%for room in rooms%}
+{%if forloop.last%}
+Available Rooms: {{forloop.counter}}
+{%endif%}
+{%endfor%}
 <hr>
     {% for room in rooms %}
 
@@ -39,4 +42,5 @@ Available Rooms: {{room_count}}
     {% endif %}
     <hr>
 {% endfor %}
+
 {% endblock %}

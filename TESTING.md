@@ -48,3 +48,6 @@ page | Y |          |
  Y |          |
 | 13          | Click "Logout" in the navbar | Logs out User - displays success message - redirects to All Rooms Home Page| Y |          |
  Y |          |
+| Rooms     |                        |                  |      |             |
+| 1          | Enter "Search Rooms" in the Search Field | Redirects user to Search Result Rooms page | Y |          |
+| 2          | Click "Create Room Button" | Redirects user to Create Room Form Page | Y |          |
