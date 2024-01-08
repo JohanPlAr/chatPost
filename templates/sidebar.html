@@ -34,8 +34,9 @@
                             </li>
                           
                             {%for topic in topics %}
-                            <hr>
+                          
                             <li>
+                                <hr>
                                 <a href="{% url 'home' %}?q={{topic.name}}" class="nav-link px-0 text-white">
                                     <span class="text-white"> {{forloop.counter}}. {{topic.name}}</span></a>
                             </li>
@@ -53,8 +54,9 @@
                             <li class="w-100">
                                 <a href="{%url 'room_id' room.id%}" class="nav-link px-0 text-white">
                                     <span class="text-white">{{room.name}}</span></a>
-                            </li class="text-center">
-                            <hr>
+                                    <hr>
+                                </li class="text-center">
+                           
                      
                             {%endfor%}
                             <li>
@@ -93,7 +95,9 @@
                         <hr class="bg-white">
                     </li>
                   <li>
-                    <a href="{% url 'logout' %}" class=" text-decoration-none text-white">Logout</a> </li>
+                    <a href="{% url 'logout' %}" class=" text-decoration-none text-white">Logout</a> 
+                </li>
+                
                 </ul>
                  
                   <a href="#" class="d-flex text-white text-decoration-none" 

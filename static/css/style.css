@@ -42,11 +42,6 @@ nav {
    
 }
 
-.comment-form > input{
-    margin:0, auto;
-    width: 6rem;
-}
-
 .comment-details {
     width: 100%;
     display: inline-flex;

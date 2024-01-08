@@ -17,14 +17,14 @@
 
 <body>
 
-    <!-- Container including sidebar and room/post area -->
+  
 <div class="container-fluid">
     <div class="row flex-nowrap">
     {% include 'sidebar.html'%}
   
         
 
-        <main class="w-100">
+    <main class="w-100">
             
             <!-- Error messages -->
 
@@ -33,11 +33,12 @@
     {%for message in messages%}
     <div class="alert-info m-1">
             <div class="alert alert-{{message.tags}} d-inline-block timeout">
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="alert">
+                </button>
                {{ message|capfirst }}
 
-                           </div>
-                        </div>
+            </div>
+    </div>
 {%endfor%}
    
             {% block content %}
@@ -45,11 +46,12 @@
         
             {% endblock content%}
   
-        <!-- Closing tags for container including sidebar -->
+        
     </div>
-
 </main>
-    
+<!-- Closing tags for Container Fluid -->
+</div>
+
 <script src="/static/js/script.js"></script>
 
 </body>
