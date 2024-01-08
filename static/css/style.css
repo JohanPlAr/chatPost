@@ -16,6 +16,12 @@ nav {
     justify-content: space-between;
 }
 
+/* Hides overflowing avatar link text with ellipsis (...) */
+.post-form > a { width:20rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;}
+
 .comment-form {
     display: flex;
     flex-direction: column;
@@ -32,7 +38,6 @@ nav {
 .comment-form > p > textarea {
     margin-top: 1rem;
     border-radius: 0.5rem;
-    height: 45px;
     width: 100%;
    
 }

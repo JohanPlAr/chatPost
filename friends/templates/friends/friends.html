@@ -6,28 +6,38 @@
   <input type="text" name="q" placeholder="Search Users..."/>
 </form>
 <!-- Search bar reuslts -->
-<ul>
+</small>
+<small>Results:
+<ul class="list-unstyled">
 {% for searched_user in user_search%}
-<li><a href="{%url 'view_profile' searched_user.pk%}">{{searched_user.username|capfirst}}</a></li>
+<li><img src="{{searched_user.profile.avatar.url}}" alt="" width="30" height="30" class="rounded-circle">
+  <a href="{%url 'view_profile' searched_user.pk%}">{{searched_user.username|capfirst}}</a></li>
 {%endfor%}
 </ul>
 <p><h3>Number of friends: {{number_of_friends}}</h3></p>
 
 {%for friend in friends_list %}
 <p>{{friend|capfirst}}</p>
+
 {%for f_request in all_requests%}
 {%if friend == f_request.receiver and request.user == f_request.sender%}
-    
+
     {%for friend_profile in friend_profiles %}
     {%if friend.pk == friend_profile.pk%}
+
 <img src="{{friend_profile.avatar.url}}" alt="" width="80" height="80" class="rounded-circle">
+
+
 <a href="{% url 'view_profile' friend_profile.user_id %}" class="btn btn-primary btn-sm">View Profile</a>
    
     <a href="{% url 'remove_friend' f_request.id %}" class="btn btn-danger btn-sm">Remove</a>
+<hr>
     {%endif%}
     {%endfor%}
 
-<hr>
+
+
+
   {%elif friend == f_request.sender and request.user == f_request.receiver%}
     {%for friend_profile in friend_profiles %}
     {%if friend.pk == friend_profile.pk%}
@@ -36,6 +46,7 @@
 <a href="{% url 'view_profile' friend_profile.user_id %}" class="btn btn-primary btn-sm">View Profile</a>
 
     <a href="{% url 'remove_friend' f_request.id %}"class="btn btn-danger btn-sm">Remove</a>
+
     {%endif%}
     {%endfor%}
 
@@ -57,19 +68,15 @@
     <input type="hidden" name="status" value="1">
     <button type="submit" class="btn btn-success btn-sm">Accept</button>
   </form>
-<form method="post" action="{% url 'decline_friend_request' received.id %}" class="d-inline">
-    {% csrf_token %}
-    <input type="hidden" name="status" value="2">
-    <button type="submit" class="btn btn-danger btn-sm">Decline</button>
-  </form>
+  <a href="{% url 'remove_friend' received.id %}"class="btn btn-danger btn-sm">Decline</a>
 
   {%endif%}
 {%endfor%}
 
 {%for sent in sent_requests%}
 {%if forloop.first%}
-<hr>
-<strong>Pending:</strong>
+
+<h3>Pending:</h3>
 {%endif%}
 <p>{{sent.receiver|capfirst}}</p>
 {%for profile in profiles%}
@@ -81,6 +88,6 @@
 
 {%endif%}
 {%endfor%}
+<hr>
 {%endfor%}
-
 {% endblock content %}

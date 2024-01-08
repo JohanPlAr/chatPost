@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import Q
 
-STATUS = ((0, "Pending"),(1, "Accepted"),(2, "Declined"))
+STATUS = ((0, "Pending"),(1, "Accepted"))
 
 
 class FriendRequest(models.Model):
@@ -15,8 +15,3 @@ class FriendRequest(models.Model):
         FriendRequest.objects.filter(
             receiver=user, status=0
         ).update(status=1)
-
-    def decline_friend_request(self, user):
-        FriendRequest.objects.filter(
-            receiver=user, status=0
-        ).update(status=2)

@@ -21,32 +21,39 @@
                         </a>
                     </li>
                    
-                
+                <!-- Topics Menu -->
                         <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white collapsed">
                             <i class="fs-4 bi bi-hash"></i> <span class="ms-1 d-none d-lg-inline-block">Topics</span></a>
                     
-                        <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
-                            <li class="w-100">
+                        <ul class="collapse nav flex-column ms-1 bg-secondary p-3 rounded-1 mx-1" id="submenu1" data-bs-parent="#menu">
+                            <li class="w-100 text-center">
                                 <a href="{% url 'home' %}" class="text-white text-decoration-none">All</a>
                             </li>
+                          
                             {%for topic in topics %}
+                            <hr>
                             <li>
                                 <a href="{% url 'home' %}?q={{topic.name}}" class="nav-link px-0 text-white">
                                     <span class="text-white"> {{forloop.counter}}. {{topic.name}}</span></a>
                             </li>
+                   
                             {%endfor%}
+                            <!-- You Rooms Menu -->
                         </ul>
                         <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white">
                             <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-lg-inline-block">Your Rooms</span></a>
-                        <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+                        <ul class="collapse nav flex-column ms-1 bg-secondary p-3 rounded-1 mx-1" id="submenu2" data-bs-parent="#menu">
                             {%for room in rooms%}
                             {% if request.user == room.host %}
                             <li class="w-100">
                                 <a href="{%url 'room_id' room.id%}" class="nav-link px-0 text-white">
                                     <span class="text-white">{{room.name}}</span></a>
-                            </li>
+                            </li class="text-center">
+                            <hr>
                             {%endif%}
                             {%endfor%}
+<li>                            <a href="{%url 'create_room'%}" class="link-light">Create room</a>
+</li>
                         </ul>
                     
                     </li>
@@ -63,7 +70,7 @@
                 {% if request.user.is_authenticated %}
                 <!-- Profile Menu displayed when user clicks on avatar or username -->
                 
-                <ul id="content" class="sidebar-menu text-small text-center bg-secondary md-w-auto p-3 list-unstyled rounded-1" style="display: none;">
+                <ul id="content" class="sidebar-menu text-small text-center bg-secondary md-w-auto p-3 list-unstyled rounded-1 mx-1" style="display: none;">
                    <!-- Closing button inside Menu -->
                     <div class="d-flex justify-content-end" data-bs-theme="dark">
                     <button class="btn-close" onclick="hideMenu()"></button>

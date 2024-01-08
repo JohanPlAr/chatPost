@@ -18,7 +18,6 @@ class Post(models.Model):
     status = models.IntegerField(choices=STATUS, default=0)
     likes = models.ManyToManyField(User, related_name="post_like", blank= True)
     dislikes = models.ManyToManyField(User, related_name="post_dislike", blank= True)
-    shares = models.ManyToManyField(User, related_name="post_share", blank= True)
 
     class Meta:
         ordering = ["-created"]
@@ -31,9 +30,6 @@ class Post(models.Model):
 
     def number_of_dislikes(self):
         return self.dislikes.count()
-    
-    def number_of_shares(self):
-        return self.shares.count()
     
     def number_of_comments(self):
         return self.commentsPost.count()

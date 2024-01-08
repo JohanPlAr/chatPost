@@ -1,24 +1,4 @@
-<div class="row">
-    <div class="col-9 col-sm-8 col-md-7 col-lg-6 col-xl-5 align-items-center">
-        <form method="GET" action="{%url 'home'%}" >
-            <input type="text" name="q" placeholder="Search Rooms..."/>
-        </form>
-        <hr>
-        <a href="{% url 'create_post' room.pk%}" class="btn btn-primary">Create Post</a>
-        <hr> 
-   
-        {%for profile in profiles%}
-        {%if room.host == profile.user%}
-        <h1 class="text-center">{{room.name}}</h1>
-        <div class="d-flex justify-content-center">
-        <img src="{{profile.avatar.url}}" alt="" width="40" height="40" class="rounded-circle">
-    </div>
-        <p class="text-center"><small>Host: {{profile.user|capfirst}}</small>
-            <br>{{room.description}}
-        </p>
-        {%endif%}
-        {%endfor%}
-        
+
 {% for post in posts %}
 {% if post.room == room %}
 
@@ -46,24 +26,21 @@
       <div class="post-details">
         
        <a href="#postcomments{{post.pk}}" data-bs-toggle="collapse" class="nav-link collapsed">
-        <i class="bi bi-chat"></i>{{post.number_of_comments}} 
+        <i class="bi bi-chat"></i> {{post.number_of_comments}} 
     </a>
-     
-      
-      Shares: {{ post.number_of_shares }}
 
        
    
        <form id="like_post{{post.pk}}" action="{% url 'like_post' post.pk %}" method="POST">
         {% csrf_token%}
         <a href="#" onclick="document.getElementById('like_post{{post.pk}}').submit()" class="text-decoration-none">
-            <i class="bi bi-hand-thumbs-up"></i>{{ post.number_of_likes }}</a>
+            <i class="bi bi-hand-thumbs-up"></i> {{ post.number_of_likes }}</a>
        </form>
     
        <form id="dislike_post{{post.pk}}" action="{% url 'dislike_post' post.pk %}" method="POST">
         {% csrf_token %}
         <a href="#" onclick="document.getElementById('dislike_post{{post.pk}}').submit()" class="text-decoration-none">
-            <i class="bi bi-hand-thumbs-down"></i>{{ post.number_of_dislikes }}</a>
+            <i class="bi bi-hand-thumbs-down"></i> {{ post.number_of_dislikes }}</a>
        </form>
     </div>
     </div>
@@ -109,13 +86,13 @@
         <form id="like_comment{{comment.pk}}" action="{% url 'like_comment' comment.pk%}" method="POST">
             {% csrf_token%}
             <a href="#" onclick="document.getElementById('like_comment{{comment.pk}}').submit()" class="text-decoration-none">
-                <i class="bi bi-hand-thumbs-up"></i>{{comment.number_of_likes}}</a>
+                <i class="bi bi-hand-thumbs-up"></i> {{comment.number_of_likes}}</a>
            </form>
         
            <form id="dislike_comment{{comment.pk}}" action="{% url 'dislike_comment' comment.pk%}" method="POST">
             {% csrf_token%}
             <a href="#" onclick="document.getElementById('dislike_comment{{comment.pk}}').submit()" class="text-decoration-none">
-                <i class="bi bi-hand-thumbs-down"></i>{{comment.number_of_dislikes}}</a>
+                <i class="bi bi-hand-thumbs-down"></i> {{comment.number_of_dislikes}}</a>
            </form>
         
         </div>

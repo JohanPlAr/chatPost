@@ -5,7 +5,7 @@ from comments.models import Comment
 from friends.models import FriendRequest
 
 
-
+# Captures and sends the context to all views, module included in settings TEMPLATES
 def globalContext(request):
     rooms = Room.objects.all()
     room_count = rooms.count()
@@ -20,7 +20,6 @@ def globalContext(request):
     if request.user.is_authenticated:
         received_requests = FriendRequest.objects.filter(receiver=request.user, status=0)
         sent_requests = FriendRequest.objects.filter(sender=request.user, status=0)
-        denied_requests = FriendRequest.objects.filter(receiver=request.user, status=2)
         accepted_received_requests = FriendRequest.objects.filter(receiver=request.user, status=1)
         accepted_sent_requests = FriendRequest.objects.filter(sender=request.user, status=1)
         number_of_friends = accepted_received_requests.count() + accepted_sent_requests.count()
@@ -47,7 +46,6 @@ def globalContext(request):
             'number_of_friends':number_of_friends,
             'sent_requests':sent_requests,
             'received_requests':received_requests,
-            'denied_requests':denied_requests,
             'profiles': profiles,
             'friend_profiles':friend_profiles
             }

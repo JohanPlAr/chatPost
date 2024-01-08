@@ -27,7 +27,7 @@ def createPost(request, pk):
                 messages.success(request, 'Post published')
                 return redirect('room_id', post_room.id)
             except:
-                messages.error(request, 'Whoops something went wrong')
+                messages.error(request, 'Oops something went wrong')
                 return redirect('room_id', post_room.id)
         
     context = {'form':form}

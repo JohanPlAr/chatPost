@@ -32,8 +32,10 @@ def loginView(request):
     return render(request, 'base/register_login.html', context)
 
 def logoutUser(request):
+    messages.success(request, f'{request.user} is logged out')
     logout(request)
     return redirect('home')
+
 
 def registerView(request):
     page = 'register'
@@ -48,6 +50,7 @@ def registerView(request):
             user.save()
             Profile.objects.create(user=user)
             login(request, user)
+            messages.success(request, f'User {user.username} created successfully')
             return redirect('home')
         else:
             messages.error(request, form.errors)
@@ -65,6 +68,7 @@ def createProfile(request, pk):
             if "default_avatar" in str(instance.avatar):
                 instance.avatar = profile.avatar.url
             instance.save()
+            messages.success(request, 'Profile saved successfully')
             return redirect('view_profile', request.user.pk)
         else:
             messages.error(request, form.errors)
@@ -79,7 +83,6 @@ def profileView(request, pk):
     friends_list =[]
     received_requests = []
     sent_requests = []
-    rooms = Room.objects.all()
     accepted_received_requests = FriendRequest.objects.filter(receiver=request.user, status=1)
     for instance in accepted_received_requests:
         friends_list.append(instance.sender)
@@ -101,7 +104,6 @@ def profileView(request, pk):
     context = {'profile':profile,
                'friend_request':friend_request,
                'friends_list':friends_list,
-               'rooms':rooms,
                'received_requests':received_requests,
                'sent_requests':sent_requests}
-    return render(request, 'registerLoginLogout/all_profiles.html', context)
+    return render(request, 'registerLoginLogout/profile.html', context)

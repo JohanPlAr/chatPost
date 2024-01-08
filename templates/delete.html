@@ -6,10 +6,10 @@
 <form action="" method="post">
 {% csrf_token %}
 <h3 class="text-center">Delete?</h3>
-<p>Are you sure you want to delete "{{obj}}"?</p>
+<p class="text-center">Are you sure you want to remove "{{obj}}"?</p>
 <div class="d-flex justify-content-around">
 <a href="{{request.META.HTTP_REFERER}}" class="btn btn-secondary">Go Back</a>
-<input class="btn btn-primary" type="submit" value="confirm">
+<input class="btn btn-primary" type="submit" value="Yes I'm Sure">
 </div>
 </form>
 </div>
