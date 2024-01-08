@@ -67,6 +67,10 @@ nav {
     height: 100vh    
 }
 
+.contributor-title {
+    font-size: x-small;
+}
+
 @media only screen and (max-width: 768px) {
 .post-card {   
         margin-right:8vw;

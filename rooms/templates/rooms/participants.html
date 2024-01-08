@@ -1,8 +1,10 @@
 
   
-        <div class="col-auto col-xl-2 bg-primary participants">
+        <div class="col-auto px-1 col-xl-2 bg-primary participants">
             <div class="participants rounded-3 d-flex flex-column align-items-center xl-align-items-start">  
 <span class="fs-5 text-white d-none d-lg-inline mt-2">Contributors</span>
+<span class="text-white d-lg-none d-inline mt-2 contributor-title">Contri-</span>
+<span class="text-white d-lg-none d-inline contributor-title">butors</span>
          {%for participant in participants%}
          {%if participant.profile%}
          <div class="w-30">
