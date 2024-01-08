@@ -4,7 +4,6 @@
             <div class="d-flex flex-column align-items-center align-items-xs-start pt-2 text-white min-vh-100 position-sticky">
                 <a href="/" class="mb-md-0 text-white text-decoration-none">
                     <img class="logo md-img-fluid" src="https://res.cloudinary.com/ddurovnhl/image/upload/v1702384899/logo_mz9sdl.png" alt="" width="60" height="60">
-            <!-- <span class="fs-5 d-none d-md-inline"></span>chatPost</span> -->
                 </a>
                 
                 {% if request.user.is_authenticated %}
@@ -22,9 +21,13 @@
                     </li>
                    
                 <!-- Topics Menu -->
-                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white collapsed">
-                            <i class="fs-4 bi bi-hash"></i> <span class="ms-1 d-none d-lg-inline-block">Topics</span></a>
-                    
+                    <li>
+                            <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white collapsed">
+                                <i class="fs-4 bi bi-hash"></i> 
+                                <span class="ms-1 d-none d-lg-inline-block">Topics</span>
+                            </a>
+                    </li>    
+                    <li>
                         <ul class="collapse nav flex-column ms-1 bg-secondary p-3 rounded-1 mx-1" id="submenu1" data-bs-parent="#menu">
                             <li class="w-100 text-center">
                                 <a href="{% url 'home' %}" class="text-white text-decoration-none">All</a>
@@ -40,6 +43,8 @@
                             {%endfor%}
                             <!-- You Rooms Menu -->
                         </ul>
+                    </li>
+                    <li>
                         <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white">
                             <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-lg-inline-block">Your Rooms</span></a>
                         <ul class="collapse nav flex-column ms-1 bg-secondary p-3 rounded-1 mx-1" id="submenu2" data-bs-parent="#menu">
@@ -52,21 +57,21 @@
                             <hr>
                      
                             {%endfor%}
-<li>                            <a href="{%url 'create_room'%}" class="link-light">Create room</a>
-</li>
+                            <li>
+                                <a href="{%url 'create_room'%}" class="link-light">Create room</a>
+                            </li>
                         </ul>
-                    
+                    </li>
                     </li>
                     <li>
                         <a href="{%url 'friends_list'%}" class="nav-link px-0 align-middle  text-white">
                             <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-lg-inline-block">Friends</span></a>
                     </li>
                 </ul>
-              
-               
+                           
                 <hr>
-                
-            <div class="d-flex flex-column align-items-center align-items-xs-start bottom-0 pb-4">
+               
+                <div class="d-flex flex-column align-items-center align-items-xs-start bottom-0 pb-4">
                 {% if request.user.is_authenticated %}
                 <!-- Profile Menu displayed when user clicks on avatar or username -->
                 
