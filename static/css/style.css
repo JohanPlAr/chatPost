@@ -71,6 +71,10 @@ nav {
     font-size: x-small;
 }
 
+.align-end {
+    margin-right: auto;
+}
+
 @media only screen and (max-width: 768px) {
 .post-card {   
         margin-right:0vw;

@@ -27,20 +27,19 @@
         <main class="w-100">
             
             <!-- Error messages -->
-            <div class="alert-info m-1">
-            
-     
+
+           
      
     {%for message in messages%}
-
+    <div class="alert-info m-1">
             <div class="alert alert-{{message.tags}} d-inline-block timeout">
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                {{ message|capfirst }}
 
                            </div>
-    
+                        </div>
 {%endfor%}
-    </div>
+   
             {% block content %}
         
         

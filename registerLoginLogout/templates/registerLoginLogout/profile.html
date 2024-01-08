@@ -59,13 +59,13 @@
 
     {%if sent_requests%}
        
-        <span class="text-center">Request pending...</span> <br>
+        <span class="d-flex justify-content-center">Request pending...</span>
         {%for sent in sent_requests%}
         <form method="post" action="{% url 'remove_friend' sent.pk %}">
             {% csrf_token %}
           <div class="d-flex justify-content-center">
             <input type="hidden" name="status" value="2" >
-              <button type="submit" class="btn btn-danger">Remove</button>
+              <button type="submit" class="btn btn-danger btn-sm mt-3">Remove</button>
             </div>
             </form>
         <br>

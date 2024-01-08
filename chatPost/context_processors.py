@@ -8,7 +8,7 @@ from friends.models import FriendRequest
 # Captures and sends the context to all views, module included in settings TEMPLATES
 def globalContext(request):
     rooms = Room.objects.all()
-    users_rooms = Room.objects.filter(host=request.user)
+   
     room_count = rooms.count()
     topics = Topic.objects.all()
     posts = Post.objects.all()
@@ -19,6 +19,7 @@ def globalContext(request):
     profiles = Profile.objects.all()
     all_requests = FriendRequest.objects.all()
     if request.user.is_authenticated:
+        users_rooms = Room.objects.filter(host=request.user)
         received_requests = FriendRequest.objects.filter(receiver=request.user, status=0)
         sent_requests = FriendRequest.objects.filter(sender=request.user, status=0)
         accepted_received_requests = FriendRequest.objects.filter(receiver=request.user, status=1)
