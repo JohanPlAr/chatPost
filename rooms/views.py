@@ -1,14 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from . forms import RoomForm
-from . models import Room, Topic
+from . models import Room
 from posts.models import Post
-from comments.models import Comment
 from comments.forms import CommentForm
 from django.contrib import messages
-from friends.models import FriendRequest
-from registerLoginLogout.models import Profile
 
 # Create your views here.
 
@@ -34,6 +32,7 @@ def room(request, pk):
     rooms = Room.objects.all() 
     posts = room.post_room.all()
     comment_form = CommentForm
+    participants = room.participants.all()
     if request.method == "POST":
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -46,13 +45,14 @@ def room(request, pk):
     context = {'room': room,
                'posts':posts, 
                'rooms':rooms, 
-               'comment_form': comment_form,
+               'comment_form': comment_form, 
+               'participants':participants,
                }
     return render(request, 'rooms/room.html', context)
 
 @login_required(login_url='login')
 def editRoom(request, pk):
-    room = Room.objects.get(id=pk)
+    room = get_object_or_404(Room, id = pk)
     form = RoomForm(instance=room)
 
     if request.user != room.host:
@@ -69,7 +69,7 @@ def editRoom(request, pk):
 
 @login_required(login_url='login')
 def deleteRoom(request, pk):
-    room = Room.objects.get(id=pk)
+    room = get_object_or_404(Room, id = pk)
     if request.user != room.host:
         return HttpResponse('User access denied')
     if request.method == "POST":

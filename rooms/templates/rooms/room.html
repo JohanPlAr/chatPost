@@ -7,8 +7,13 @@
             <input type="text" name="q" placeholder="Search Rooms...">
         </form>
         <hr>
+        {%if room.status != 1 or room.host in friends_list or request.user == room.host%}
         <a href="{% url 'create_post' room.pk%}" class="btn btn-primary">Create Post</a>
-        <hr> 
+        {%endif%}
+        {%if room.host == request.user%}
+        <a href="{% url 'edit_room' room.pk%}" class="btn btn-primary">Edit Room</a>
+        {%endif%}
+        <hr>
    
         {%for profile in profiles%}
         {%if room.host == profile.user%}

@@ -22,7 +22,7 @@ def createPost(request, pk):
         if form.is_valid():
             instance = form.save(commit = False)
             instance.author = request.user
-            instance.room = post_room               
+            instance.room = post_room              
             instance.room.participants.add(request.user)
             try:
                 form.save()
