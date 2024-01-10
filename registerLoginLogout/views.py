@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
@@ -58,7 +58,7 @@ def registerView(request):
 
 @login_required(login_url = 'login')
 def createProfile(request, pk):
-    profile = Profile.objects.get(user_id = pk)
+    profile = get_object_or_404(Profile.objects, user_id = pk)
     form = ProfileForm(instance = profile)
     if request.method == "POST":
         form = ProfileForm(request.POST, request.FILES)
@@ -81,7 +81,7 @@ def createProfile(request, pk):
 
 @login_required(login_url = 'login')
 def profileView(request, pk):
-    profile = Profile.objects.get(user_id = pk)
+    profile = get_object_or_404(Profile.objects, user_id = pk)
     friends_list = []
     received_requests = []
     sent_requests = []
@@ -106,7 +106,7 @@ def profileView(request, pk):
         received_requests.append(instance)
     pending_sent_requests = FriendRequest.objects.filter(
                                                          sender = request.user,
-                                                         receiver = pk, 
+                                                         receiver = pk,
                                                          status = 0
                                                          )
     for instance in pending_sent_requests:
