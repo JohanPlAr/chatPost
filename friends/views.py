@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import FriendRequest
@@ -25,19 +25,19 @@ def friendsList(request):
 def friendRequest(request, pk):
 # Handles friend request
     sender_id = request.user
-    receiver_id = User.objects.get(id=pk)            
+    receiver_id = get_object_or_404(User.objects, id = pk)          
     FriendRequest.objects.create(sender=sender_id, receiver=receiver_id, status=0)
     return redirect('friends_list')
 
 @login_required(login_url='login')
 def accept_friend_request(request, pk):
     
-    friend_request_id = FriendRequest.objects.get(pk=pk)
+    friend_request_id = get_object_or_404(FriendRequest.objects, id = pk)
     friend_request_id.accept_friend_request(request.user)
     return render(request, 'friends/friends.html')
 
 def remove_friend(request, pk):
-    friend = FriendRequest.objects.get(pk=pk)
+    friend = get_object_or_404(FriendRequest.objects, id = pk)
     if friend.receiver == request.user:
         friend_name = friend.sender
     else:
