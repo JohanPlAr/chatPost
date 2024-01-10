@@ -7,8 +7,7 @@ from friends.models import FriendRequest
 
 # Captures and sends the context to all views, module included in settings TEMPLATES
 def globalContext(request):
-    rooms = Room.objects.all()
-   
+    rooms = Room.objects.all()  
     room_count = rooms.count()
     topics = Topic.objects.all()
     posts = Post.objects.all()

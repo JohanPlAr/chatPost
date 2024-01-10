@@ -1,7 +1,6 @@
 <!-- List of Posts in Room -->
 {% for post in posts %}
 {% if post.room == room %}
-
 <div class="card mb-3 post-card d-flex justify-content-center" id="scroll{{post.pk}}">
 <div class="m-3">  
     <img class="card-img-top rounded-3 post-image" src="{{post.image.url}}" 
@@ -11,7 +10,6 @@
         {% if post.author.profile.avatar.url %}
         <a href="{%url 'view_profile' post.author.id %}"><img src='{{post.author.profile.avatar.url}}' 
             alt="profilepicture" width="30" height="30" class="rounded-circle"></a>
-        
       {%else%}
       <a href="{%url 'view_profile' post.author.id %}"><img src='https://res.cloudinary.com/ddurovnhl/image/upload/v1701246735/default_avatar_poro4z.png' 
       alt="profilepicture" width="30" height="30" class="rounded-circle"></a>
@@ -49,17 +47,15 @@
         
         <li class="w-100">
             <hr class="mx-3">
-        <form action="" method="post" class="comment-form">
+        <form method="post" class="comment-form">
             {% csrf_token %}
-            <form action="" method="post">
             {{comment_form.as_p}}
-            <div class="d-flex justify-content-center"><button hr value="submit" type="submit" class="btn btn-primary">Send
+            <div class="d-flex justify-content-center"><button value="submit" type="submit" class="btn btn-primary">Send
             </button>
             </div>
             <input type="hidden" name="post" value="{{post.pk}}">
         </form>
     
-        </form>
         </li>
     {% for comment in comments %}
     {% if comment.post == post %}
@@ -86,7 +82,8 @@
             <br>
           {{ comment.content }}
         </li>
-        <div class="comment-details mb-3">
+        
+        <li class="comment-details mb-3">
         <form id="like_comment{{comment.pk}}" action="{% url 'like_comment' comment.pk%}" method="POST">
             {% csrf_token%}
             <a href="#" onclick="document.getElementById('like_comment{{comment.pk}}').submit()" class="text-decoration-none">
@@ -99,7 +96,7 @@
                 <i class="bi bi-hand-thumbs-down"></i> {{comment.number_of_dislikes}}</a>
            </form>
         
-        </div>
+        </li>
 
       
     

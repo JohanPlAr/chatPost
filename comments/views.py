@@ -1,35 +1,45 @@
-from django.shortcuts import render
+"""Comment Crud, Like and Dislike functions"""
 
-# Create your views here.
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from . models import Comment
+from django.core.exceptions import PermissionDenied
 from posts.models import Post
+from rooms.models import Room
+from . models import Comment
 from .forms import CommentForm
+from chatPost.context_processors import globalContext
 
-
-# Create your views here.
 
 @login_required(login_url='login')
 def createComment(request, pk):
+    """Create Comment function"""
     form = CommentForm()
+    post = get_object_or_404(Post, id = pk)
+    post_room = get_object_or_404(Room, id = post.room.pk)
+    friends_list = globalContext(request)["friends_list"]
+    if post_room.host != request.user:
+        if post_room.status == 1 and post_room.host not in friends_list:
+            raise PermissionDenied
     if request.method == "POST":
         form = CommentForm(request.POST)
         if form.is_valid():
             instance = form.save(commit=False)
             instance.author = request.user
             instance.status = 1
-            instance.post = Post.objects.get(id=pk)
+            instance.post = post
             form.save()
             return redirect('home')
         
     context = {'form':form}
     return render(request, 'comments/comment_form.html', context)
 
+
 @login_required(login_url='login')
 def editComment(request, pk):
-    comment =Comment.objects.get(id=pk)
+    comment = get_object_or_404(Comment, pk = pk)
     form = CommentForm(instance=comment)
+    if comment.author != request.user:
+        raise PermissionDenied
     if request.method == "POST":
         form = CommentForm(request.POST, instance=comment)
         if form.is_valid():
@@ -39,18 +49,21 @@ def editComment(request, pk):
     context = {'form':form}
     return render(request, 'comments/comment_form.html', context)
 
+
 @login_required(login_url='login')
 def deleteComment(request, pk):
-    comment =Comment.objects.get(id=pk)
+    comment = get_object_or_404(Comment, id = pk)
+    room = comment.post.room.id
     if request.method == "POST":
         comment.delete()
-        return redirect('home')
+        return redirect('room_id',room)
 
     return render(request, 'delete.html', {'obj':comment})
 
+
 @login_required(login_url='login')
 def likeComment(request, pk):
-    comment = Comment.objects.get(id=pk)
+    comment = get_object_or_404(Comment, id = pk)
     post = comment.post
     user = request.user
     room = post.room.id
@@ -60,9 +73,10 @@ def likeComment(request, pk):
         comment.likes.add(user)
     return redirect('room_id',room)
 
+
 @login_required(login_url='login')
 def dislikeComment(request, pk):
-    comment = Comment.objects.get(id=pk)
+    comment = get_object_or_404(Comment, id = pk)
     post = comment.post
     user = request.user
     room = post.room.id

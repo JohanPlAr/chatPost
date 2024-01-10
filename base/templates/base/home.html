@@ -3,7 +3,7 @@
 {% block content %}
 
 <form method="GET" action="{%url 'home'%}">
-    <input type="text" name="q" placeholder="Search Rooms..."/>
+    <input type="text" name="q" placeholder="Search Rooms...">
 </form>
 
 <hr>
@@ -37,7 +37,7 @@ Available Rooms: {{forloop.counter}}
     <small>{{room.topic.name}} - Posts: {{room.number_of_posts}}</small>
     {% if room.host == request.user %}
     <a href="{% url 'edit_room' room.id %}" class="btn btn-primary btn-sm">Edit</a>
-    <a href="{% url 'delete_room' room.id %}"class="btn btn-danger btn-sm">Delete</a>
+    <a href="{% url 'delete_room' room.id %}" class="btn btn-danger btn-sm">Delete</a>
 
     {% endif %}
     <hr>

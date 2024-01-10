@@ -96,5 +96,83 @@ page | Y |          |
 | 2          | Click "Confirm Button"| Deletes the Instance - Redirects User Back to Previous Page | Y |          |
 
 
+## Automated testing
+
+### Django unit testing
+
+
+### Jest unit testing
+
+---
+
+## Validation
+
+### HTML Validation:
+
+- HTML validation was done by using the official [W3C](https://validator.w3.org/) validator. This checking was done manually by copying the view page source code (Ctrl+U) and pasting it into the validator.
+
+- [Full HTML Validation Report](documentation/validation/html_validation.pdf)
+
+
+### CSS Validation:
+
+- [Full CSS Validation Report](documentation/validation/css_validation.png)
+
+- No errors or warnings were found when passing through the official [W3C (Jigsaw)](https://jigsaw.w3.org/css-validator/#validate_by_uri) validator except for the warnings about the use of css root variables and webkit css rules for the box-shadow. However, css code works perfectly on various devices.
+
+
+### JS Validation:
+
+- [JS Validation Report. script.js](documentation/validation/js_validation_base_js.png)
+
+- No errors or warning messages were found when passing through the official [JSHint](https://www.jshint.com/) validator. However, the validator complained about undefined variables that come from JS libraries.
+
+### Python Validation:
+- [Full Python Validation Report](documentation/validation/python_validation.pdf)
+
+---
+## Lighthouse Report
+
+- [Full Lighthouse Report](documentation/validation/lighthouse_report.pdf)
+
+- Lighthouse report was generated for every pages, using Chrome Dev Tools.
+
+--- 
+
+## Compatibility
+
+Testing was conducted on the following browsers;
+
+- Brave;
+
+[Compatibility Report](documentation/compatibility/compatibility_brave.png)
+
+- Chrome;
+
+[Compatibility Report](documentation/compatibility/compatibility_chrome.png)
+
+- Firefox;
+
+[Compatibility Report](documentation/compatibility/compatibility_firefox.png)
+
+---
+
+# Responsiveness
+
+The responsiveness was checked manually by using devtools (Chrome) throughout the whole development. It was also checked with [Responsive Viewer](https://chrome.google.com/webstore/detail/responsive-viewer/inmopeiepgfljkpkidclfgbgbmfcennb/related?hl=en) Chrome extension.
+
+[Responsiveness Report](documentation/responsiveness/responsiveness.pdf)
+
+---
+
+## Bugs
+
+### Solved bugs
+
+![GitHub projects](documentation/testing/projects_list.png)
+
+![Closed issues](documentation/testing/closed_issues.png)
+
+### Known bugs
 
 

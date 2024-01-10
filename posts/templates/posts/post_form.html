@@ -5,17 +5,21 @@
     <div class="px-4 py-3">
         <h4 class="text-center">Edit Post</h4>
 
-        <form action="" enctype="multipart/form-data" method="post" class="d-flex flex-column post-form">
+        <form enctype="multipart/form-data" method="post" class="d-flex flex-column post-form">
 {% csrf_token %}
 Content:
 {{form.content}}
 <br>
+<Strong>Choose Image:</Strong>
 {{form.image}}
 <div class="d-flex justify-content-around mt-3">
     <a href="{{request.META.HTTP_REFERER}}" class="btn btn-secondary">Go Back</a>
-    <input type="submit" value="Submit"class="btn btn-primary">
+    <input type="submit" value="Submit" class="btn btn-primary">
     
     </div>
-</div>
+
 </form>
+</div>
+</div>
 {% endblock content %}
+

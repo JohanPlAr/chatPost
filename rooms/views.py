@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from . forms import RoomForm
@@ -30,21 +30,10 @@ def createRoom(request):
 
 @login_required(login_url='login')
 def room(request, pk):
-    room = Room.objects.get(id=pk)
-    rooms = Room.objects.all()
-    friends_list =[]
-    accepted_received_requests = FriendRequest.objects.filter(receiver=request.user, status=1)
-    for instance in accepted_received_requests:
-        friends_list.append(instance.sender)
-    accepted_sent_requests = FriendRequest.objects.filter(sender=request.user, status=1)
-    for instance in accepted_sent_requests:
-        friends_list.append(instance.receiver)
+    room = get_object_or_404(Room, id = pk)
+    rooms = Room.objects.all() 
     posts = room.post_room.all()
     comment_form = CommentForm
-    comments = Comment.objects.all()
-    topics = Topic.objects.all()
-    participants = room.participants.all()
-    profiles = Profile.objects.all()
     if request.method == "POST":
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -56,13 +45,8 @@ def room(request, pk):
             form.save()
     context = {'room': room,
                'posts':posts, 
-               'topics':topics, 
                'rooms':rooms, 
-               'comments':comments,
-               'comment_form': comment_form, 
-               'participants':participants,
-               'friends_list':friends_list,
-               'profiles':profiles,
+               'comment_form': comment_form,
                }
     return render(request, 'rooms/room.html', context)
 
@@ -72,7 +56,7 @@ def editRoom(request, pk):
     form = RoomForm(instance=room)
 
     if request.user != room.host:
-        return HttpResponse('User access denied')
+        raise PermissionDenied
 
     if request.method == "POST":
         form = RoomForm(request.POST, instance=room)

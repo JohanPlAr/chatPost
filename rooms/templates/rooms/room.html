@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col-9 col-sm-8 col-md-7 col-lg-6 col-xl-5 align-items-center">
         <form method="GET" action="{%url 'home'%}" >
-            <input type="text" name="q" placeholder="Search Rooms..."/>
+            <input type="text" name="q" placeholder="Search Rooms...">
         </form>
         <hr>
         <a href="{% url 'create_post' room.pk%}" class="btn btn-primary">Create Post</a>
@@ -29,14 +29,11 @@
         </div>
         <div class="d-flex justify-content-center">
         <a href="{%url 'view_profile' profile.pk%}"><img src="{{profile.avatar.url}}" alt="" width="40" height="40" class="rounded-circle">
-    </div></a>
-        <p class="text-center"><small>Host: {{profile.user|capfirst}}</small>
-        
+        </a></div>
+        <div class="text-center"><small>Host: {{profile.user|capfirst}}</small>
             <div class="text-center">{{room.description}}</div>
             <br>
-      
-         
-        </p>
+        </div>
         {%endif%}
         {%endfor%}
 
@@ -54,17 +51,4 @@
 {%endif%}
 {%endif%}
 
-
-<!-- {%for post in posts%}
-    {% if post.room == room %} 
-    
-        <div>
-            @{{post.author}}
-            {{post.created|timesince}} ago    
-           <p>{{post.content}}</p>
-<hr>
-        </div>
-    
-    {% endif %}
-{%endfor%}
-    {% endblock %} -->
+{% endblock %}

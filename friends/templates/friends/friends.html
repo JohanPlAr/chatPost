@@ -3,18 +3,18 @@
 {% block content %}
 <!-- User Search bar-->
 <form method="GET" action="{%url 'friends_list'%}">
-  <input type="text" name="q" placeholder="Search Users..."/>
+  <input type="text" name="q" placeholder="Search Users...">
 </form>
 <!-- Search bar reuslts -->
-</small>
-<small>Results:
+
+<small>Results:</small>
 <ul class="list-unstyled">
 {% for searched_user in user_search%}
 <li><img src="{{searched_user.profile.avatar.url}}" alt="" width="30" height="30" class="rounded-circle">
   <a href="{%url 'view_profile' searched_user.pk%}">{{searched_user.username|capfirst}}</a></li>
 {%endfor%}
 </ul>
-<p><h3>Number of friends: {{number_of_friends}}</h3></p>
+<h3>Number of friends: {{number_of_friends}}</h3>
 
 {%for friend in friends_list %}
 <p>{{friend|capfirst}}</p>
@@ -45,7 +45,7 @@
 
 <a href="{% url 'view_profile' friend_profile.user_id %}" class="btn btn-primary btn-sm">View Profile</a>
 
-    <a href="{% url 'remove_friend' f_request.id %}"class="btn btn-danger btn-sm">Remove</a>
+    <a href="{% url 'remove_friend' f_request.id %}" class="btn btn-danger btn-sm">Remove</a>
 
     {%endif%}
     {%endfor%}
@@ -68,7 +68,7 @@
     <input type="hidden" name="status" value="1">
     <button type="submit" class="btn btn-success btn-sm">Accept</button>
   </form>
-  <a href="{% url 'remove_friend' received.id %}"class="btn btn-danger btn-sm">Decline</a>
+  <a href="{% url 'remove_friend' received.id %}" class="btn btn-danger btn-sm">Decline</a>
 
   {%endif%}
 {%endfor%}
@@ -83,7 +83,7 @@
 {%if sent.receiver.pk == profile.pk%}
 <img src="{{profile.avatar.url}}" alt="" width="80" height="80" class="rounded-circle">
 <a href="{% url 'view_profile' profile.pk %}" class="btn btn-primary btn-sm">View Profile</a>
-    <a href="{% url 'remove_friend' sent.pk %}"class="btn btn-danger btn-sm">Remove</a>
+    <a href="{% url 'remove_friend' sent.pk %}" class="btn btn-danger btn-sm">Remove</a>
 
 
 {%endif%}

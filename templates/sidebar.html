@@ -55,7 +55,7 @@
                                 <a href="{%url 'room_id' room.id%}" class="nav-link px-0 text-white">
                                     <span class="text-white">{{room.name}}</span></a>
                                     <hr>
-                                </li class="text-center">
+                                </li>
                            
                      
                             {%endfor%}
@@ -63,7 +63,7 @@
                                 <a href="{%url 'create_room'%}" class="link-light">Create room</a>
                             </li>
                         </ul>
-                    </li>
+                   
                     </li>
                     <li>
                         <a href="{%url 'friends_list'%}" class="nav-link px-0 align-middle  text-white">
@@ -78,10 +78,12 @@
                 <!-- Profile Menu displayed when user clicks on avatar or username -->
                 
                 <ul id="content" class="sidebar-menu text-small text-center bg-secondary md-w-auto p-3 list-unstyled rounded-1 mx-1" style="display: none;">
-                   <!-- Closing button inside Menu -->
+                   <li>
+                    <!-- Closing button inside Menu -->
                     <div class="d-flex justify-content-end" data-bs-theme="dark">
                     <button class="btn-close" onclick="hideMenu()"></button>
                 </div>
+            </li>
                     <li>
                         <a href="{% url 'create_profile' request.user.pk %}" class="text-decoration-none text-white">
                         Manage Profile
@@ -102,7 +104,7 @@
                  
                   <a href="#" class="d-flex text-white text-decoration-none" 
                 id="toggleLink">
-                        
+         
                     <img src='{{request.user.profile.avatar.url}}'
                     alt="" width="30" height="30" class="rounded-circle">
                     <span class="d-none d-lg-inline mx-1">{{request.user|capfirst}}</span>
