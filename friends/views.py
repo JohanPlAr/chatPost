@@ -37,7 +37,7 @@ def accept_friend_request(request, pk):
     return render(request, 'friends/friends.html')
 
 def remove_friend(request, pk):
-    friend = get_object_or_404(FriendRequest.objects, id = pk)
+    friend = FriendRequest.objects.get( id = pk)
     if friend.receiver == request.user:
         friend_name = friend.sender
     else:

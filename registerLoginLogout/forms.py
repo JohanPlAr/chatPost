@@ -16,5 +16,5 @@ class ProfileForm(ModelForm):
            'tags': 'avatar',
            'format': 'WebP',
             'crop': 'limit', 'width': 300, 'height': 300,
-            'eager': [{ 'crop': 'fill', 'width': 150, 'height': 100 }]
+            'eager': [{ 'crop': 'fill', 'width': 300, 'height': 300,  'gravity': 'face' }]
                 }

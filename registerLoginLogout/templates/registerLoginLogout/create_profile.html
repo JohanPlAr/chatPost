@@ -5,7 +5,8 @@
     <div class="px-4 py-3">
         <h4 class="text-center">Manage Profile</h4>
 <div class="d-flex justify-content-center mt-3">
-        <img src="{{profile.avatar.url}}" alt="" width="80" height="80" class="rounded-circle">
+    {% load cloudinary %}
+    {% cloudinary profile.avatar.public_id secure=True quality='auto' width=80 height=80 class="rounded-circle object-fit-cover" alt="avatar"%}
       </div>
         <form method="post" class="d-flex flex-column" enctype="multipart/form-data">
         {% csrf_token %}
