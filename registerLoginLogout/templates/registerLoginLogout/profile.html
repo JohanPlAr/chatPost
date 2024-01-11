@@ -10,9 +10,9 @@
 {%if profile.user in friends_list or request.user == profile.user%}
 
     <h3 class="text-center">{{profile.user|capfirst}}</h3> 
-<div class="rounded-3">
+<div class="">
     {% load cloudinary %}
-    {% cloudinary profile.avatar.url quality='auto' width=200 height=200 class="rounded-3 object-fit-cover" alt="avatar"%}
+    {% cloudinary profile.avatar.public_id secure=True quality='auto' width=200 height=200 class="rounded-3 object-fit-cover" alt="avatar"%}
 
 </div>
 <!-- Remove Friend button-->

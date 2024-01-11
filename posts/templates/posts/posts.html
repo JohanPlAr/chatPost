@@ -2,13 +2,14 @@
 {% for post in posts %}
 {% if post.room == room %}
 <div class="card mb-3 post-card d-flex justify-content-center" id="scroll{{post.pk}}">
-<div class="m-3">  
-    <img class="card-img-top rounded-3 post-image" src="{{post.image.url}}" 
-    alt="Card image cap">
+<div class="m-3">
+    {% load cloudinary %}
+    {% cloudinary post.image.public_id secure=True quality='auto' class="card-img-top post-image rounded-3 object-fit-cover" alt="Card image cap"%}
 </div>
     <div class="card-body">
-        <a href="{%url 'view_profile' post.author.id %}" class="text-decoration-none"><img src='{{post.author.profile.avatar.url}}' 
-            alt="profilepicture" width="30" height="30" class="rounded-circle d-none d-sm-inline"><small>@{{post.author}}</small></a>
+        <a href="{%url 'view_profile' post.author.id %}" class="text-decoration-none"></a>
+            {% load cloudinary %}
+    {% cloudinary post.author.profile.avatar.public_id secure=True quality='auto' width="30" height="30" class="rounded-circle d-none d-sm-inline object-fit-cover" alt="Avatar"%}
       <small>{{post.created|timesince}} <span class="d-none d-sm-inline">ago</span></small>
       {% if post.author == request.user %}
       <a href="{% url 'edit_post' post.id %}" class="btn btn-sm btn-primary">Edit</a>
