@@ -45,11 +45,11 @@ def editPost(request, pk):
         raise PermissionDenied
     else:
         if request.method == "POST":
-            form = PostForm(request.POST, instance = post)
+            form = PostForm(request.POST, request.FILES, instance = post)
             if form.is_valid():
                 instance = form.save(commit = False)
                 instance.edited = True
-                form.save()
+                instance.save()
                 messages.success(request, 'Post Edited')
             return redirect('room_id', room_id)
     context = {'form':form}

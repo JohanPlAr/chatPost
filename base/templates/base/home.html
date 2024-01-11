@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{%if request.user.is_authenticated%}
 <form method="GET" action="{%url 'home'%}">
     <input type="text" name="q" placeholder="Search Rooms...">
 </form>
@@ -42,8 +41,4 @@ Available Rooms: {{forloop.counter}}
     {% endif %}
     <hr>
 {% endfor %}
-
-{%else%}
-{%include 'base/register_login_cards.html'%}
-{%endif%}
 {% endblock %}

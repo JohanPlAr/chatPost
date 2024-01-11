@@ -104,9 +104,8 @@
                  
                   <a href="#" class="d-flex text-white text-decoration-none" 
                 id="toggleLink">
-         
-                    <img src='{{request.user.profile.avatar.url}}'
-                    alt="" width="30" height="30" class="rounded-circle">
+                {% load cloudinary %}
+                {% cloudinary request.user.profile.avatar.url quality='auto' width=30 height=30 crop='pad' background='gen_fill:ignore-foreground_true' class="rounded-circle" alt="avatar"%}
                     <span class="d-none d-lg-inline mx-1">{{request.user|capfirst}}</span>
                 </a>
                 {%endif%}

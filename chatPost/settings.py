@@ -88,7 +88,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'chatPost.context_processors.globalContext',
+                'chatPost.context_processors.globalContext', # Global context processor
             ],
         },
     },
@@ -167,7 +167,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CLOUDINARY_STORAGE = {
     'cloud_name' : os.environ.get('CLOUD_NAME'),
     'api_key' : os.environ.get('API_KEY'),
-    'api_secret' : os.environ.get('API_SECRET')
+    'api_secret' : os.environ.get('API_SECRET'),
+    'secure' : True
 }
 
 MESSAGE_TAGS = {
