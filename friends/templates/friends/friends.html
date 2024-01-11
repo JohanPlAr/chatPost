@@ -41,7 +41,7 @@
   {%elif friend == f_request.sender and request.user == f_request.receiver%}
     {%for friend_profile in friend_profiles %}
     {%if friend.pk == friend_profile.pk%}
-<img src="{{friend_profile.avatar.url}}" alt="" width="80" height="80" class="rounded-circle">
+<img src="{{friend_profile.avatar.url}}" alt="" width="80" height="80" class="rounded-circle object-fit-cover">
 
 <a href="{% url 'view_profile' friend_profile.user_id %}" class="btn btn-primary btn-sm">View Profile</a>
 
@@ -61,7 +61,7 @@
 <p>{{received.sender|capfirst}}
 </p>
 <img src="{{received.sender.profile.avatar.url}}
-" alt="" width="80" height="80" class="rounded-circle">
+" alt="" width="80" height="80" class="rounded-circle object-fit-cover">
 {%if received.status == 0%}
 <form method="post" action="{% url 'accept_friend_request' received.id %}" class="d-inline">
     {% csrf_token %}
@@ -81,7 +81,7 @@
 <p>{{sent.receiver|capfirst}}</p>
 {%for profile in profiles%}
 {%if sent.receiver.pk == profile.pk%}
-<img src="{{profile.avatar.url}}" alt="" width="80" height="80" class="rounded-circle">
+<img src="{{profile.avatar.url}}" alt="" width="80" height="80" class="rounded-circle object-fit-cover">
 <a href="{% url 'view_profile' profile.pk %}" class="btn btn-primary btn-sm">View Profile</a>
     <a href="{% url 'remove_friend' sent.pk %}" class="btn btn-danger btn-sm">Remove</a>
 

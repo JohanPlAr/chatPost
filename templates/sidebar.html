@@ -105,7 +105,7 @@
                   <a href="#" class="d-flex text-white text-decoration-none" 
                 id="toggleLink">
                 {% load cloudinary %}
-                {% cloudinary request.user.profile.avatar.url quality='auto' width=30 height=30 crop='pad' background='gen_fill:ignore-foreground_true' class="rounded-circle" alt="avatar"%}
+                {% cloudinary request.user.profile.avatar.url quality='auto' width=30 height=30 class="rounded-circle object-fit-cover" alt="avatar"%}
                     <span class="d-none d-lg-inline mx-1">{{request.user|capfirst}}</span>
                 </a>
                 {%endif%}

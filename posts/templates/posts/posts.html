@@ -7,14 +7,9 @@
     alt="Card image cap">
 </div>
     <div class="card-body">
-        {% if post.author.profile.avatar.url %}
-        <a href="{%url 'view_profile' post.author.id %}"><img src='{{post.author.profile.avatar.url}}' 
-            alt="profilepicture" width="30" height="30" class="rounded-circle"></a>
-      {%else%}
-      <a href="{%url 'view_profile' post.author.id %}"><img src='https://res.cloudinary.com/ddurovnhl/image/upload/v1701246735/default_avatar_poro4z.png' 
-      alt="profilepicture" width="30" height="30" class="rounded-circle"></a>
-      {%endif%}
-      <small>@{{post.author}} {{post.created|timesince}} ago</small>
+        <a href="{%url 'view_profile' post.author.id %}" class="text-decoration-none"><img src='{{post.author.profile.avatar.url}}' 
+            alt="profilepicture" width="30" height="30" class="rounded-circle d-none d-sm-inline"><small>@{{post.author}}</small></a>
+      <small>{{post.created|timesince}} ago</small>
       {% if post.author == request.user %}
       <a href="{% url 'edit_post' post.id %}" class="btn btn-sm btn-primary">Edit</a>
       <a href="{% url 'delete_post' post.id %}" class="btn btn-sm btn-danger">Delete</a>
@@ -110,7 +105,6 @@
 {% endif %} 
 
 {% endfor %}
-<!-- Closing tag -->
 </div>
 
         
