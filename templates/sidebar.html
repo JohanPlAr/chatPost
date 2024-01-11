@@ -2,27 +2,28 @@
     <nav>
 
             <div class="d-flex flex-column align-items-center align-items-xs-start pt-2 text-white min-vh-100 position-sticky">
-                <a href="/" class="mb-md-0 text-white text-decoration-none">
+                <a href="/" class="mb-md-0 text-white text-decoration-none" aria-label="Logo leads to Home view">
                     <img class="logo md-img-fluid" src="https://res.cloudinary.com/ddurovnhl/image/upload/v1702384899/logo_mz9sdl.png" alt="" width="60" height="60">
                 </a>
                 
                 {% if request.user.is_authenticated %}
                
                 {% else %}
-                <a href="{% url 'login' %}" class="text-white"><small>Login</small></a>
+                <a href="{% url 'login' %}" class="text-white" aria-label="Login view"><small>Login</small></a>
                 {% endif %}
      
              
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li class="nav-item"> 
-                        <a href="{%url 'home'%}" class="nav-link align-middle px-0 text-white">
+                        <a href="{%url 'home'%}" class="nav-link align-middle px-0 text-white" aria-label="Home view">
                             <i class="fs-4 bi-house"></i><span class="ms-1 d-none d-lg-inline-block">Home</span>
                         </a>
                     </li>
                    
                 <!-- Topics Menu -->
                     <li>
-                            <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white collapsed">
+                            <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle 
+                            text-white collapsed" aria-label="Topics List">
                                 <i class="fs-4 bi bi-hash"></i> 
                                 <span class="ms-1 d-none d-lg-inline-block">Topics</span>
                             </a>
@@ -30,14 +31,14 @@
                     <li>
                         <ul class="collapse nav flex-column ms-1 bg-secondary p-3 rounded-1 mx-1" id="submenu1" data-bs-parent="#menu">
                             <li class="w-100 text-center">
-                                <a href="{% url 'home' %}" class="text-white text-decoration-none">All</a>
+                                <a href="{% url 'home' %}" class="text-white text-decoration-none" aria-label="All Rooms View">All</a>
                             </li>
                           
                             {%for topic in topics %}
                           
                             <li>
                                 <hr>
-                                <a href="{% url 'home' %}?q={{topic.name}}" class="nav-link px-0 text-white">
+                                <a href="{% url 'home' %}?q={{topic.name}}" class="nav-link px-0 text-white" aria-label="Topic List Item">
                                     <span class="text-white"> {{forloop.counter}}. {{topic.name}}</span></a>
                             </li>
                    
@@ -46,13 +47,15 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white">
-                            <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-lg-inline-block">Your Rooms</span></a>
+                        <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white" aria-label="Your Rooms List">
+                            <i class="fs-4 bi-grid"></i> 
+                            <span class="ms-1 d-none d-lg-inline-block">Your Rooms</span></a>
                         <ul class="collapse nav flex-column ms-1 bg-secondary p-3 rounded-1 mx-1" id="submenu2" data-bs-parent="#menu">
                             {%for room in users_rooms%}
                         
                             <li class="w-100">
-                                <a href="{%url 'room_id' room.id%}" class="nav-link px-0 text-white">
+                                <a href="{%url 'room_id' room.id%}" class="nav-link px-0 text-white" 
+                                aria-label="Your Room List Item">
                                     <span class="text-white">{{room.name}}</span></a>
                                     <hr>
                                 </li>
@@ -60,13 +63,13 @@
                      
                             {%endfor%}
                             <li>
-                                <a href="{%url 'create_room'%}" class="link-light">Create room</a>
+                                <a href="{%url 'create_room'%}" class="link-light" aria-label="Create New Room">Create room</a>
                             </li>
                         </ul>
                    
                     </li>
                     <li>
-                        <a href="{%url 'friends_list'%}" class="nav-link px-0 align-middle  text-white">
+                        <a href="{%url 'friends_list'%}" class="nav-link px-0 align-middle  text-white" aria-label="Friends List">
                             <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-lg-inline-block">Friends</span></a>
                     </li>
                 </ul>
@@ -85,19 +88,22 @@
                 </div>
             </li>
                     <li>
-                        <a href="{% url 'create_profile' request.user.pk %}" class="text-decoration-none text-white">
+                        <a href="{% url 'create_profile' request.user.pk %}" class="text-decoration-none text-white" 
+                        aria-label="Create Profile">
                         Manage Profile
                     </a>
                         <hr class="bg-white">
                     </li>
                     <li>
-                        <a href="{% url 'view_profile' request.user.pk %}" class="text-decoration-none text-white">
+                        <a href="{% url 'view_profile' request.user.pk %}" class="text-decoration-none text-white" 
+                        aria-label="View Profile">
                     View Profile                    
                     </a>
                         <hr class="bg-white">
                     </li>
                   <li>
-                    <a href="{% url 'logout' %}" class=" text-decoration-none text-white">Logout</a> 
+                    <a href="{% url 'logout' %}" class=" text-decoration-none text-white" 
+                    aria-label="Logout">Logout</a> 
                 </li>
                 
                 </ul>

@@ -9,7 +9,7 @@
     <div class="card-body">
         <a href="{%url 'view_profile' post.author.id %}" class="text-decoration-none"><img src='{{post.author.profile.avatar.url}}' 
             alt="profilepicture" width="30" height="30" class="rounded-circle d-none d-sm-inline"><small>@{{post.author}}</small></a>
-      <small>{{post.created|timesince}} ago</small>
+      <small>{{post.created|timesince}} <span class="d-none d-sm-inline">ago</span></small>
       {% if post.author == request.user %}
       <a href="{% url 'edit_post' post.id %}" class="btn btn-sm btn-primary">Edit</a>
       <a href="{% url 'delete_post' post.id %}" class="btn btn-sm btn-danger">Delete</a>
