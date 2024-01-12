@@ -22,7 +22,7 @@ class Post(models.Model):
         related_name='post_room',
         default=False
     )
-    content = models.TextField(max_length=550)
+    content = models.TextField(max_length=300)
     edited = models.BooleanField(default=False)
     image = CloudinaryField(
         'post-image',

@@ -8,10 +8,10 @@ class Profile(models.Model):
         User, on_delete = models.CASCADE,
         primary_key = True
         )
-    first_name = models.CharField(max_length = 50, blank = True)
-    last_name = models.CharField(max_length = 50, blank = True)
+    first_name = models.CharField(max_length = 25, blank = True)
+    last_name = models.CharField(max_length = 30, blank = True)
     bio = models.TextField(max_length = 500, null = True, blank = True)
-    email = models.EmailField(max_length = 254)
+    email = models.EmailField(max_length = 50)
     avatar = CloudinaryField(
         'avatar',
         default = 'https://res.cloudinary.com/ddurovnhl/image/' \

@@ -25,7 +25,6 @@ function hideMenu() {
         list.style.display = "none";
     }
 
-
 // Select the timeout element
 var alert = document.querySelector('.timeout');
 

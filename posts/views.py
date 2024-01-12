@@ -51,6 +51,8 @@ def editPost(request, pk):
                 instance.edited = True
                 instance.save()
                 messages.success(request, 'Post Edited')
+            else:
+                messages.error(request, form.errors)
             return redirect('room_id', room_id)
     context = {'form':form}
     return render(request, 'posts/post_form.html', context)

@@ -6,6 +6,7 @@ Testing was done throughout site development, for each feature before it was mer
 
 Usability was tested with the below user acceptance testing, sent to new users to ensure testing from different users, on different devices and browsers to ensure issues were caught and where possible fixed during development.
 
+### Positive Testing
 
 |     | User Actions           | Expected Results | Y/N | Comments    |
 |-------------|------------------------|------------------|------|-------------|
@@ -15,23 +16,24 @@ Usability was tested with the below user acceptance testing, sent to new users t
 | 3           | Enter valid Username | Field will only accept a unique username and will be stored in lowercase | Y |          |
 | 4          | Enter valid password | Field will only accept secure passwords | Y |          |
 | 5          | Enter valid password confirmation | Field will only accept the same password from the previous field | Y | |
-| 6          | Click on the Sign Up button | If username and password is valid a success message displays and takes user to all rooms home page| Y |          |
-| 7          | Sign In with the same email/username and password | Displays success message - Takes user to all rooms home page  | Y | |
+| 6          | Click on the Sign Up button | If username and password is valid a success message displays and takes user to all rooms home page | Y |          |
+| 7          | Sign In with the same email/username and password | Displays success message - Takes user to all rooms home page  | Y |      |
 | 8       | Click "Logout" in the profile menu | Logs out user and redirects to All Rooms List Home Page | Y |          |
-| 9          | Click browser back button | You are still logged out | Y |          |
-| Log In      |                        |                  |      |             |
+| 9          | Click browser back button | User still logged out | Y |          |
+| Log In   |                        |                  |      |             |
 | 1           | Click on Login button | Redirection to Login page | Y |          |
 | 3           | Click on the SignUp link in the form | Redirection to SignUp page | Y |          |
-| 4           | Enter valid username | Field is agnostic to lower/uppercase - all usernames are stored in lowercase| Y |          |
-| 5           | Enter valid password | Field will only accept secure passwords | Y |          |
-| 6           | Click on the Sign In button | If username and password is valid a success message displays and takes user to All Rooms List Home Page | Y |          |
-page | Y |          |
-| 8           | Click "Logout" in the navbar profile-menu | Logs out user - displays a success message - redirects all rooms home page | Y |          |
-| 9          | Click browser back button | You are still logged out | Y |          |
+| 4           | Enter username | Field takes username input| Y |          |
+| 5           | Mix lowercase uppercase in Username| Login still works | Y |          |
+| 6           | Enter password | Field takes username input | Y |          |
+| 7           | Click on the Sign In button | If username and password is valid a success message 
+displays and takes user to All Rooms List Home Page | Y |          |
+| 8           | Click "Logout" in the navbar profile-menu | Logs out user - displays a success message - redirects to Login Page | Y |          |
+| 0          | Click browser back button | User are still logged out | Y |          |
 | Navbar     |                        |                  |      |             |
-| 1          | Click "Logo" in the navbar | Redirects user to all rooms home page | Y |          |
+| 1          | Click "Logo" in the navbar | Redirects logged in user to all rooms home page | Y |          |
 | 2          | Click "Login" in the navbar | Redirects user to Login/Signup page | Y |          |
-| 3          | Click "Home Icon" in the navbar | Redirects user to All Rooms List Home Page | Y |          |
+| 3          | Click "Home Icon" in the navbar | Redirects logged in user to All Rooms List Home Page | Y |          |
 | 4          | Click "Topics Icon" in the navbar | Displays topics menu in navbar | Y |          |
 | 5          | Click "Topic List Item" in the navbar | Takes user to Topic Room List page with requested search results| Y |          |
 | 6          | Click "Your Rooms Icon" in the navbar | Displays Your Rooms List Menu in Navbar | Y |          |
@@ -46,10 +48,10 @@ page | Y |          |
 | 11          | Click "Manage Profile" in the navbar | Redirects User to Edit Profile Page| Y |          |
 | 12          | Click "View Profile" in the navbar | Redirects User to Profile Page| Y |          |
  Y |          |
-| 13          | Click "Logout" in the navbar | Logs out User - displays success message - redirects to All Rooms Home Page| Y |          |
+| 13          | Click "Logout" in the navbar | Logs out User - displays success message - redirects to Login Page| Y |          |
  Y |          |
 | Rooms Page    |                        |                  |      |             |
-| 1          | Enter "Search Rooms" in the Search Field | Redirects user to Search Result Rooms page | Y |          |
+| 1          | Click "Search Rooms" Go Button | Redirects user to Search Result Rooms page | Y |          |
 | 2          | Click "Create Room Button" | Redirects user to Create Room Form Page | Y |          |
 | 3          | Click "Room Host Avatar or @name link" | Redirects user to Host Profile Page | Y |          |
 | 4          | Click "Room Name Link" | Redirects user to Room Page | Y |          |
@@ -64,7 +66,7 @@ page | Y |          |
 | 6          | Click "Submit Button" | Room is created - succes message is displayed - user is redirected to new room page| Y |          |
 
 | Room Page     |                        |                  |      |             |
-| 1          | Enter "Search Rooms" in the Search Field | Redirects user to Search Result Rooms page | Y |          |
+| 1          | Click "Search Rooms" Go Button | Redirects user to Search Result Rooms page | Y |          |
 | 2          | Click "Create Post Button" | Redirects user to Create Post Form Page | Y |          |
 | 3          | Click "Host Avatar" | Redirects user to Profile Page | Y |          |
 | 4          | Click "Comment Icon" | Drops down comment Form | Y |          |
@@ -79,7 +81,7 @@ page | Y |          |
 | 3          | Click "Go Back Button" | User redirected to previous page without submitting form | Y |          |
 | 5          | Click "Submit Button" | Submits a Post Form and redirects the user to the Room Page | Y |          |
 | Friends List Page  |                        |                  |      |             |
-| 1          | Enter "Search Users" in the Search Field | Reloads page with search results | Y |          |
+| 1          | Click "Search Users" Go Button| Reloads page with search results | Y |          |
 | 2          | Click "Avatar" in Search results| Redirects User to user profile page of clicked user| Y |          |
 | 3          | Click "View Profile Button" in Friends List| Redirects User to user profile page of clicked user| Y |          |
 | 4          | Click "Remove Button" in Friends List| Redirects User to the Confirm Delete Page| Y |          |
@@ -94,6 +96,38 @@ page | Y |          |
 | Confirm Delete Page  |                        |                  |      |             |
 | 1          | Click "Go Back Button"| Redirects User Back to Previous Page | Y |          |
 | 2          | Click "Confirm Button"| Deletes the Instance - Redirects User Back to Previous Page | Y |          |
+
+### Negative testing
+|     | User Actions           | Expected Results | Y/N | Comments    |
+Register Page
+| 1          | Blank Username| Receive form.error message | Y |          |
+| 2          | Special characters in Username| Receive form.error message | Y |          |
+| 3          | Already existing username| Receive form.error message | Y |          |
+| 4          | Blank password| Receive form.error message | Y |          |
+| 5          | Blank repeat password| Receive form.error message | Y |          |
+| 6          | Non matching passwords| Receive form.error message | Y |          |
+Login Page
+| 1          | Blank Username| Receive form.error message | Y |          |
+| 2          | Special characters in Username| Receive form.error message | Y |          |
+| 3          | Blank password| Receive form.error message | Y |          |
+| 4          | Blank repeat password| Receive form.error message | Y |          |
+| 5          | Non matching passwords| Receive form.error message | Y |          |
+Create/Edit Room
+| 1          | Blank Name| Field Required | Y |          |
+| 2          | Blank Topic| Field Required | Y |          |
+Create/Edit Post
+| 1          | Blank Name| Field Required | Y |          |
+| 2          | Blank Topic| Field Required | Y |          |
+| 3          | >300 Character Text| Field  | Y |          |
+
+| 1          | Click "Go Back Button"| Redirects User Back to Previous Page | Y |          |
+| 1          | Click "Go Back Button"| Redirects User Back to Previous Page | Y |          |
+| 1          | Click "Go Back Button"| Redirects User Back to Previous Page | Y |          |
+| 1          | Click "Go Back Button"| Redirects User Back to Previous Page | Y |          |
+| 1          | Click "Go Back Button"| Redirects User Back to Previous Page | Y |          |
+| 1          | Click "Go Back Button"| Redirects User Back to Previous Page | Y |          |
+| 1          | Click "Go Back Button"| Redirects User Back to Previous Page | Y |          |
+| 1          | Click "Go Back Button"| Redirects User Back to Previous Page | Y |          |
 
 
 ## Automated testing
