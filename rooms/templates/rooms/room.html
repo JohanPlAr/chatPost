@@ -5,6 +5,7 @@
     <div class="col-9 col-sm-8 col-md-7 col-lg-6 col-xl-5 align-items-center">
         <form method="GET" action="{%url 'home'%}" >
             <input type="text" name="q" placeholder="Search Rooms...">
+            <button type="submit" class="btn btn-secondary btn-sm mb-1">Go</button>
         </form>
         <hr>
         {%if room.status != 1 or room.host in friends_list or request.user == room.host%}

@@ -7,15 +7,23 @@
     {% cloudinary post.image.public_id secure=True quality='auto' class="card-img-top post-image rounded-3 object-fit-cover" alt="Card image cap"%}
 </div>
     <div class="card-body">
-    {% load cloudinary %}
-    {% cloudinary post.author.profile.avatar.public_id secure=True quality='auto' width="30" height="30" class="rounded-circle d-none d-sm-inline object-fit-contain" alt="Avatar"%}
-    <a href="{%url 'view_profile' post.author.id %}" class="text-decoration-none">@{{post.author}}
+    
+    <a href="{%url 'view_profile' post.author.id %}" class="text-decoration-none">
+    <span class="d-none d-sm-inline">
+        {% load cloudinary %}
+    {% cloudinary post.author.profile.avatar.public_id secure=True quality='auto' width="30" height="30" class="rounded-circle object-fit-contain" alt="Avatar"%} 
+</span>
+    @{{post.author}}
 </a> 
-    <small>{{post.created|timesince}} <span class="d-none d-sm-inline">ago</span></small>
+<small>{{post.created|timesince}} ago</small>
       {% if post.author == request.user %}
-      <a href="{% url 'edit_post' post.id %}" class="btn btn-sm btn-primary">Edit</a>
-      <a href="{% url 'delete_post' post.id %}" class="btn btn-sm btn-danger">Delete</a>
-            
+      <a href="{% url 'edit_post' post.id %}" class="btn btn-sm btn-primary px-1 py-0"><i class="bi bi-pencil d-md-none"></i>
+        <span class="d-none d-md-inline">Edit</span>
+    </a>
+      <a href="{% url 'delete_post' post.id %}" class="btn btn-sm btn-danger px-1 py-0"><i class="bi bi-trash d-md-none"></i>
+    <span class="d-none d-md-inline">Delete</span>
+    </a>
+      
       {% endif %}
       <p class="card-text">{{ post.content }}</p>
       <div class="post-details">
@@ -46,7 +54,11 @@
             <hr class="mx-3">
         <form method="post" class="comment-form">
             {% csrf_token %}
-            {{comment_form.as_p}}
+            <p class="form-group">
+                <label for="comment{{post.id}}">Comment:</label>
+                <textarea name="content" cols="40" rows="4" id="comment{{post.id}}" maxlength="550" required>
+                </textarea> 
+            </p>
             <div class="d-flex justify-content-center">
                 <button value="submit" type="submit" class="btn btn-primary">
                     Send
