@@ -8,4 +8,9 @@ class CommentForm(ModelForm):
         model = Comment
         fields = ['content']
         widgets = {
-        'content': forms.Textarea(attrs={'rows': 4, 'id':'comment{{post}}'}, ) }
+        'content': forms.Textarea(attrs={'rows': 4, 
+                                         'id':'comment{{post}}',
+                                         'maxlength':300, 
+                                         'placeholder':'Max 300 characters'}, 
+                                         ) 
+                                         }

@@ -72,8 +72,19 @@
               <button type="submit" class="btn btn-danger btn-sm mt-3">Remove Request</button>
             </div>
             </form>
-        <br>
+        <br> 
         {%endfor%}    
+    {%elif received_requests%}
+    {%for received in received_requests%}
+    <form method="post" action="{% url 'accept_friend_request' received.pk %}">
+        {% csrf_token %}
+      <div class="d-flex justify-content-center">
+        <input type="hidden" name="status" value="2" >
+          <button type="submit" class="btn btn-success btn-sm mt-3">Accept Request</button>
+        </div>
+        </form>
+    <br>
+    {%endfor%}    
     {%else%}
     <div class="d-flex justify-content-center">
         <a href="{%url 'friend_request' profile.user.pk %}" class="btn btn-primary my-3">Friend Request</a>

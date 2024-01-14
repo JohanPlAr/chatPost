@@ -9,7 +9,7 @@ STATUS = ((0, "Draft"),(1, "Published"))
 class Comment(models.Model):
     author = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='commentsAuthor', null=True)
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='commentsPost')
-    content = models.TextField(max_length=550)
+    content = models.TextField(max_length=200)
     edited = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

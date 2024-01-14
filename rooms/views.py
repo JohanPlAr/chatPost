@@ -71,7 +71,7 @@ def editRoom(request, pk):
 def deleteRoom(request, pk):
     room = get_object_or_404(Room, id = pk)
     if request.user != room.host:
-        return HttpResponse('User access denied')
+        raise PermissionDenied
     if request.method == "POST":
         room.delete()
         return redirect('home')

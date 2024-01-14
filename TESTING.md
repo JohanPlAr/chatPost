@@ -70,7 +70,7 @@ displays and takes user to All Rooms List Home Page | Y |          |
 | 2          | Click "Create Post Button" | Redirects user to Create Post Form Page | Y |          |
 | 3          | Click "Host Avatar" | Redirects user to Profile Page | Y |          |
 | 4          | Click "Comment Icon" | Drops down comment Form | Y |          |
-| 5          | Click "Send Button" | Submits a Comment Form and reloads the page with updated comment and scrolls back to previous position | Y |          |
+| 5          | Click "Send Button" | Submits a Comment Form and reloads the page with updated comment and comment count - scrolls back to previous position | Y |          |
 | 6          | Click "Like Post Icon" | Reloads page with updated Like Post Count | Y |          |
 | 7          | Click "Dislike Post Icon" | Reloads page with updated Dislike Post Count | Y |          |
 | 8          | Click "Like Comment Icon" | Reloads page with updated Like Comment Count | Y |          |
@@ -99,30 +99,60 @@ displays and takes user to All Rooms List Home Page | Y |          |
 
 ### Negative testing
 |     | User Actions           | Expected Results | Y/N | Comments    |
-Register Page
+| Register Page  |                        |                  |      |             |
 | 1          | Blank Username| Receive form.error message | Y |          |
 | 2          | Special characters in Username| Receive form.error message | Y |          |
 | 3          | Already existing username| Receive form.error message | Y |          |
 | 4          | Blank password| Receive form.error message | Y |          |
 | 5          | Blank repeat password| Receive form.error message | Y |          |
 | 6          | Non matching passwords| Receive form.error message | Y |          |
-Login Page
+| Login Page  |                        |                  |      |             |
 | 1          | Blank Username| Receive form.error message | Y |          |
 | 2          | Special characters in Username| Receive form.error message | Y |          |
 | 3          | Blank password| Receive form.error message | Y |          |
 | 4          | Blank repeat password| Receive form.error message | Y |          |
 | 5          | Non matching passwords| Receive form.error message | Y |          |
-Create/Edit Room
+| Create/Edit Room  |                        |                  |      |             |
 | 1          | Blank Name| Field Required | Y |          |
 | 2          | Blank Topic| Field Required | Y |          |
-Create/Edit Post
+| Create/Edit Post  |                        |                  |      |             |
 | 1          | Blank Name| Field Required | Y |          |
 | 2          | Blank Topic| Field Required | Y |          |
-| 3          | >300 Character Text| Field  | Y |          |
+| 3          | Blank Content| Field Required | Y |          |
+| 4          | >500 Character Text| Maxlength prohibits longer texts | Y |          |
+| Comment    |                        |                  |      |             |
+| 1          | Blank Content| Field Required | Y |          |
+| 2          | >300 Character Text| Maxlength prohibits longer texts | Y |          |
+| Edit Comment    |                        |                  |      |             |
+| 1          | Blank Content| Field Required | Y |          |
+| 2          | >300 Character Text| Maxlength prohibits longer texts | Y |          |
+| Url-testing    |                        |                  |      |             |
+| Out of bounce url:s  |                        |                  |      |             |
+| 1          | Non existing "room" | Custom 404 page | Y |          |
+| 2          | Non-existing "room edit" url | Custom 404 page | Y |          |
+| 3          | Non-existing "post edit" url | Custom 404 page | Y |          |
+| 4          | Non-existing "comment edit" url | Custom 404 page | Y |          |
+| 5          | Non-existing "view-profile" url | Custom 404 page | Y |          |
+| 6          | Non-existing "remove room" url | Custom 404 page | Y |          |
+| 7          | Non-existing "remove post" url | Custom 404 page | Y |          |
+| 8          | Non-existing "remove comment" url | Custom 404 page | Y |          |
+| 9          | Non-existing "remove friend" url | Custom 404 page | Y |          |
+| Unauthorized url:s  |                        |                  |      |             |
+| 1          | Non-author "room edit" url | Custom 403 page | Y |          |
+| 2          | Non-author "post edit" url | Custom 403 page | Y |          |
+| 3          | Non-author "comment edit" url | Custom 403 page | Y |          |
+| 4          | Unauthorized "room" url" | Stripped room display -without contributors and posts | Y |          |
+| 9          | Unauthorized "remove friend" | Custom 403 page | Y |          |
+| 9          | Unauthorized "remove friend" | Custom 403 page | Y |          |
 
-| 1          | Click "Go Back Button"| Redirects User Back to Previous Page | Y |          |
-| 1          | Click "Go Back Button"| Redirects User Back to Previous Page | Y |          |
-| 1          | Click "Go Back Button"| Redirects User Back to Previous Page | Y |          |
+
+
+| 5          | Unauthorized User Post url | Login Page | Y |          |
+| 6          | Unauthorized User Comment url | Login Page | Y |          |
+
+
+| 1          |  
+Click "Go Back Button"| Redirects User Back to Previous Page | Y |          |
 | 1          | Click "Go Back Button"| Redirects User Back to Previous Page | Y |          |
 | 1          | Click "Go Back Button"| Redirects User Back to Previous Page | Y |          |
 | 1          | Click "Go Back Button"| Redirects User Back to Previous Page | Y |          |

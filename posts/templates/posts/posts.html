@@ -56,8 +56,7 @@
             {% csrf_token %}
             <p class="form-group">
                 <label for="comment{{post.id}}">Comment:</label>
-                <textarea name="content" cols="40" rows="4" id="comment{{post.id}}" maxlength="550" required>
-                </textarea> 
+                <textarea name="content" cols="40" rows="4" id="comment{{post.id}}" maxlength="300" placeholder="Max 300 Characters" required></textarea> 
             </p>
             <div class="d-flex justify-content-center">
                 <button value="submit" type="submit" class="btn btn-primary">
@@ -85,8 +84,8 @@
     
             {% if comment.author == request.user %}      
      
-            <a href="{% url 'edit_comment' comment.pk %}" class="btn btn-sm btn-primary">Edit</a>
-            <a href="{% url 'delete_comment' comment.pk %}" class="btn btn-sm btn-danger">Delete</a>
+            <a href="{% url 'edit_comment' comment.pk %}" class="btn btn-sm btn-primary px-1 py-0">Edit</a>
+            <a href="{% url 'delete_comment' comment.pk %}" class="btn btn-sm btn-danger px-1 py-0">Delete</a>
     
             {%endif%}
 

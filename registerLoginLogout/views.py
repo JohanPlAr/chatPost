@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.core.exceptions import PermissionDenied
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
@@ -59,6 +60,8 @@ def registerView(request):
 @login_required(login_url = 'login')
 def createProfile(request, pk):
     profile = get_object_or_404(Profile.objects, user_id = pk)
+    if request.user != profile.user:
+        raise PermissionDenied
     form = ProfileForm(instance = profile)
     if request.method == "POST":
         form = ProfileForm(request.POST, request.FILES)

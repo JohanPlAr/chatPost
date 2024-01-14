@@ -20,7 +20,7 @@ Available Rooms: {{forloop.counter}}
 
     <a href="{%url 'view_profile' room.host.pk %}" class="text-decoration-none">
         {% load cloudinary %}
-        {% cloudinary room.host.profile.avatar.public_id secure=True quality='auto' width=30 height=30 class="rounded-circle object-fit-cover" alt="avatar"%}
+        {% cloudinary room.host.profile.avatar.public_id secure=True quality='auto' width=30 height=30 crop='pad' class="rounded-circle" alt="avatar"%}
       <span>@{{room.host.username}}</span></a>
   
  
@@ -38,8 +38,8 @@ Available Rooms: {{forloop.counter}}
     
     <small>{{room.topic.name}} - Posts: {{room.number_of_posts}}</small>
     {% if room.host == request.user %}
-    <a href="{% url 'edit_room' room.id %}" class="btn btn-primary btn-sm">Edit</a>
-    <a href="{% url 'delete_room' room.id %}" class="btn btn-danger btn-sm">Delete</a>
+    <a href="{% url 'edit_room' room.id %}" class="btn btn-primary btn-sm py-0 px-1 mb-1">Edit</a>
+    <a href="{% url 'delete_room' room.id %}" class="btn btn-danger btn-sm py-0 px-1 mb-1">Delete</a>
 
     {% endif %}
     <hr>

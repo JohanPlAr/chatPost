@@ -60,7 +60,7 @@ def editPost(request, pk):
 
 @login_required(login_url = 'login')
 def deletePost(request, pk):
-    post = Post.objects.get(id = pk)
+    post = get_object_or_404(Post.objects, id = pk)
     room_id = post.room.id
     if request.user != post.author:
         raise PermissionDenied

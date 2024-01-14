@@ -59,7 +59,8 @@
 {%endfor%}
 
 {%for received in received_requests %}
-<h3>Friend Requests:</h3>
+
+<h3>Received Requests:</h3>
 
 <p>{{received.sender|capfirst}}
 </p>{% load cloudinary %}
@@ -79,7 +80,7 @@
 {%for sent in sent_requests%}
 {%if forloop.first%}
 
-<h3>Pending:</h3>
+<h3>Sent Requests:</h3>
 {%endif%}
 <p>{{sent.receiver|capfirst}}</p>
 {%for profile in profiles%}
