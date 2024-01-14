@@ -2,8 +2,10 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import FriendRequest
+from django.contrib import messages
 from django.core.exceptions import PermissionDenied
 from django.db.models import Q
+from chatPost.context_processors import globalContext
 
 
 
@@ -26,18 +28,23 @@ def friendRequest(request, pk):
 # Handles friend request
     sender = request.user
     receiver = get_object_or_404(User.objects, id = pk)
-    FriendRequest.objects.create(sender=sender, receiver=receiver, status=0)
+    friends_list = globalContext(request)["friends_list"]
+    if receiver not in friends_list:
+        FriendRequest.objects.create(sender=sender, receiver=receiver, status=0)
     return redirect('friends_list')
 
 
 @login_required(login_url='login')
 def accept_friend_request(request, pk):
     friend_request = get_object_or_404(FriendRequest.objects, id = pk)
-    if friend_request.receiver == request.user or friend_request.sender == request.user:
+    friends_list = globalContext(request)["friends_list"]
+    if friend_request.sender not in friends_list and friend_request.receiver == request.user:
         friend_request.status = 1
         friend_request.save()
-    else:
+    if friend_request.receiver != request.user:
         raise PermissionDenied
+    else:
+        messages.error(f'{friend_request.sender} already in Friends-List')
     return render(request, 'friends/friends.html')
 
 
