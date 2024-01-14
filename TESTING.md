@@ -131,34 +131,20 @@ displays and takes user to All Rooms List Home Page | Y |          |
 | 1          | Non existing "room" | Custom 404 page | Y |          |
 | 2          | Non-existing "room edit" url | Custom 404 page | Y |          |
 | 3          | Non-existing "post edit" url | Custom 404 page | Y |          |
-| 4          | Non-existing "comment edit" url | Custom 404 page | Y |          |
+| 4          | Non-existing "edit comment" url | Custom 404 page | Y |          |
 | 5          | Non-existing "view-profile" url | Custom 404 page | Y |          |
-| 6          | Non-existing "remove room" url | Custom 404 page | Y |          |
-| 7          | Non-existing "remove post" url | Custom 404 page | Y |          |
-| 8          | Non-existing "remove comment" url | Custom 404 page | Y |          |
-| 9          | Non-existing "remove friend" url | Custom 404 page | Y |          |
+| 6          | Non-existing "edit-profile" url | Custom 404 page | Y |          |
+| 7          | Non-existing "remove room" url | Custom 404 page | Y |          |
+| 8          | Non-existing "remove post" url | Custom 404 page | Y |          |
+| 9          | Non-existing "remove comment" url | Custom 404 page | Y |          |
+| 10         | Non-existing "remove friend" url | Custom 404 page | Y |          |
 | Unauthorized url:s  |                        |                  |      |             |
 | 1          | Non-author "room edit" url | Custom 403 page | Y |          |
 | 2          | Non-author "post edit" url | Custom 403 page | Y |          |
-| 3          | Non-author "comment edit" url | Custom 403 page | Y |          |
-| 4          | Unauthorized "room" url" | Stripped room display -without contributors and posts | Y |          |
-| 9          | Unauthorized "remove friend" | Custom 403 page | Y |          |
-| 9          | Unauthorized "remove friend" | Custom 403 page | Y |          |
-
-
-
-| 5          | Unauthorized User Post url | Login Page | Y |          |
-| 6          | Unauthorized User Comment url | Login Page | Y |          |
-
-
-| 1          |  
-Click "Go Back Button"| Redirects User Back to Previous Page | Y |          |
-| 1          | Click "Go Back Button"| Redirects User Back to Previous Page | Y |          |
-| 1          | Click "Go Back Button"| Redirects User Back to Previous Page | Y |          |
-| 1          | Click "Go Back Button"| Redirects User Back to Previous Page | Y |          |
-| 1          | Click "Go Back Button"| Redirects User Back to Previous Page | Y |          |
-| 1          | Click "Go Back Button"| Redirects User Back to Previous Page | Y |          |
-
+| 3          | Non-author "edit comment" url | Custom 403 page | Y |          |
+| 4          | Unauthorized "room" url" | Stripped room display -without contributors and posts| Custom 403 Page | Y |
+| 5          | Unauthorized "remove friend" url | Custom 403 page | Y |          |
+| 6          | Unauthorized "edit profile" url | Custom 403 page | Y |          |
 
 ## Automated testing
 

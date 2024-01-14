@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.contrib import messages
 from django.contrib.auth.models import User
 from .models import FriendRequest
 from django.core.exceptions import PermissionDenied
@@ -10,7 +9,7 @@ from django.db.models import Q
 
 @login_required(login_url='login')
 def friendsList(request):
-    if request.GET.get('q') == None:
+    if request.GET.get('q') is None:
         user_search = []
     else:
         q = request.GET.get('q')
