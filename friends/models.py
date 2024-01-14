@@ -10,8 +10,3 @@ class FriendRequest(models.Model):
     receiver = models.ForeignKey(User, related_name='incoming_friend_requests', on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=(STATUS))
-
-    def accept_friend_request(self, user):
-        FriendRequest.objects.filter(
-            receiver=user, status=0
-        ).update(status=1)

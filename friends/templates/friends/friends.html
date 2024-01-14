@@ -37,10 +37,6 @@
 <hr>
     {%endif%}
     {%endfor%}
-
-
-
-
   {%elif friend == f_request.sender and request.user == f_request.receiver%}
     {%for friend_profile in friend_profiles %}
     {%if friend.pk == friend_profile.pk%}
@@ -58,22 +54,18 @@
 {%endfor%}
 {%endfor%}
 
-{%for received in received_requests %}
-
+{%if received_requests %}
 <h3>Received Requests:</h3>
+{%endif%}
+{%for received in received_requests %}
 
 <p>{{received.sender|capfirst}}
 </p>{% load cloudinary %}
 {% cloudinary received.sender.profile.avatar.public_id secure=True quality='auto' width=80 height=80 crop='pad' background='gen_fill:ignore-foreground_true' class="rounded-circle object-fit-cover" alt="avatar"%}
-
 {%if received.status == 0%}
-<form method="post" action="{% url 'accept_friend_request' received.id %}" class="d-inline">
-    {% csrf_token %}
-    <input type="hidden" name="status" value="1">
-    <button type="submit" class="btn btn-success btn-sm">Accept</button>
-  </form>
-  <a href="{% url 'remove_friend' received.id %}" class="btn btn-danger btn-sm">Decline</a>
-
+<a href="{% url 'view_profile' received.sender.profile.user_id %}" class="btn btn-primary btn-sm">View Profile</a>
+<a href="{% url 'accept_friend_request' received.id %}" class="btn btn-success btn-sm">Accept</a>
+<a href="{% url 'remove_friend' received.id %}" class="btn btn-danger btn-sm">Decline</a>
   {%endif%}
 {%endfor%}
 

@@ -17,7 +17,7 @@
 <!-- Remove Friend button-->
    {%if profile.user != request.user%}
    <div class="d-flex justify-content-center mt-3">
-   <a href="{% url 'remove_friend' friend_request.pk %}" class="btn btn-danger btn-sm">Remove</a>
+   <a href="{% url 'remove_friend' friend_request.pk %}" class="btn btn-danger btn-sm">Remove Friend</a>
 </div>     
         <br>
   {%endif%}
@@ -57,33 +57,29 @@
    
             <a href="{%url 'accept_friend_request' received.pk %}" class="btn btn-success my-3 mr-3">Accept Request</a>  
 
-            <a href="{%url 'decline_friend_request' received.pk %}" class="btn btn-warning my-3 mr-3">Decline Request</a>  
+            <a href="{%url 'remove_friend' received.pk %}" class="btn btn-warning my-3 mr-3">Decline Request</a>  
         {%endif%}
     {%endfor%}
 
-    {%if sent_requests%}
-       
+    {%if sent_requests%}       
         <span class="d-flex justify-content-center">Request pending...</span>
         {%for sent in sent_requests%}
-        <form method="post" action="{% url 'remove_friend' sent.pk %}">
-            {% csrf_token %}
-          <div class="d-flex justify-content-center">
-            <input type="hidden" name="status" value="2" >
-              <button type="submit" class="btn btn-danger btn-sm mt-3">Remove Request</button>
-            </div>
-            </form>
-        <br> 
+        {%if profile.user == sent.receiver %}
+        <div class="d-flex justify-content-center">
+        <a href="{%url 'remove_friend' sent.pk %}" class="btn btn-danger my-3 mr-3">Remove Request</a>  
+    </div>
+        {%endif%}
         {%endfor%}    
     {%elif received_requests%}
+    <span class="d-flex justify-content-center">Request pending...</span>
     {%for received in received_requests%}
-    <form method="post" action="{% url 'accept_friend_request' received.pk %}">
-        {% csrf_token %}
-      <div class="d-flex justify-content-center">
-        <input type="hidden" name="status" value="2" >
-          <button type="submit" class="btn btn-success btn-sm mt-3">Accept Request</button>
-        </div>
-        </form>
-    <br>
+    {%if profile.user == received.sender %}
+    <div class="d-flex justify-content-evenly">
+    <a href="{%url 'accept_friend_request' received.pk %}" class="btn btn-success my-3 mr-3">Accept</a>  
+    <a href="{%url 'remove_friend' received.pk %}" class="btn btn-danger my-3 mr-3">Decline</a>  
+    </div>
+
+    {%endif%}    
     {%endfor%}    
     {%else%}
     <div class="d-flex justify-content-center">

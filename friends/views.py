@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.contrib.auth.models import User
 from .models import FriendRequest
 from django.core.exceptions import PermissionDenied
-from registerLoginLogout.models import Profile
 from django.db.models import Q
 
 
@@ -25,22 +25,26 @@ def friendsList(request):
 @login_required(login_url='login')
 def friendRequest(request, pk):
 # Handles friend request
-    sender_id = request.user
-    receiver_id = get_object_or_404(User.objects, id = pk)              
-    FriendRequest.objects.create(sender=sender_id, receiver=receiver_id, status=0)
+    sender = request.user
+    receiver = get_object_or_404(User.objects, id = pk)
+    FriendRequest.objects.create(sender=sender, receiver=receiver, status=0)
     return redirect('friends_list')
+
 
 @login_required(login_url='login')
 def accept_friend_request(request, pk):
     friend_request = get_object_or_404(FriendRequest.objects, id = pk)
     if friend_request.receiver == request.user or friend_request.sender == request.user:
-        if friend_request.receiver or friend_request.sender not in friendsList:
-            friend_request.accept_friend_request(request.user)
+        friend_request.status = 1
+        friend_request.save()
     else:
         raise PermissionDenied
     return render(request, 'friends/friends.html')
 
+
+@login_required(login_url='login')
 def remove_friend(request, pk):
+# Removes friendrequest and renders updated friendslist.
     friend_request = get_object_or_404(FriendRequest.objects, id = pk)
     if friend_request.receiver == request.user:
         friend_name = friend_request.sender
