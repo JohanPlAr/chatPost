@@ -1,7 +1,7 @@
 from django.test import SimpleTestCase
 from django.urls import reverse, resolve
 from comments.views import editComment, createComment, deleteComment, likeComment, dislikeComment
-
+         
 class TestCommentUrls (SimpleTestCase):
 
     def test_edit_comment_url_is_resolves(self):
