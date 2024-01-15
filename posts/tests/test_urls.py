@@ -19,7 +19,7 @@ class TestPostsUrls (SimpleTestCase):
          self.assertEquals(resolve(url).func, deletePost)
 
 
-    def test_like_post_url_is_resolves(self):
+    def test_like_post_url_resolves(self):
          url = reverse('like_post', args=['some-post.id'])
          self.assertEquals(resolve(url).func, likePost)
 

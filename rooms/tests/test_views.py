@@ -123,11 +123,7 @@ class TestRoomsViews(TestCase):
 class TestRedirectViews(TestCase):
     """
     Test views when not logged in
-    """
-    def setUp(self):
-        logged_out = self.client.logout()
-        self.assertFalse(logged_out)
-        
+    """ 
 
     def test_room_auth_redirect(self):
         """ Test redirect on view room  """

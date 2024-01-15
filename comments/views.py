@@ -54,9 +54,12 @@ def editComment(request, pk):
 def deleteComment(request, pk):
     comment = get_object_or_404(Comment, id = pk)
     room = comment.post.room.id
-    if request.method == "POST":
-        comment.delete()
-        return redirect('room_id',room)
+    if request.user == comment.author:
+        if request.method == "POST":
+            comment.delete()
+            return redirect('room_id',room)
+    else:
+        raise PermissionDenied
 
     return render(request, 'delete.html', {'obj':comment})
 
