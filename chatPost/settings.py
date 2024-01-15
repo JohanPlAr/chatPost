@@ -104,6 +104,7 @@ WSGI_APPLICATION = 'chatPost.wsgi.application'
 #    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 # }
 
+
 DATABASES = {
      'default': {
          'ENGINE': 'django.db.backends.sqlite3',
