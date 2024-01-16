@@ -28,7 +28,7 @@ def createComment(request, pk):
             instance.status = 1
             instance.post = post
             form.save()
-            return redirect('home')
+            return redirect('room_id', post_room.id)
         
     context = {'form':form}
     return render(request, 'comments/comment_form.html', context)
@@ -37,6 +37,7 @@ def createComment(request, pk):
 @login_required(login_url='login')
 def editComment(request, pk):
     comment = get_object_or_404(Comment, pk = pk)
+    room = comment.post.room.id
     form = CommentForm(instance=comment)
     if comment.author != request.user:
         raise PermissionDenied
@@ -44,7 +45,7 @@ def editComment(request, pk):
         form = CommentForm(request.POST, instance=comment)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('room_id',room)
     
     context = {'form':form}
     return render(request, 'comments/comment_form.html', context)

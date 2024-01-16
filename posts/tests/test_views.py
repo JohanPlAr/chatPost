@@ -21,10 +21,27 @@ class TestFriendsViews(TestCase):
         logged_in = self.client.login(username=username, password=password)
         self.assertTrue(logged_in)
 
-  
+        # Create Topic
+
+        topic = Topic.objects.create(name='Test-topic')
+
+        # Create Room
+        Room.objects.create(host=self.user, 
+                            topic=topic, 
+                            name='Test-room', 
+                            description='Test-room-description',
+                            status=0,
+                            )
+        room = Room.objects.get(id=1)
+        # Create Post
+
+        Post.objects.create(author = self.user, 
+                            room = room, 
+                            content='Test-post-content',
+                            )
         
 
-    def test_friend_request_GET(self):
+    def test_create_post_GET(self):
         room = Room.objects.get(id=1)
         response = self.client.get(reverse('create_post', args=[room.id]))
 

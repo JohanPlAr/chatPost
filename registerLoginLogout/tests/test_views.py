@@ -32,3 +32,10 @@ class TestAuthViews(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'base/register_login.html')
     
+    def test_logoutUser_GET(self):
+        response = self.client.get(reverse('logout'))
+        self.assertEquals(response.status_code, 302)
+        self.assertTemplateUsed(response, 'base/register_login.html')
+    
+
+    
