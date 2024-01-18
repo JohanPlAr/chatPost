@@ -17,11 +17,11 @@ nav {
 }
 
 /* Hides overflowing avatar link text with ellipsis (...) */
-.post-form > a { width:15rem;
+.post-form > a { width:10rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;}
-
+    
 .comment-form {
     display: flex;
     flex-direction: column;

@@ -55,7 +55,7 @@ def editPost(request, pk):
             else:
                 messages.error(request, form.errors)
             return redirect('room_id', room_id)
-    context = {'form':form, 'page':page}
+    context = {'form':form, 'page':page, 'post':post}
     return render(request, 'posts/post_form.html', context)
 
 

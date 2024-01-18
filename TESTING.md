@@ -161,15 +161,27 @@ displays and takes user to All Rooms List Home Page | Y |          |
 
 - HTML validation was done by using the official [W3C](https://validator.w3.org/) validator. This checking was done manually by copying the view page source code (Ctrl+U) and pasting it into the validator.
 
-- [Full HTML Validation Report](documentation/validation/html_validation.pdf)
+|     | W3C-Tested | Errors | Warnings |Info messages        | Comments                  |
+|-----|------------|--------|----------|---------------------|---------------------------|
+| Register Page | Y | 0 | 0 | "Trailing slash on void elements has no effect and interacts badly with unquoted attribute values." | Cloudinary responds with trailing slash in img elements - no solution found |
+| Login Page | Y | 0 | 0 | "Trailing slash on void elements has no effect and interacts badly with unquoted attribute values." | Cloudinary responds with trailing slash in img elements - no solution found |
+| Home Page | Y | 0 | 0 | "Trailing slash on void elements has no effect and interacts badly with unquoted attribute values." | Cloudinary responds with trailing slash in img elements - no solution found |
+| Room Page | Y | 0 | 0 | "Trailing slash on void elements has no effect and interacts badly with unquoted attribute values." | Cloudinary responds with trailing slash in img elements - no solution found |
+| Edit/Create Room | Y | 0 | 0 | "Trailing slash on void elements has no effect and interacts badly with unquoted attribute values." | Cloudinary responds with trailing slash in img elements - no solution found |
+| Edit/Create Post | Y | 0 | 0  | "Trailing slash on void elements has no effect and interacts badly with unquoted attribute values." | Cloudinary responds with trailing slash in img elements - no solution found |
+| Edit Comment | Y | 0 | 0 | "Trailing slash on void elements has no effect and interacts badly with unquoted attribute values." | Cloudinary responds with trailing slash in img elements - no solution found |
+| Delete page | Y | 0 | 0 | "Trailing slash on void elements has no effect and interacts badly with unquoted attribute values." | Cloudinary responds with trailing slash in img elements - no solution found |
+![HTML Validation Report](documentation/validation/html_validation.png)
+![HTML Validation Info Messages](documentation/validation/w3c_info_message.png)
+
 
 
 ### CSS Validation:
 
-- [Full CSS Validation Report](documentation/validation/css_validation.png)
 
-- No errors or warnings were found when passing through the official [W3C (Jigsaw)](https://jigsaw.w3.org/css-validator/#validate_by_uri) validator except for the warnings about the use of css root variables and webkit css rules for the box-shadow. However, css code works perfectly on various devices.
 
+- Some bootstrap cdn parsing errors and warnings were found when passing through the official [W3C (Jigsaw)](https://jigsaw.w3.org/css-validator/#validate_by_uri) validator. I was not able to find a solution for the parsing errors, however, css code works perfectly on various devices. The warnings are about the use of css root variables and webkit css rules also from bootstraps cdn. 
+![CSS Validation Report](documentation/validation/css_validation.png)
 
 ### JS Validation:
 

@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-
+<div class="min-vh-100">
 {%if page == 'login' %}
 
 <div class="col-auto d-flex dropdown-menu mx-sm-5 mt-3">
@@ -54,6 +54,8 @@
 </p>
 </div>
 </div>
-{%endif%}
 
+{%endif%}
+</div>
+{%include 'footer.html'%}
 {% endblock content %}

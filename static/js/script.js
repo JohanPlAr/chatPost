@@ -9,8 +9,7 @@
         sessionStorage.setItem('scrollpos', window.scrollY);
     };
 
-
-// Toggle sidebar profile menu
+// Toggle sidebar profile menu and close profile menu button
 function toggleDisplay(element) {
     element.style.display = element.style.display === 'none' ? 'block' : 'none';
   }
@@ -18,15 +17,6 @@ function toggleDisplay(element) {
   document.getElementById('toggleLink').addEventListener('click', function() {
     toggleDisplay(document.getElementById('content'));
   });
-
-// Close button inside sidebar profile menu  
-function hideMenu() {
-    var list = document.getElementById("content");
-        list.style.display = "none";
-    }
-
-// Select the timeout element
-var alert = document.querySelector('.timeout');
 
 // Set a timeout to remove the alert after 3 seconds
 if (document.querySelector('.alert')) {

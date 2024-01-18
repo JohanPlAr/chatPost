@@ -12,12 +12,12 @@
         <form enctype="multipart/form-data" method="post" class="d-flex flex-column post-form">
 {% csrf_token %}
 <label for="id_content"><strong>Content:</strong></label>
-
 {{form.content}}
-
 <br>
 <label for="id_image"><Strong>Choose Image:</Strong></label>
+<div class="flex-row">
 {{form.image}}
+</div>
 <div class="d-flex justify-content-between mt-3">
     <a href="{{request.META.HTTP_REFERER}}" class="btn btn-secondary">Go Back</a>
     <input type="submit" value="Submit" class="btn btn-primary">
