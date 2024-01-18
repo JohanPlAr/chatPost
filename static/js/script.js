@@ -29,6 +29,8 @@ function hideMenu() {
 var alert = document.querySelector('.timeout');
 
 // Set a timeout to remove the alert after 3 seconds
-setTimeout(function() {
-  alert.remove();
-}, 3000);
+if (document.querySelector('.alert')) {
+  setTimeout(function() {
+    document.querySelector('.alert').remove();
+  }, 3000);
+}

@@ -11,7 +11,7 @@ class PostForm(ModelForm):
         fields = ('content', 'image')
         exclude = ('author','edited','status','likes','dislikes','shares', 'room')
         widgets = {
-        'content': forms.Textarea(attrs={'rows': 4, 'cols': 40, 'maxlength':500, 'placeholder':'Max 500 characters'}),
+        'content': forms.Textarea(attrs={'rows': 5, 'cols': 30, 'maxlength':500, 'placeholder':'Max 500 characters'}),
         }
     def __init__(self, *args, **kwargs):
        super().__init__(*args, **kwargs)

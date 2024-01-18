@@ -12,7 +12,7 @@
     <h3 class="text-center">{{profile.user|capfirst}}</h3> 
 <div class="profile-image">
     {% load cloudinary %}
-    {% cloudinary profile.avatar.public_id secure=True quality='auto' width=250 height=250 crop='pad' background='gen_fill:ignore-foreground_true' alt="avatar"%}
+    {% cloudinary profile.avatar.public_id secure=True quality='auto' crop='fill' width=250 height=250 alt="avatar"%}
 </div>
 <!-- Remove Friend button-->
    {%if profile.user != request.user%}
@@ -28,7 +28,7 @@
 <div>
 <strong>Last Name:</strong> {{profile.last_name}}
 </div>
-<div>
+<div style="width:15rem">
 <strong>Bio:</strong> {{profile.bio}}
 </div>
 <strong>{{profile.user|capfirst}}'s rooms:</strong><br>
@@ -50,7 +50,7 @@
 </div>
 <div class="profile-image">
     {%load cloudinary%}
-    {% cloudinary profile.avatar.public_id secure=True quality='auto' width=250 height=250 crop='pad' background='gen_fill:ignore-foreground_true' alt="avatar"%}
+    {% cloudinary profile.avatar.public_id secure=True quality='auto' width=250 height=250 alt="avatar"%}
 </div>
     {% for received in received_requests%}
         {%if profile.user == recieved.sender %}

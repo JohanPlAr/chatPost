@@ -36,7 +36,7 @@
         <div class="d-flex justify-content-center">
         <a href="{%url 'view_profile' profile.pk%}">
             {% load cloudinary %}
-            {% cloudinary profile.avatar.public_id secure=True quality='auto' width="40" height="40" class="rounded-circle object-fit-cover" alt="Avatar"%}
+            {% cloudinary profile.avatar.public_id secure=True quality='100' crop='fill' width="40" height="40" class="rounded-circle object-fit-cover" alt="Avatar"%}
         </a></div>
         <div class="text-center"><small>Host: {{profile.user|capfirst}}</small>
             <div class="text-center">{{room.description}}</div>
