@@ -17,7 +17,7 @@ nav {
 }
 
 /* Hides overflowing avatar link text with ellipsis (...) */
-.post-form > a { width:20rem;
+.post-form > a { width:15rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;}
@@ -91,6 +91,7 @@ nav {
     border-radius: 50%;
 
   }
+
 
 footer {
       bottom: 0;

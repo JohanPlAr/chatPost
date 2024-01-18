@@ -8,7 +8,7 @@ class RoomForm(ModelForm):
         fields = ('topic','name','description','description','status')
         widgets = {
         'description': forms.Textarea(attrs={
-                                             'rows': 5, 
+                                             'rows': 15, 
                                              'cols': 30, 
                                              'maxlength':150, 
                                              'placeholder':'Max 150 characters'

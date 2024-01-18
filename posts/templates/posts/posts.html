@@ -5,14 +5,14 @@
 <div class="card mb-3 post-card d-flex justify-content-center" id="scroll{{post.pk}}">
 <div class="m-3">
     {% load cloudinary %}
-    {% cloudinary post.image.public_id secure=True quality='100' crop='fill' class="card-img-top post-image rounded-3 object-fit-cover" alt="Card image cap"%}
+    {% cloudinary post.image.public_id secure=True quality='auto' crop='fill' class="card-img-top post-image rounded-3 object-fit-cover" alt="Card image cap"%}
 </div>
     <div class="card-body">
     
     <a href="{%url 'view_profile' post.author.id %}" class="text-decoration-none">
     <span class="d-none d-sm-inline">
         {% load cloudinary %}
-    {% cloudinary post.author.profile.avatar.public_id secure=True quality='100' crop='fill' width="30" height="30" class="rounded-circle object-fit-contain" alt="Avatar"%} 
+    {% cloudinary post.author.profile.avatar.public_id secure=True quality='100' crop='fill' width="40" height="40" class="rounded-circle object-fit-contain" alt="Avatar"%} 
 </span>
     @{{post.author}}
 </a> 

@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="min-vh-100">
 <form method="GET" action="{%url 'home'%}">
     <input type="text" name="q" placeholder="Search Rooms...">
     <button type="submit" class="btn btn-secondary btn-sm mb-1">Go</button>
@@ -21,7 +22,7 @@ Available Rooms: {{forloop.counter}}
     <a href="{%url 'view_profile' room.host.pk %}" class="text-decoration-none">
         <div class="avatar bg-secondary d-flex justify-content-center">
         {% load cloudinary %}
-        {% cloudinary room.host.profile.avatar.public_id secure=True quality='auto' width=35 height=35 crop='pad' class="rounded-circle" alt="avatar"%}
+        {% cloudinary room.host.profile.avatar.public_id secure=True quality='100' width=40 height=40 crop='fill' alt="avatar"%}
         </div>
         <span>@{{room.host.username}}</span></a>
   
@@ -46,5 +47,6 @@ Available Rooms: {{forloop.counter}}
     {% endif %}
     <hr>
 {% endfor %}
+</div>
 {%include 'footer.html'%}
 {% endblock %}

@@ -12,7 +12,9 @@
         <form enctype="multipart/form-data" method="post" class="d-flex flex-column post-form">
 {% csrf_token %}
 <label for="id_content"><strong>Content:</strong></label>
+
 {{form.content}}
+
 <br>
 <label for="id_image"><Strong>Choose Image:</Strong></label>
 {{form.image}}
