@@ -10,7 +10,7 @@ from chatPost.context_processors import globalContext
 
 @login_required(login_url = 'login') 
 def createPost(request, pk):
-    friends_list = globalContext(request)["friends_list"]
+    page = 'create-post'
     form = PostForm()
     post_room = get_object_or_404(Room, id = pk)
     friends_list = globalContext(request)["friends_list"]
@@ -25,19 +25,20 @@ def createPost(request, pk):
             instance.room = post_room              
             instance.room.participants.add(request.user)
             try:
-                form.save()
+                instance.save()
                 messages.success(request, 'Post published')
                 return redirect('room_id', post_room.id)
             except:
                 messages.error(request, 'Oops something went wrong')
                 return redirect('room_id', post_room.id)
         
-    context = {'form':form, 'post_room':post_room}
+    context = {'form':form, 'post_room':post_room, 'page':page,}
     return render(request, 'posts/post_form.html', context)
 
 
 @login_required(login_url = 'login')
 def editPost(request, pk):
+    page = 'edit-post'
     post = get_object_or_404(Post, id = pk)
     room_id = post.room.id
     form = PostForm(instance = post)
@@ -54,7 +55,7 @@ def editPost(request, pk):
             else:
                 messages.error(request, form.errors)
             return redirect('room_id', room_id)
-    context = {'form':form}
+    context = {'form':form, 'page':page}
     return render(request, 'posts/post_form.html', context)
 
 

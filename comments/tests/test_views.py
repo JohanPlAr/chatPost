@@ -50,37 +50,37 @@ class TestPostsViews(TestCase):
         
 
     def test_create_comment_GET(self):
+
         post = Post.objects.get(id=1)
         response = self.client.get(reverse('create_comment', args=[post.id]))
-
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'comments/comment_form.html')
         
     
     def test_edit_comment_GET(self):
+        """ Test logged in user can render comment_form.html """
         comment = Comment.objects.get(id=1)
         response = self.client.get(reverse('edit_comment', args=[comment.id]))
-
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'comments/comment_form.html')
 
     def test_delete_comment_GET(self):
+        """ Test logged in user can render delete.html """
         comment = Comment.objects.get(id=1)
         response = self.client.get(reverse('delete_post', args=[comment.id]))
-
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'delete.html')
     
     def test_like_comment_GET(self):
+        """ Test logged in user redirects to /room/1 """
         comment = Comment.objects.get(id=1)
         response = self.client.get(reverse('like_comment', args=[comment.id]))
-
         self.assertRedirects(response, '/room/1')
     
     def test_dislike_comment_GET(self):
-        post = Post.objects.get(id=1)
-        response = self.client.get(reverse('dislike_comment', args=[post.id]))
-        
+        """ Test logged in user redirects to /room/1 """
+        comment = Comment.objects.get(id=1)
+        response = self.client.get(reverse('dislike_comment', args=[comment.id]))       
         self.assertRedirects(response, '/room/1')
 
 

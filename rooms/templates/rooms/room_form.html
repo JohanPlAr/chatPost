@@ -7,15 +7,13 @@
 
         <form method="post" class="d-flex flex-column">
 {% csrf_token %}
-<strong>Name:</strong>
+<label for="id_name"><strong>Name:</strong></label>
 {{form.name}}
-<strong>Topic:</strong>
+<label for="id_topic"><strong>Topic:</strong></label>
 {{form.topic}}
-<strong>Description:</strong>
-<div class=" ">
+<label for="id_description"><strong>Description:</strong></label>
 {{form.description}}
-</div>
-<strong>Access:</strong>
+<label for="id_status"><strong>Access:</strong></label>
 {{form.status}}
 <div class="d-flex justify-content-between mt-3">
 <a href="{{request.META.HTTP_REFERER}}" class="btn btn-secondary">Go Back</a>

@@ -110,9 +110,11 @@
                  
                   <a href="#" class="d-flex text-white text-decoration-none" 
                 id="toggleLink">
+                <div class="avatar bg-secondary d-flex justify-content-center">
                 {% load cloudinary %}
-                {% cloudinary request.user.profile.avatar.public_id secure=True quality='auto' width=30 height=30 crop='pad' background='gen_fill:ignore-foreground_true' class="rounded-circle" alt="avatar"%}
-                    <span class="d-none d-lg-inline mx-1">{{request.user|capfirst}}</span>
+                {% cloudinary request.user.profile.avatar.public_id secure=True quality='30' width=40 height=40 crop='pad' background='gen_fill:ignore-foreground_true' alt="avatar"%}
+                </div>
+                <span class="d-none d-lg-inline mx-1">{{request.user|capfirst}}</span>
                 </a>
                 {%endif%}
            

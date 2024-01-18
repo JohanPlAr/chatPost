@@ -2,8 +2,6 @@
 
 ## Manual Testing
 
-Testing was done throughout site development, for each feature before it was merged into the master file.
-
 Usability was tested with the below user acceptance testing, sent to new users to ensure testing from different users, on different devices and browsers to ensure issues were caught and where possible fixed during development.
 
 ### Positive Testing
@@ -64,7 +62,6 @@ displays and takes user to All Rooms List Home Page | Y |          |
 | 4          | Select "Access Field" | Lets User Select Public or Friends Only | Y |          |
 | 5          | Click "Go Back Button" | User redirected to previous page without submitting form | Y |          |
 | 6          | Click "Submit Button" | Room is created - succes message is displayed - user is redirected to new room page| Y |          |
-
 | Room Page     |                        |                  |      |             |
 | 1          | Click "Search Rooms" Go Button | Redirects user to Search Result Rooms page | Y |          |
 | 2          | Click "Create Post Button" | Redirects user to Create Post Form Page | Y |          |
@@ -99,6 +96,7 @@ displays and takes user to All Rooms List Home Page | Y |          |
 
 ### Negative testing
 |     | User Actions           | Expected Results | Y/N | Comments    |
+|-------------|------------------------|------------------|------|-------------|
 | Register Page  |                        |                  |      |             |
 | 1          | Blank Username| Receive form.error message | Y |          |
 | 2          | Special characters in Username| Receive form.error message | Y |          |
@@ -150,10 +148,12 @@ displays and takes user to All Rooms List Home Page | Y |          |
 
 ### Django unit testing
 
+- All Urls tested resolves with correct view. 
+- All views tested for correct render and redirects
+- All views tested for unauthorized redirects
+- All crud tested for 403 redirects
 
-### Jest unit testing
-
----
+![Unit Tests](documentation/validation/django-unit-test.png)
 
 ## Validation
 
@@ -172,6 +172,7 @@ displays and takes user to All Rooms List Home Page | Y |          |
 
 
 ### JS Validation:
+
 
 - [JS Validation Report. script.js](documentation/validation/js_validation_base_js.png)
 

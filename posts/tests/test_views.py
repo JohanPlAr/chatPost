@@ -5,7 +5,7 @@ from rooms.models import Room, Topic
 from posts.models import Post
 
 
-class TestFriendsViews(TestCase):
+class TestPostsViews(TestCase):
      
     def setUp(self):
         """ Setup test """
@@ -25,7 +25,7 @@ class TestFriendsViews(TestCase):
 
         topic = Topic.objects.create(name='Test-topic')
 
-        # Create Room
+        # Create Room with Public Access to logged in users
         Room.objects.create(host=self.user, 
                             topic=topic, 
                             name='Test-room', 
@@ -33,6 +33,7 @@ class TestFriendsViews(TestCase):
                             status=0,
                             )
         room = Room.objects.get(id=1)
+        
         # Create Post
 
         Post.objects.create(author = self.user, 
@@ -42,43 +43,72 @@ class TestFriendsViews(TestCase):
         
 
     def test_create_post_GET(self):
+        """
+        Test logged in user can render create post view
+        """
         room = Room.objects.get(id=1)
         response = self.client.get(reverse('create_post', args=[room.id]))
 
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'posts/post_form.html')
-        
+
     
     def test_edit_post_GET(self):
+        """
+        Test logged in user can render edit post view
+        """
         post = Post.objects.get(id=1)
         response = self.client.get(reverse('edit_post', args=[post.id]))
 
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'posts/post_form.html')
     
+
+    def test_edit_post_POST(self):
+        """ Test logged in user can post edited post"""
+        room = Room.objects.get(id=1)
+        post = Post.objects.get(id=1)
+        url = reverse('edit_post', args=[post.id])    
+        response = self.client.post(url,
+                                    {'author' : self.user,
+                                     'room' : room,
+                            'content' : 'Edited-Post-Content',})
+        self.assertEquals(response.status_code, 302)
+        self.assertRedirects(response, '/room/1')
+        self.assertTrue(Post.objects.get(id=1).content == 'Edited-Post-Content')
+        
+
     
     def test_delete_post_GET(self):
+        """
+        Test logged in user can render delete post view
+        """
         post = Post.objects.get(id=1)
         response = self.client.get(reverse('delete_post', args=[post.id]))
-
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'delete.html')
-    
+
+
     def test_like_post_GET(self):
+        """
+        Test logged in user redirects when liking post
+        """
         post = Post.objects.get(id=1)
         response = self.client.get(reverse('like_post', args=[post.id]))
-
         self.assertRedirects(response, '/room/1')
     
     def test_dislike_post_GET(self):
+        """
+        Test logged in user redirects when disliking post
+        """
         post = Post.objects.get(id=1)
         response = self.client.get(reverse('dislike_post', args=[post.id]))
-        
         self.assertRedirects(response, '/room/1')
+        
 
     def test_edit_unauthorized(self):
         """
-        Test user cant edit another
+        Test user can't edit another
         user post
         """
         user_model = get_user_model()
@@ -109,16 +139,16 @@ class TestFriendsViews(TestCase):
         user_model = get_user_model()
         
         # Create second user for 403 errors
-        username = 'dirty'
-        password = 'deedster56'
-        user = user_model.objects.create_user(
-            username=username,
-            password=password,
+        username1 = 'dirty'
+        password1 = 'deedster56'
+        user_model.objects.create_user(
+            username=username1,
+            password=password1,
             is_superuser=False
         )
         logged_in = self.client.login(
-            username=username,
-            password=password
+            username=username1,
+            password=password1
         )
 
         response = self.client.get('/room/post/delete/1')
@@ -133,18 +163,18 @@ class TestRedirectViews(TestCase):
     """
     
     def test_create_post_auth_redirect(self):
-        """ Test redirect on create post  """
+        """ Test unauthenticated user redirect on create post """
         response = self.client.get('/room/post/create/1')
         self.assertEqual(response.status_code, 302)
     
     
     def test_edit_post_auth_redirect(self):
-        """ Test redirect on edit post  """
+        """ Test unauthenticated user redirect on edit post  """
         response = self.client.get('/room/post/edit/1')
         self.assertEqual(response.status_code, 302)
     
     
     def test_delete_post_auth_redirect(self):
-        """ Test redirect on delete post  """
+        """ Test unauthenticated user redirect on delete post  """
         response = self.client.get('/room/post/delete/1')
         self.assertEqual(response.status_code, 302)

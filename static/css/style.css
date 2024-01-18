@@ -75,6 +75,23 @@ nav {
     overflow: hidden;
 }
 
+.avatar{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    overflow: hidden;
+       
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+
+  }
+
 @media only screen and (max-width: 768px) {
 .post-card {   
         margin-right:0vw;

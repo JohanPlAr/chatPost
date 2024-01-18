@@ -62,7 +62,6 @@ def editRoom(request, pk):
         if form.is_valid():
             form.save()
             return redirect('home')
-    
     context = {'form':form}
     return render(request, 'rooms/room_form.html', context)
 

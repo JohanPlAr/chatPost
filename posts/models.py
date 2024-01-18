@@ -5,8 +5,6 @@ from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 from rooms.models import Room
 
-STATUS = ((0, "Draft"), (1, "Published"))
-
 
 class Post(models.Model):
     """ Post Model"""
@@ -31,7 +29,6 @@ class Post(models.Model):
     )
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    status = models.IntegerField(choices=STATUS, default=0)
     likes = models.ManyToManyField(
         User,
         related_name="post_like",

@@ -33,38 +33,32 @@ class TestRoomsViews(TestCase):
                             )
 
     def test_room_GET(self):
-        # Test View Room as logged in user
+        """ Test logged in user can render room view"""
         room = Room.objects.get(id=1)
-
         response = self.client.get(reverse('room_id', args=[room.id]))
-
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'rooms/room.html')
 
 
     def test_create_room_GET(self):
-      
+        """ Test logged in user can render create room view"""
         response = self.client.get(reverse('create_room'))
-
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'rooms/room_form.html')
     
    
     def test_edit_room_GET(self):
-        # Test Edit Room as logged in user
+        """ Test logged in user can render edit room view"""
         room = Room.objects.get(id=1)
-
         response = self.client.get(reverse('edit_room', args=[room.id]))
-
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'rooms/room_form.html')
 
+
     def test_delete_room_GET(self):
-        # Test Delete Room as superuser
+        """ Test logged in user can render delete room view"""
         room = Room.objects.get(id=1)
-
         response = self.client.get(reverse('delete_room', args=[room.id]))
-
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'delete.html')
 
@@ -74,11 +68,11 @@ class TestRoomsViews(TestCase):
         user room
         """
         user_model = get_user_model()
-        
+    
         # Create second user for 403 errors
         username = 'dirty'
         password = 'deedster56'
-        user = user_model.objects.create_user(
+        user_model.objects.create_user(
             username=username,
             password=password,
             is_superuser=False
@@ -87,16 +81,14 @@ class TestRoomsViews(TestCase):
             username=username,
             password=password
         )
-
         self.assertTrue(logged_in)
         response = self.client.get('/room/edit/1')
         self.assertEqual(response.status_code, 403)
 
 
-
     def test_delete_unauthorized(self):
         """
-        Test user cant delete another
+        Test unauthorized user cant delete another
         user room
         """
         user_model = get_user_model()
@@ -104,7 +96,7 @@ class TestRoomsViews(TestCase):
         # Create second user for 403 errors
         username = 'dirty'
         password = 'deedster56'
-        user = user_model.objects.create_user(
+        user_model.objects.create_user(
             username=username,
             password=password,
             is_superuser=False
@@ -113,9 +105,7 @@ class TestRoomsViews(TestCase):
             username=username,
             password=password
         )
-
         response = self.client.get('/room/delete/1')
-
         self.assertTrue(logged_in)
         self.assertEqual(response.status_code, 403)
 
@@ -137,7 +127,6 @@ class TestRedirectViews(TestCase):
         response = self.client.get('/room/create')
         self.assertEqual(response.status_code, 302)
        
-    
     
     def test_edit_room_auth_redirect(self):
         """ Test redirect on edit room  """

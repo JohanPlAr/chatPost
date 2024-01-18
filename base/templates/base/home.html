@@ -19,9 +19,11 @@ Available Rooms: {{forloop.counter}}
 
 
     <a href="{%url 'view_profile' room.host.pk %}" class="text-decoration-none">
+        <div class="avatar bg-secondary d-flex justify-content-center">
         {% load cloudinary %}
-        {% cloudinary room.host.profile.avatar.public_id secure=True quality='auto' width=30 height=30 crop='pad' class="rounded-circle" alt="avatar"%}
-      <span>@{{room.host.username}}</span></a>
+        {% cloudinary room.host.profile.avatar.public_id secure=True quality='auto' width=35 height=35 crop='pad' class="rounded-circle" alt="avatar"%}
+        </div>
+        <span>@{{room.host.username}}</span></a>
   
  
     <h5><a href="{%url 'room_id' room.id%}">{{room.name}}</a></h5>

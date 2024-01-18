@@ -38,13 +38,13 @@ def friendRequest(request, pk):
 def accept_friend_request(request, pk):
     friend_request = get_object_or_404(FriendRequest.objects, id = pk)
     friends_list = globalContext(request)["friends_list"]
-    if friend_request.sender not in friends_list and friend_request.receiver == request.user:
+    if friend_request.sender in friends_list:
+        messages.error(f'{friend_request.sender} already in Friends-List')
+    if friend_request.receiver == request.user:
         friend_request.status = 1
         friend_request.save()
     if friend_request.receiver != request.user:
         raise PermissionDenied
-    else:
-        messages.error(f'{friend_request.sender} already in Friends-List')
     return render(request, 'friends/friends.html')
 
 

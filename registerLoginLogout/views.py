@@ -31,7 +31,7 @@ def loginView(request):
 def logoutUser(request):
     messages.success(request, f'{request.user} is logged out')
     logout(request)
-    return redirect('home')
+    return redirect('login')
 
 
 def registerView(request):
