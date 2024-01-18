@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="min-vh-100">
 <!-- User Search bar-->
 <form method="GET" action="{%url 'friends_list'%}">
   <input type="text" name="q" placeholder="Search Users...">
@@ -87,4 +88,7 @@
 {%endfor%}
 <hr>
 {%endfor%}
+</div>
+  {%include 'footer.html' %}
+
 {% endblock content %}
