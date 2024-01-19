@@ -148,7 +148,7 @@ displays and takes user to All Rooms List Home Page | Y |          |
 
 ### Django unit testing
 
-- All Urls tested resolves with correct view. 
+- All Urls tested for resolving correct views. 
 - All views tested for correct render and redirects
 - All views tested for unauthorized redirects
 - All crud tested for 403 redirects
@@ -180,15 +180,14 @@ displays and takes user to All Rooms List Home Page | Y |          |
 
 
 
-- Some bootstrap cdn parsing errors and warnings were found when passing through the official [W3C (Jigsaw)](https://jigsaw.w3.org/css-validator/#validate_by_uri) validator. I was not able to find a solution for the parsing errors, however, css code works perfectly on various devices. The warnings are about the use of css root variables and webkit css rules also from bootstraps cdn. 
+- Some bootstrap cdn parsing errors and warnings were found when passing through the official [W3C (Jigsaw)](https://jigsaw.w3.org/css-validator/#validate_by_uri) validator. I was not able to find a solution for the parsing errors, however css code works perfectly on various devices. The warnings concern the use of css root variables and webkit css rules also from bootstraps cdn. 
 ![CSS Validation Report](documentation/validation/css_validation.png)
 
 ### JS Validation:
 
+- [JS Validation Report. script.js](documentation/validation/js_validation.png)
 
-- [JS Validation Report. script.js](documentation/validation/js_validation_base_js.png)
-
-- No errors or warning messages were found when passing through the official [JSHint](https://www.jshint.com/) validator. However, the validator complained about undefined variables that come from JS libraries.
+- No errors or warning messages were found when passing through the official [JSHint](https://www.jshint.com/) validator.
 
 ### Python Validation:
 - [Full Python Validation Report](documentation/validation/python_validation.pdf)

@@ -50,6 +50,7 @@ def globalContext(request):
             'received_requests':received_requests,
             'profiles': profiles,
             'friend_profiles':friend_profiles
+            
             }
     else:
         return {

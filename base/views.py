@@ -1,13 +1,16 @@
+"""Views for home page which displays a list of Rooms"""
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from rooms.models import Room
-from django.contrib.auth.decorators import login_required
+
 
 
 @login_required(login_url = 'login')
 def home(request):
-
-    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    """Manipulates context for render of rooms 
+    on homepage and when searchbox is operated"""
+    q = request.GET.get('q') if request.GET.get('q') is not None else ''
     rooms = Room.objects.filter(
         Q(topic__name__icontains=q) |
         Q(name__icontains=q) |
@@ -16,5 +19,3 @@ def home(request):
                                 )
     context = {'rooms':rooms}
     return render(request, 'base/home.html', context)
-
-    

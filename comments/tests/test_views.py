@@ -1,3 +1,4 @@
+"""Unitests for Post Views"""
 from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth import get_user_model
@@ -7,7 +8,8 @@ from comments.models import Comment
 
 
 class TestPostsViews(TestCase):
-     
+     """Testing that Posts views correct 
+     renders and redirects """
     def setUp(self):
         """ Setup test """
         username = "johan"
@@ -53,7 +55,7 @@ class TestPostsViews(TestCase):
 
         post = Post.objects.get(id=1)
         response = self.client.get(reverse('create_comment', args=[post.id]))
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'comments/comment_form.html')
         
     
@@ -61,14 +63,14 @@ class TestPostsViews(TestCase):
         """ Test logged in user can render comment_form.html """
         comment = Comment.objects.get(id=1)
         response = self.client.get(reverse('edit_comment', args=[comment.id]))
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'comments/comment_form.html')
 
     def test_delete_comment_GET(self):
         """ Test logged in user can render delete.html """
         comment = Comment.objects.get(id=1)
         response = self.client.get(reverse('delete_post', args=[comment.id]))
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'delete.html')
     
     def test_like_comment_GET(self):
@@ -94,7 +96,7 @@ class TestPostsViews(TestCase):
         # Create second user for 403 errors
         username = 'dirty'
         password = 'deedster56'
-        user = user_model.objects.create_user(
+        user_model.objects.create_user(
             username=username,
             password=password,
             is_superuser=False
@@ -119,7 +121,7 @@ class TestPostsViews(TestCase):
         # Create second user for 403 errors
         username = 'dirty'
         password = 'deedster56'
-        user = user_model.objects.create_user(
+        user_model.objects.create_user(
             username=username,
             password=password,
             is_superuser=False
