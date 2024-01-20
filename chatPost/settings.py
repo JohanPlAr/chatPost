@@ -12,23 +12,21 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+import cloudinary.api
+import cloudinary.uploader
+import cloudinary
 import dj_database_url
 from django.contrib.messages import constants as messages
 
 
 if os.path.isfile("env.py"):
-   import env
+    import env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
 # Cloudinary imports
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
-
-
 
 
 # Quick-start development settings - unsuitable for production
@@ -88,7 +86,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'chatPost.context_processors.globalContext', # Global context processor
+                'chatPost.context_processors.global_context',  # Global context processor
             ],
         },
     },
@@ -165,10 +163,10 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CLOUDINARY_STORAGE = {
-    'cloud_name' : os.environ.get('CLOUD_NAME'),
-    'api_key' : os.environ.get('API_KEY'),
-    'api_secret' : os.environ.get('API_SECRET'),
-    'secure' : True
+    'cloud_name': os.environ.get('CLOUD_NAME'),
+    'api_key': os.environ.get('API_KEY'),
+    'api_secret': os.environ.get('API_SECRET'),
+    'secure': True
 }
 
 MESSAGE_TAGS = {

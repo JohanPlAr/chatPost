@@ -1,3 +1,4 @@
+"""Sets Post Model in Admin panel"""
 from django.contrib import admin
 from .models import Post
 
@@ -8,7 +9,6 @@ class PostAdmin(admin.ModelAdmin):
     """Post model admin page configuration"""
     list_display = (
         'author',
-      #  'room',
         'content',
         'edited',
         'created',

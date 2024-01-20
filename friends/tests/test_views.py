@@ -55,13 +55,13 @@ class TestFriendsViews(TestCase):
         profile3 = Profile.objects.get(user_id=3)
         self.assertTrue(profile3)
 
-    def test_friend_list_GET(self):
+    def test_friend_list_get(self):
         """Test logged in user can render friend_list"""
         response = self.client.get(reverse('friends_list'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'friends/friends.html')
 
-    def test_friends_request_GET(self):
+    def test_friends_request_get(self):
         """Test logged in user can create friend request
           and redirects to friends list"""
         response = self.client.get(
@@ -69,7 +69,7 @@ class TestFriendsViews(TestCase):
         self.assertRedirects(response, '/friend/list')
         self.assertTrue(FriendRequest.objects.get(id=1))
 
-    def test_accept_friend_request_GET(self):
+    def test_accept_friend_request_get(self):
         """Test logged in user can accept friend request
          and render friendslist """
         # Create friend_request
@@ -82,7 +82,7 @@ class TestFriendsViews(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'friends/friends.html')
 
-    def test_remove_friend_GET(self):
+    def test_remove_friend_get(self):
         """ Test logged in user can render delete.html """
         # Create friend_request
         FriendRequest.objects.create(sender=self.user2,
@@ -94,7 +94,7 @@ class TestFriendsViews(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'delete.html')
 
-    def test_view_profile_GET(self):
+    def test_view_profile_get(self):
         """Test logged in user render """
         response = self.client.get(
             reverse('view_profile', args=[self.user1.id]))
@@ -137,17 +137,17 @@ class TestRedirectViews(TestCase):
     Test views when not logged in
     """
 
-    def test_friends_list_redirect_GET(self):
+    def test_friends_list_redirect_get(self):
         """Test logged out user cant render friends_list"""
         response = self.client.get(reverse('friends_list'))
         self.assertEqual(response.status_code, 302)
 
-    def test_accept_friend_request_redirect_GET(self):
+    def test_accept_friend_request_redirect_get(self):
         """Test logged out user cant accept friend request"""
         response = self.client.get(reverse('accept_friend_request', args=[1]))
         self.assertEqual(response.status_code, 302)
 
-    def test_remove_friend_redirect_GET(self):
+    def test_remove_friend_redirect_get(self):
         """Test logged out user cant remove friend/request"""
         response = self.client.get(reverse('remove_friend', args=[1]))
         self.assertEqual(response.status_code, 302)

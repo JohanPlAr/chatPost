@@ -1,3 +1,4 @@
+"""Sets Friend Requests in Admin Panel"""
 from django.contrib import admin
 from . models import FriendRequest
 
@@ -9,4 +10,3 @@ class FriendRequestsAdmin(admin.ModelAdmin):
         'receiver',
         'status',
     )
-   # Register your models here.

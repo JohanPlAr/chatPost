@@ -8,8 +8,9 @@ from comments.models import Comment
 
 
 class TestPostsViews(TestCase):
-     """Testing that Posts views correct 
-     renders and redirects """
+    """Testing that Posts views correct 
+    renders and redirects """
+
     def setUp(self):
         """ Setup test """
         username = "johan"
@@ -29,62 +30,60 @@ class TestPostsViews(TestCase):
         topic = Topic.objects.create(name='Test-topic')
 
         # Create Room
-        Room.objects.create(host=self.user, 
-                            topic=topic, 
-                            name='Test-room', 
+        Room.objects.create(host=self.user,
+                            topic=topic,
+                            name='Test-room',
                             description='Test-room-description',
                             status=0,
                             )
         room = Room.objects.get(id=1)
         # Create Post
 
-        Post.objects.create(author = self.user, 
-                            room = room, 
+        Post.objects.create(author=self.user,
+                            room=room,
                             content='Test-post-content',
                             )
         post = Post.objects.get(id=1)
         # Create Comment
 
-        Comment.objects.create(author = self.user, 
-                            post = post, 
-                            content='Test-comment-content',
-                            )
-        
+        Comment.objects.create(author=self.user,
+                               post=post,
+                               content='Test-comment-content',
+                               )
 
-    def test_create_comment_GET(self):
-
+    def test_create_comment_get(self):
+        """Test logged in user can render comment_form.html"""
         post = Post.objects.get(id=1)
         response = self.client.get(reverse('create_comment', args=[post.id]))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'comments/comment_form.html')
-        
-    
-    def test_edit_comment_GET(self):
+
+    def test_edit_comment_get(self):
         """ Test logged in user can render comment_form.html """
         comment = Comment.objects.get(id=1)
         response = self.client.get(reverse('edit_comment', args=[comment.id]))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'comments/comment_form.html')
 
-    def test_delete_comment_GET(self):
+    def test_delete_comment_get(self):
         """ Test logged in user can render delete.html """
         comment = Comment.objects.get(id=1)
         response = self.client.get(reverse('delete_post', args=[comment.id]))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'delete.html')
-    
-    def test_like_comment_GET(self):
+
+    def test_like_comment_get(self):
         """ Test logged in user redirects to /room/1 """
         comment = Comment.objects.get(id=1)
         response = self.client.get(reverse('like_comment', args=[comment.id]))
         self.assertRedirects(response, '/room/1')
-    
-    def test_dislike_comment_GET(self):
+
+    def test_dislike_comment_get(self):
         """ Test logged in user redirects to /room/1 """
         comment = Comment.objects.get(id=1)
-        response = self.client.get(reverse('dislike_comment', args=[comment.id]))       
+        response = self.client.get(
+            reverse('dislike_comment', args=[comment.id]))
         self.assertRedirects(response, '/room/1')
-
 
     def test_edit_unauthorized(self):
         """
@@ -92,7 +91,7 @@ class TestPostsViews(TestCase):
         user comment
         """
         user_model = get_user_model()
-        
+
         # Create second user for 403 errors
         username = 'dirty'
         password = 'deedster56'
@@ -110,14 +109,13 @@ class TestPostsViews(TestCase):
         response = self.client.get('/room/post/comment/edit/1')
         self.assertEqual(response.status_code, 403)
 
-
     def test_delete_unauthorized(self):
         """
         Test user cant delete another
         user comment
         """
         user_model = get_user_model()
-        
+
         # Create second user for 403 errors
         username = 'dirty'
         password = 'deedster56'
@@ -141,21 +139,18 @@ class TestRedirectViews(TestCase):
     """
     Test views when not logged in
     """
-    
+
     def test_create_comment_auth_redirect(self):
         """ Test redirect on create comment  """
         response = self.client.get('/room/post/comment/create/1')
         self.assertEqual(response.status_code, 302)
-    
-    
+
     def test_edit_comment_auth_redirect(self):
         """ Test redirect on edit comment  """
         response = self.client.get('/room/post/comment/edit/1')
         self.assertEqual(response.status_code, 302)
-    
-    
+
     def test_delete_comment_auth_redirect(self):
         """ Test redirect on delete comment  """
         response = self.client.get('/room/post/comment/delete/1')
         self.assertEqual(response.status_code, 302)
-

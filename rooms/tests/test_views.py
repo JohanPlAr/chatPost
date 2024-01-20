@@ -1,3 +1,4 @@
+"""Tests Rooms Views"""
 from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth import get_user_model
@@ -5,7 +6,9 @@ from rooms.models import Room, Topic
 
 
 class TestRoomsViews(TestCase):
-     
+    """Tests Rooms Views 
+    Render and Redirects correctly"""
+
     def setUp(self):
         """ Setup test """
         username = "johan"
@@ -25,41 +28,38 @@ class TestRoomsViews(TestCase):
         topic = Topic.objects.create(name='Test-topic')
 
         # Create Room
-        Room.objects.create(host=self.user, 
-                            topic=topic, 
-                            name='Test-room', 
+        Room.objects.create(host=self.user,
+                            topic=topic,
+                            name='Test-room',
                             description='Test-room-description',
                             status=0,
                             )
 
-    def test_room_GET(self):
+    def test_room_get(self):
         """ Test logged in user can render room view"""
         room = Room.objects.get(id=1)
         response = self.client.get(reverse('room_id', args=[room.id]))
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'rooms/room.html')
-
 
     def test_create_room_GET(self):
         """ Test logged in user can render create room view"""
         response = self.client.get(reverse('create_room'))
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'rooms/room_form.html')
-    
-   
+
     def test_edit_room_GET(self):
         """ Test logged in user can render edit room view"""
         room = Room.objects.get(id=1)
         response = self.client.get(reverse('edit_room', args=[room.id]))
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'rooms/room_form.html')
-
 
     def test_delete_room_GET(self):
         """ Test logged in user can render delete room view"""
         room = Room.objects.get(id=1)
         response = self.client.get(reverse('delete_room', args=[room.id]))
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'delete.html')
 
     def test_edit_unauthorized(self):
@@ -68,7 +68,7 @@ class TestRoomsViews(TestCase):
         user room
         """
         user_model = get_user_model()
-    
+
         # Create second user for 403 errors
         username = 'dirty'
         password = 'deedster56'
@@ -85,14 +85,13 @@ class TestRoomsViews(TestCase):
         response = self.client.get('/room/edit/1')
         self.assertEqual(response.status_code, 403)
 
-
     def test_delete_unauthorized(self):
         """
         Test unauthorized user cant delete another
         user room
         """
         user_model = get_user_model()
-        
+
         # Create second user for 403 errors
         username = 'dirty'
         password = 'deedster56'
@@ -113,27 +112,24 @@ class TestRoomsViews(TestCase):
 class TestRedirectViews(TestCase):
     """
     Test views when not logged in
-    """ 
+    """
 
     def test_room_auth_redirect(self):
         """ Test redirect on view room  """
         response = self.client.get('/room/1')
         self.assertEqual(response.status_code, 302)
         self.assertTemplateUsed('base/register_login.html/')
-    
-    
+
     def test_create_room_auth_redirect(self):
         """ Test redirect on create room  """
         response = self.client.get('/room/create')
         self.assertEqual(response.status_code, 302)
-       
-    
+
     def test_edit_room_auth_redirect(self):
         """ Test redirect on edit room  """
         response = self.client.get('/room/edit/1')
         self.assertEqual(response.status_code, 302)
-    
-    
+
     def test_delete_room_auth_redirect(self):
         """ Test redirect on delete room  """
         response = self.client.get('/room/delete/1')

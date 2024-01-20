@@ -1,3 +1,4 @@
+"""Patterns for Posts crud Urls"""
 from django.urls import path, include
 from . import views
 
@@ -8,4 +9,4 @@ urlpatterns = [
     path('comment/', include('comments.urls'), name='comment'),
     path('post-like/<str:pk>', views.likePost, name='like_post'),
     path('post-dislike/<str:pk>', views.dislikePost, name='dislike_post'),
-        ]
+]

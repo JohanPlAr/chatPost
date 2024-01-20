@@ -1,3 +1,4 @@
+"""Testing Post Views"""
 from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth import get_user_model
@@ -6,7 +7,7 @@ from posts.models import Post
 
 
 class TestPostsViews(TestCase):
-
+    """Testing Render and Redirects for Post Views"""
     def setUp(self):
         """ Setup test """
         username = "johan"
@@ -41,7 +42,7 @@ class TestPostsViews(TestCase):
                             content='Test-post-content',
                             )
 
-    def test_create_post_GET(self):
+    def test_create_post_get(self):
         """
         Test logged in user can render create post view
         """
@@ -51,7 +52,7 @@ class TestPostsViews(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'posts/post_form.html')
 
-    def test_edit_post_GET(self):
+    def test_edit_post_get(self):
         """
         Test logged in user can render edit post view
         """
@@ -61,7 +62,7 @@ class TestPostsViews(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'posts/post_form.html')
 
-    def test_edit_post_POST(self):
+    def test_edit_post_post(self):
         """ Test logged in user can post edited post"""
         room = Room.objects.get(id=1)
         post = Post.objects.get(id=1)
@@ -75,7 +76,7 @@ class TestPostsViews(TestCase):
         self.assertTrue(Post.objects.get(
             id=1).content == 'Edited-Post-Content')
 
-    def test_delete_post_GET(self):
+    def test_delete_post_get(self):
         """
         Test logged in user can render delete post view
         """
@@ -84,7 +85,7 @@ class TestPostsViews(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'delete.html')
 
-    def test_like_post_GET(self):
+    def test_like_post_get(self):
         """
         Test logged in user redirects when liking post
         """
@@ -92,7 +93,7 @@ class TestPostsViews(TestCase):
         response = self.client.get(reverse('like_post', args=[post.id]))
         self.assertRedirects(response, '/room/1')
 
-    def test_dislike_post_GET(self):
+    def test_dislike_post_get(self):
         """
         Test logged in user redirects when disliking post
         """

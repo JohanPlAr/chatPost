@@ -6,9 +6,10 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from friends.models import FriendRequest
+from chatPost.context_processors import global_context
 from . forms import ProfileForm
 from . models import Profile
-from chatPost.context_processors import globalContext
+
 
 
 def loginView(request):
@@ -93,20 +94,24 @@ def createProfile(request, pk):
 def profileView(request, pk):
     """Renders profile.html"""
     profile = get_object_or_404(Profile.objects, user_id=pk)
-    friends_list = globalContext(request)["friends_list"]
-    received_requests = globalContext(request)["received_requests"]
-    sent_requests = globalContext(request)["sent_requests"]
+    friends_list = global_context(request)["friends_list"]
+    received_requests = global_context(request)["received_requests"]
+    sent_requests = global_context(request)["sent_requests"]
     if FriendRequest.objects.filter(
                 sender=profile.user, receiver=request.user
             ):
         friend_request = FriendRequest.objects.get(
                 sender=profile.user, receiver=request.user
             )
-    else:
+    if FriendRequest.objects.filter(
+                sender=request.user, receiver=profile.user
+            ):
         friend_request = FriendRequest.objects.get(
                 sender=request.user, receiver=profile.user
             )
-  
+    else:
+        friend_request = profile
+
     context = {
         'profile': profile,
         'friend_request': friend_request,

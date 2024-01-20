@@ -1,3 +1,4 @@
+"""Base Url handler"""
 from django.urls import path, include
 from . import views
 
@@ -7,5 +8,4 @@ urlpatterns = [
     path('room/', include('rooms.urls'), name="room"),
     path('authentication/', include('registerLoginLogout.urls')),
     path('friend/', include('friends.urls')),
-    ]
-
+]
