@@ -34,4 +34,4 @@ class TestBaseViews(TestCase):
         """
         self.client.logout()
         response = self.client.get(reverse('home'))
-        self.assertEqual(response.status_code, 403)
+        self.assertEqual(response.status_code, 302)

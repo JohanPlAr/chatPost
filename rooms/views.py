@@ -75,7 +75,7 @@ def edit_room(request, pk):
 def delete_room(request, pk):
     """Handles request to delete room"""
     room_id = get_object_or_404(Room, id=pk)
-    if request.user != room.host:
+    if request.user != room_id.host:
         raise PermissionDenied
     if request.method == "POST":
         room.delete()

@@ -12,8 +12,9 @@ from registerLoginLogout.views import (
 
 
 class TestAuthUrls (TestCase):
-     """Testing that urls resolves correctly"""
-     def setUp(self):
+    """Testing that urls resolves correctly"""
+
+    def setUp(self):
         """ Setup test """
         username = "johan"
         password = "jbdwkbcwkc"
@@ -29,22 +30,27 @@ class TestAuthUrls (TestCase):
 
         return self.user.id
 
-     def test_login_url_resolves(self):
+    def test_login_url_resolves(self):
+        """ Check if the view function for the URL is 'login_view' """
         url = reverse('login')
         self.assertEqual(resolve(url).func, login_view)
 
-     def test_logout_url_resolves(self):
+    def test_logout_url_resolves(self):
+        """ Check if the view function for the URL is 'logout_user' """
         url = reverse('logout')
         self.assertEqual(resolve(url).func, logout_user)
 
-     def test_register_url_resolves(self):
+    def test_register_url_resolves(self):
+        """ Check if the view function for the URL is 'register_view' """
         url = reverse('register')
         self.assertEqual(resolve(url).func, register_view)
 
-     def test_create_profile_url_resolves(self):
+    def test_create_profile_url_resolves(self):
+        """ Check if the view function for the URL is 'create_profile' """
         url = reverse('create_profile', args=[self.user.id])
         self.assertEqual(resolve(url).func, create_profile)
 
-     def test_view_profile_url_resolves(self):
+    def test_view_profile_url_resolves(self):
+        """ Check if the view function for the URL is 'profile_view' """
         url = reverse('view_profile', args=[self.user.id])
         self.assertEqual(resolve(url).func, profile_view)
