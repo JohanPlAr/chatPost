@@ -12,7 +12,7 @@ from .forms import CommentForm
 
 
 @login_required(login_url='login')
-def createComment(request, pk):
+def create_comment(request, pk):
     """Create Comment function"""
     form = CommentForm()
     post = get_object_or_404(Post, id=pk)
@@ -36,7 +36,7 @@ def createComment(request, pk):
 
 
 @login_required(login_url='login')
-def editComment(request, pk):
+def edit_comment(request, pk):
     """Handles Editting of comments"""
     comment = get_object_or_404(Comment, pk=pk)
     room = comment.post.room.id
@@ -54,7 +54,7 @@ def editComment(request, pk):
 
 
 @login_required(login_url='login')
-def deleteComment(request, pk):
+def delete_comment(request, pk):
     """Handles delete comment requests"""
     comment = get_object_or_404(Comment, id=pk)
     room = comment.post.room.id
@@ -69,7 +69,7 @@ def deleteComment(request, pk):
 
 
 @login_required(login_url='login')
-def likeComment(request, pk):
+def like_comment(request, pk):
     """Handles Like Comment"""
     comment = get_object_or_404(Comment, id=pk)
     post = comment.post
@@ -83,7 +83,7 @@ def likeComment(request, pk):
 
 
 @login_required(login_url='login')
-def dislikeComment(request, pk):
+def dislike_comment(request, pk):
     """Handles Dislike Comment"""
     comment = get_object_or_404(Comment, id=pk)
     post = comment.post

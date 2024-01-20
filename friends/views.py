@@ -10,7 +10,7 @@ from .models import FriendRequest
 
 
 @login_required(login_url='login')
-def friendsList(request):
+def friends_list_view(request):
     """Adds searched user to context 
     and renders friends.html """
     if request.GET.get('q') is None:
@@ -26,7 +26,7 @@ def friendsList(request):
 
 
 @login_required(login_url='login')
-def friendRequest(request, pk):
+def friend_request_view(request, pk):
     """Creates Friend request"""
     sender = request.user
     receiver = get_object_or_404(User.objects, id=pk)

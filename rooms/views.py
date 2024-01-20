@@ -10,7 +10,7 @@ from . models import Room
 
 
 @login_required(login_url='login')
-def createRoom(request):
+def create_room(request):
     """Creates Room"""
     form = RoomForm()
     if request.method == "POST":
@@ -32,9 +32,9 @@ def room(request, pk):
     """Renders room.html"""
     room_id = get_object_or_404(Room, id=pk)
     rooms = Room.objects.all()
-    posts = room.post_room.all()
+    posts = room_id.post_room.all()
     comment_form = CommentForm
-    participants = room.participants.all()
+    participants = room_id.participants.all()
     if request.method == "POST":
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -54,7 +54,7 @@ def room(request, pk):
 
 
 @login_required(login_url='login')
-def editRoom(request, pk):
+def edit_room(request, pk):
     """Handles Editting of Room"""
     room_id = get_object_or_404(Room, id=pk)
     form = RoomForm(instance=room_id)
@@ -72,7 +72,7 @@ def editRoom(request, pk):
 
 
 @login_required(login_url='login')
-def deleteRoom(request, pk):
+def delete_room(request, pk):
     """Handles request to delete room"""
     room_id = get_object_or_404(Room, id=pk)
     if request.user != room.host:

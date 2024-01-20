@@ -10,7 +10,7 @@ from .forms import PostForm
 
 
 @login_required(login_url='login')
-def createPost(request, pk):
+def create_post(request, pk):
     """Creates post """
     page = 'create-post'
     form = PostForm()
@@ -39,7 +39,7 @@ def createPost(request, pk):
 
 
 @login_required(login_url='login')
-def editPost(request, pk):
+def edit_post(request, pk):
     """Handles Editting of Posts"""
     page = 'edit-post'
     post = get_object_or_404(Post, id=pk)
@@ -63,7 +63,7 @@ def editPost(request, pk):
 
 
 @login_required(login_url='login')
-def deletePost(request, pk):
+def delete_post(request, pk):
     """Handles Delete Post Requests"""
     post = get_object_or_404(Post.objects, id=pk)
     room_id = post.room.id
@@ -78,7 +78,7 @@ def deletePost(request, pk):
 
 
 @login_required(login_url='login')
-def likePost(request, pk):
+def like_post(request, pk):
     "Handles Like Post"
     post = get_object_or_404(Post, id=pk)
     room = post.room.id
@@ -91,7 +91,7 @@ def likePost(request, pk):
 
 
 @login_required(login_url='login')
-def dislikePost(request, pk):
+def dislike_post(request, pk):
     "Handles Dislike Post"
     post = get_object_or_404(Post, id=pk)
     room = post.room.id

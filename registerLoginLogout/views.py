@@ -12,7 +12,7 @@ from . models import Profile
 
 
 
-def loginView(request):
+def login_view(request):
     """Renders Login Page and let's user log in on POST"""
     page = 'login'
     if request.user.is_authenticated:
@@ -31,14 +31,14 @@ def loginView(request):
     return render(request, 'base/register_login.html', context)
 
 
-def logoutUser(request):
+def logout_user(request):
     """Logs out user and Redirects to Login Page"""
     messages.success(request, f'{request.user} is logged out')
     logout(request)
     return redirect('login')
 
 
-def registerView(request):
+def register_view(request):
     """Renders register display, register form on 
     Post and creates a Profile Object"""
     page = 'register'
@@ -64,7 +64,7 @@ def registerView(request):
 
 
 @login_required(login_url='login')
-def createProfile(request, pk):
+def create_profile(request, pk):
     """Renders 'Manage Profile' display 
     and takes form input on POST"""
     profile = get_object_or_404(Profile.objects, user_id=pk)
@@ -91,7 +91,7 @@ def createProfile(request, pk):
 
 
 @login_required(login_url='login')
-def profileView(request, pk):
+def profile_view(request, pk):
     """Renders profile.html"""
     profile = get_object_or_404(Profile.objects, user_id=pk)
     friends_list = global_context(request)["friends_list"]

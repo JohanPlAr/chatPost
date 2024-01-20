@@ -42,20 +42,20 @@ class TestRoomsViews(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'rooms/room.html')
 
-    def test_create_room_GET(self):
+    def test_create_room_get(self):
         """ Test logged in user can render create room view"""
         response = self.client.get(reverse('create_room'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'rooms/room_form.html')
 
-    def test_edit_room_GET(self):
+    def test_edit_room_get(self):
         """ Test logged in user can render edit room view"""
         room = Room.objects.get(id=1)
         response = self.client.get(reverse('edit_room', args=[room.id]))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'rooms/room_form.html')
 
-    def test_delete_room_GET(self):
+    def test_delete_room_get(self):
         """ Test logged in user can render delete room view"""
         room = Room.objects.get(id=1)
         response = self.client.get(reverse('delete_room', args=[room.id]))

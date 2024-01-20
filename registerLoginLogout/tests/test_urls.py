@@ -1,11 +1,19 @@
+"""Test Profile and authentication urls"""
 from django.test import TestCase
 from django.urls import reverse, resolve
 from django.contrib.auth import get_user_model
-from registerLoginLogout.views import loginView, logoutUser, registerView, createProfile, profileView
+from registerLoginLogout.views import (
+    login_view,
+    logout_user,
+    register_view,
+    create_profile,
+    profile_view
+)
+
 
 class TestAuthUrls (TestCase):
-
-    def setUp(self):
+     """Testing that urls resolves correctly"""
+     def setUp(self):
         """ Setup test """
         username = "johan"
         password = "jbdwkbcwkc"
@@ -21,27 +29,22 @@ class TestAuthUrls (TestCase):
 
         return self.user.id
 
-    def test_login_url_resolves(self):
-         url = reverse('login')
-         self.assertEquals(resolve(url).func, loginView)
-    
-    
-    def test_logout_url_resolves(self):
-         url = reverse('logout')
-         self.assertEquals(resolve(url).func, logoutUser)
-    
-    
-    def test_register_url_resolves(self):
-         url = reverse('register')
-         self.assertEquals(resolve(url).func, registerView)
+     def test_login_url_resolves(self):
+        url = reverse('login')
+        self.assertEqual(resolve(url).func, login_view)
 
+     def test_logout_url_resolves(self):
+        url = reverse('logout')
+        self.assertEqual(resolve(url).func, logout_user)
 
-    def test_create_profile_url_resolves(self):
-         url = reverse('create_profile', args=[self.user.id])
-         self.assertEquals(resolve(url).func, createProfile)
+     def test_register_url_resolves(self):
+        url = reverse('register')
+        self.assertEqual(resolve(url).func, register_view)
 
+     def test_create_profile_url_resolves(self):
+        url = reverse('create_profile', args=[self.user.id])
+        self.assertEqual(resolve(url).func, create_profile)
 
-    def test_view_profile_url_resolves(self):
-         url = reverse('view_profile', args=[self.user.id])
-         self.assertEquals(resolve(url).func, profileView)
-         
+     def test_view_profile_url_resolves(self):
+        url = reverse('view_profile', args=[self.user.id])
+        self.assertEqual(resolve(url).func, profile_view)

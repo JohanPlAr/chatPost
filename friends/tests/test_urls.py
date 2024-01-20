@@ -1,8 +1,13 @@
 """Test Comment Urls"""
 from django.test import SimpleTestCase
 from django.urls import reverse, resolve
-from friends.views import accept_friend_request, remove_friend, friendRequest, friendsList
-from registerLoginLogout.views import profileView
+from friends.views import (
+    accept_friend_request,
+    remove_friend,
+    friend_request_view,
+    friends_list_view
+    )
+from registerLoginLogout.views import profile_view
 
 
 FRIEND_REQUEST_ID = 99999
@@ -22,16 +27,16 @@ class TestCommentUrls (SimpleTestCase):
         self.assertEqual(resolve(url).func, remove_friend)
 
     def test_friend_request_url_resolves(self):
-        """ Check if the view function for the URL is 'friendRequest' """
+        """ Check if the view function for the URL is 'friend_request_view' """
         url = reverse('friend_request', args=[FRIEND_REQUEST_ID])
-        self.assertEqual(resolve(url).func, friendRequest)
+        self.assertEqual(resolve(url).func, friend_request_view)
 
     def test_friends_list_url_resolves(self):
-        """ Check if the view function for the URL is 'friendslist' """
+        """ Check if the view function for the URL is 'friends_list' """
         url = reverse('friends_list')
-        self.assertEqual(resolve(url).func, friendsList)
+        self.assertEqual(resolve(url).func, friends_list_view)
 
     def test_view_profile_url_resolves(self):
-        """ Check if the view function for the URL is 'profileView' """
+        """ Check if the view function for the URL is 'profile_view' """
         url = reverse('view_profile', args=[FRIEND_REQUEST_ID])
-        self.assertEqual(resolve(url).func, profileView)
+        self.assertEqual(resolve(url).func, profile_view)
