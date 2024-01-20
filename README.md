@@ -6,7 +6,7 @@
 
 The live website can be accessed by visiting this [link](https://chatPost.onrender.com).
 
-This web application is a social network for individuals who wish to share their knowledge and experiences with others while staying connected with like-minded people. The platform enables users to engage with each other by creating posts, commenting, and reacting to the content shared by others.
+This web application is a social network for groups of individuals who wish to share their knowledge and experiences. As admin you can choose the topics to set the discussions are expected. The app can be adjusted for family, friends, students or any other groups that wish to stay connected. The platform enables users to engage with each other by creating rooms, posts, commenting, and reacting to the content shared by others. By becoming friends you can restrict or allow access to your rooms.
 
 ## User Experience Design
 
@@ -75,7 +75,7 @@ People who find the complexity of modern social media apps overwhelming and pref
     + [GitHub](https://github.com/): used to host the website's source code.
     + [VSCode](https://code.visualstudio.com/): the IDE used to develop the website.
     + [Chrome DevTools](https://developer.chrome.com/docs/devtools/open/): was used to debug the website.
-    + [Font Awesome](https://fontawesome.com/): was used to create the icons used in the website.
+    + [Bootstrap](https://bootstrap.com/): .
     + [W3C Validator](https://validator.w3.org/): was used to validate HTML5 code for the website.
     + [W3C CSS validator](https://jigsaw.w3.org/css-validator/): was used to validate CSS code for the website.
     + [JShint](https://jshint.com/): was used to validate JS code for the website.

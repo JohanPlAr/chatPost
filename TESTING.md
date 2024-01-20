@@ -24,8 +24,7 @@ Usability was tested with the below user acceptance testing, sent to new users t
 | 4           | Enter username | Field takes username input| Y |          |
 | 5           | Mix lowercase uppercase in Username| Login still works | Y |          |
 | 6           | Enter password | Field takes username input | Y |          |
-| 7           | Click on the Sign In button | If username and password is valid a success message 
-displays and takes user to All Rooms List Home Page | Y |          |
+| 7           | Click on the Sign In button | If username and password is valid a success message displays and takes user to All Rooms List Home Page | Y |          |
 | 8           | Click "Logout" in the navbar profile-menu | Logs out user - displays a success message - redirects to Login Page | Y |          |
 | 0          | Click browser back button | User are still logged out | Y |          |
 | Navbar     |                        |                  |      |             |
@@ -36,18 +35,12 @@ displays and takes user to All Rooms List Home Page | Y |          |
 | 5          | Click "Topic List Item" in the navbar | Takes user to Topic Room List page with requested search results| Y |          |
 | 6          | Click "Your Rooms Icon" in the navbar | Displays Your Rooms List Menu in Navbar | Y |          |
 | 7          | Click "Your Rooms List Item" in the navbar | Takes user to room page| Y |          |
- Y |          |
 | 8          | Click "Your Rooms List Item" in the navbar | Takes user to room page| Y |          |
- Y |          |
 | 9          | Click "Friends Icon" in the navbar | Takes user Friends List Page| Y |          |
- Y |          |
 | 10          | Click "User Avatar" in the navbar | Displays Profile Menu in Navbar| Y |          |
- Y |          |
 | 11          | Click "Manage Profile" in the navbar | Redirects User to Edit Profile Page| Y |          |
 | 12          | Click "View Profile" in the navbar | Redirects User to Profile Page| Y |          |
- Y |          |
 | 13          | Click "Logout" in the navbar | Logs out User - displays success message - redirects to Login Page| Y |          |
- Y |          |
 | Rooms Page    |                        |                  |      |             |
 | 1          | Click "Search Rooms" Go Button | Redirects user to Search Result Rooms page | Y |          |
 | 2          | Click "Create Room Button" | Redirects user to Create Room Form Page | Y |          |
@@ -140,7 +133,7 @@ displays and takes user to All Rooms List Home Page | Y |          |
 | 1          | Non-author "room edit" url | Custom 403 page | Y |          |
 | 2          | Non-author "post edit" url | Custom 403 page | Y |          |
 | 3          | Non-author "edit comment" url | Custom 403 page | Y |          |
-| 4          | Unauthorized "room" url" | Stripped room display -without contributors and posts| Custom 403 Page | Y |
+| 4          | Unauthorized "room" url" | Custom 403 page| Y |  |
 | 5          | Unauthorized "remove friend" url | Custom 403 page | Y |          |
 | 6          | Unauthorized "edit profile" url | Custom 403 page | Y |          |
 
@@ -161,8 +154,8 @@ displays and takes user to All Rooms List Home Page | Y |          |
 
 - HTML validation was done by using the official [W3C](https://validator.w3.org/) validator. This checking was done manually by copying the view page source code (Ctrl+U) and pasting it into the validator.
 
-|     | W3C-Tested | Errors | Warnings |Info messages        | Comments                  |
-|-----|------------|--------|----------|---------------------|---------------------------|
+|| W3C-Tested | Errors | Warnings         | Info messages     | Comments     |
+|--|------|------|-------------|--------------------|------------------------|
 | Register Page | Y | 0 | 0 | "Trailing slash on void elements has no effect and interacts badly with unquoted attribute values." | Cloudinary responds with trailing slash in img elements - no solution found |
 | Login Page | Y | 0 | 0 | "Trailing slash on void elements has no effect and interacts badly with unquoted attribute values." | Cloudinary responds with trailing slash in img elements - no solution found |
 | Home Page | Y | 0 | 0 | "Trailing slash on void elements has no effect and interacts badly with unquoted attribute values." | Cloudinary responds with trailing slash in img elements - no solution found |
