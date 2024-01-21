@@ -1,6 +1,7 @@
 """Patterns for Posts crud Urls"""
 from django.urls import path, include
 from . import views
+from django.contrib.admin import
 
 urlpatterns = [
     path('create/<str:pk>', views.create_post, name="create_post"),

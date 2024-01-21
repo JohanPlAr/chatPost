@@ -183,7 +183,8 @@ Usability was tested with the below user acceptance testing, sent to new users t
 - No errors or warning messages were found when passing through the official [JSHint](https://www.jshint.com/) validator.
 
 ### Python Validation:
-- [Full Python Validation Report](documentation/validation/python_validation.pdf)
+
+- Pep8 validated all .py files witn no errors or warnings.
 
 ---
 ## Lighthouse Report
@@ -200,7 +201,7 @@ Testing was conducted on the following browsers;
 
 - Brave;
 
-[Compatibility Report](documentation/compatibility/compatibility_brave.png)
+[Compatibility Report](documentation/compatibility/compatibility_edge.png)
 
 - Chrome;
 

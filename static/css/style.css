@@ -97,14 +97,14 @@ footer {
       bottom: 0;
       width: 100%;
 } 
-
+/* Remove post-card margins small screen */
 @media only screen and (max-width: 768px) {
 .post-card {   
         margin-right:0vw;
         margin-left:0vw;
     }
 
-      
+/* Sets size of Logo small screen        */
     }
 @media only screen and (max-width: 768px) {
     .logo {  
