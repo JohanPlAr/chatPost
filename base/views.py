@@ -19,3 +19,8 @@ def home(request):
                                 )
     context = {'rooms':rooms}
     return render(request, 'base/home.html', context)
+
+
+def custom_500_error(request):
+    """Renders 505.html when server error"""
+    return render(request, '500.html')

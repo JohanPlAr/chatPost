@@ -55,7 +55,8 @@ People who find the complexity of modern social media apps overwhelming and pref
 - ### Languages:
     + [Python](https://www.python.org/downloads/release/python-385/): the primary language used to develop the server-side of the website.
     + [JS](https://www.javascript.com/): the primary language used to develop interactive components of the website.
-    + [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML): the markup language used to create the website.
+    + [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML): the markup language used to create the website.      
+    + [Bootstrap](https://getbootstrap.com/): bootstrap was used to manage responsivenes and facilitate ux standardization
     + [CSS](https://developer.mozilla.org/en-US/docs/Web/css): the styling language used to style the website.
 - ### Frameworks and libraries:
     + [Django](https://www.djangoproject.com/): python framework used to create all the backend logic of the website.
@@ -64,6 +65,7 @@ People who find the complexity of modern social media apps overwhelming and pref
     + [SQLite](https://www.sqlite.org/): was used as a database during the development stage of the website.
     + [PostgreSQL](https://www.postgresql.org/): the database used to store all the data.
 - ### Other tools:
+    + [Balsamiq](https://balsamiq.com/): was used to create wireframes
     + [Github Projects and kanban boards](https://github.com/lexach91/Django-social-network-PP4/projects) was used to track the progress of the project in general and of every application in the project.
     + [Git](https://git-scm.com/): the version control system used to manage the code.
     + [Pip3](https://pypi.org/project/pip/): the package manager used to install the dependencies.
@@ -75,11 +77,12 @@ People who find the complexity of modern social media apps overwhelming and pref
     + [GitHub](https://github.com/): used to host the website's source code.
     + [VSCode](https://code.visualstudio.com/): the IDE used to develop the website.
     + [Chrome DevTools](https://developer.chrome.com/docs/devtools/open/): was used to debug the website.
-    + [Bootstrap](https://bootstrap.com/): .
+    + [Bootstrap](https://bootstrap.com/): Was Used to style the html elements.
     + [W3C Validator](https://validator.w3.org/): was used to validate HTML5 code for the website.
     + [W3C CSS validator](https://jigsaw.w3.org/css-validator/): was used to validate CSS code for the website.
     + [JShint](https://jshint.com/): was used to validate JS code for the website.
     + [PEP8](https://pep8.org/): was used to validate Python code for the website.
+
 
 
 ## Features
@@ -100,7 +103,8 @@ Sign up page has a box for the user to enter their username, password and passwo
 
 **Home Page/Logged in User**
 
-When the user enters the correct username/email and password succes message will be displayed and redirects to home page. Home Page contains a list of rooms whith room-details.
+When the user enters the correct username/email and password succes message will be displayed and redirects to home page. Home Page contains a search bar that allows users to filter the rooms list by, host, name and topic followed by a number of available rooms counter (which changes with the filter used in search bar) and the list of rooms whith room-details. 
+
 - Host
 - Room Name
 - Access: Public/Friendsonly
@@ -108,7 +112,7 @@ When the user enters the correct username/email and password succes message will
 - Number of Posts
 - Edit/Delete buttons: If User is Room Host
 
-![Home page](documentation/features/signed_in_home_page.png)
+![Home page](documentation/features/home_page.png)
 
 
 **Navbar/Sidebar**
@@ -148,8 +152,6 @@ This page has a main container in which the user can see their profile informati
 ![Profile page](documentation/features/profile_page.png)
 
 **Friends List Page**
-![Friends page](documentation/features/profile_page.png)
-
 This page displays the following features:
 - Search User Bar - allows logged in user to search all registered users by Username
 - Number of friends counter
@@ -161,12 +163,11 @@ This page displays the following features:
     - Avatar
     - View profile button
     - Remove friend request button
+![Friends page](documentation/features/friends_list_page.png)
 
-**Room page**
+**Room Manager page**
 
-![Create Room](documentation/features/room_page_create.png)
-
-Clicking on the create room button found on the homepage displays the create room view.
+Clicking on the create room button found on the homepage and under your rooms menu in navbar displays the create room view.
 The view contains a card with following inputs:
 - Name 
 - Topic
@@ -175,9 +176,12 @@ The view contains a card with following inputs:
 
 Topics are set by admin and and must be chosen for each room created. 
 Description allows the user to describe the purpose of the room.
-Access are either public or friends only.
+Access are either public or friends only. Same view is used to create new romms and to edit existing ones. When editing the form fields are loaded with existing data.
 
-![Room](documentation/features/room_page.png)
+![Manage Room](documentation/features/room_page_create.png)
+
+**Room Page**
+
 When user has access to the room - either the room is public or the user is allowed as a friend of the host. Following features are displayed:
 - Room Name
 - Access
@@ -186,42 +190,41 @@ When user has access to the room - either the room is public or the user is allo
     - Host Username
 - Room Description
 - List of Posts
-- Contributors (right sidebar)
+- Contributors (right sidebar) 
+    - List of Users who have created posts in room
+![Room](documentation/features/room_page.png)
 
-![Posts container](documentation/features/wall_posts.png)
 
+- Post card
 Each post has author's name, how long ago the post was made, and the post itself with Image and statistics. if the user is online, the user will see the following:
+![Post](documentation/features/post.png)
 
-![Post](documentation/features/user_online.png)
+The statistics consist of the number of likes, comments, and dislikes. Clicking on like or dislike will add a number and clicking when already liked/disliked by the user will retract one.
+![Post Interactions](documentation/features/post_interactions.png)
 
-The statistics consist of the number of likes, comments, and dislikes.
 
-![Post](documentation/features/post_statistics.png)
+- Post Comments
 
-If the user clicks on the comments icon, the comments will be displayed if there are any.
-
-![Post](documentation/features/post_wall_comments_all.png)
-
-if the user wants to add comments to the post, the user will see the following:
-
-![Comment](documentation/features/post_wall_comments_all.png)
-Each comment has author's name, how long ago the comment was made, and the statistics of likes/dislikes. If comment was created by logged in user an edit and a delete button are displayed.
+When User clicks on the comments icon, the comment formfield will appear to offer the user to write a comment and then post it when clicking on the send button. All previous comments adherent to the post will also be displayed per below.
+Each comment has author's name, how long ago the comment was made, and the statistics of likes/dislikes. If comment was created by logged in user an edit and a delete button is displayed.
+![Post](documentation/features/post_comments.png)
 
 **Footer**
 
 At the bottom of each page below the fold, the user can see a the name of the coder and links to the coder's email, linkedin, and github.
 ![Footer](documentation/features/footer.png)
 
+**403 Error Page**
+
+This page is shown when the user tries to access a page that they are unauthorized to visit.
+![403 error page](documentation/features/error_page_403)
+
 **404 Error Page**
 
 This page is shown when the user tries to access a page that doesn't exist.
 It may contain a navbar if the user is logged in.
 
-![404 error page](documentation/features/error_page_404_logged_in.png)
-
-Or just an error message if the user is not logged in.
-
-![404 error page](documentation/features/error_page_404.png)
+![404 error page](documentation/features/error_page_404)
 
 **500 Error Page**
 
@@ -236,8 +239,8 @@ This page is shown when the server is not able to process the request.
 **Sign-up and Login options**
 
 - Add sign-up and login with Facebook, Google, and other social media platforms.
-- Add e-mail confirmation and reset password options to improve security.
-- Also, I would like to add an option to use a phone number instead of an email and send a verification code to the user's phone.
+- Add e-mail confirmation and reset and change password options to improve security.
+- Also, I would like to add an option to use a phone number instead of an email and send a verification code to the user's phone and to offer two-factor authentification.
 
 **Chat-functionality**
 
@@ -272,27 +275,29 @@ The central theme of the application is the simplicity of use. It was aimed to g
 
 ### Color Scheme
 
-The color scheme of the application is based on the primary colors of Bootstrap library:
+The color scheme of the application is based on the primary colors of Bootstrap library.
 
   ![Color Scheme](documentation/design/color_palette.png)
 
-The decision to use this color palette was made due to the trend in the modern web design.
-
+The colorscheme was chosen as it is standardized through out web applications and therefor ux-friendly
 
 ### Typography
 
-The main font used in the application is Roboto. The use of this font is consistent with the color scheme. Needless to say, the Segoe UI was chosen due to its readability, which increases user experience.
+The Fonts of the application comes from the standard Bootstrap library.
+Font-family is "Helvetica Neue", Helvetica, Arial, sans-serif.
+  ![Typography](documentation/design/helvetica_neue.png)
 
-  ![Typography](documentation/design/Roboto.png)
-
+The fonts where chosen because they are standardized through out web applications and therefor ux-friendly
 
 
 - The main part is allocated to the use of icons from the [Bootstrap Icons](https://icons.getbootstrap.com/) website. The use of icons is essential for the user experience when it comes to multifunctional websites.
 
+- I deliberately avoided favicons on top of bootstrap icons to improve performance of the application.
+
 
 ### Wireframes
 
-- [Wireframes can be accessed here](documentation/design/wireframes.pdf).
+- [Wireframes can be accessed here](documentation/design/wireframes.pdf)
 
 ---
 
@@ -323,7 +328,13 @@ The main font used in the application is Roboto. The use of this font is consist
 | Bio           | bio           | TextField    | max_length=100, null=True, blank=True      |
 | Avatar        | avatar        | CloudinaryField    | folder='avatars', null=True, blank=True      |
 
-3. **Room Model**
+3. **Topics Model**
+
+| Name          | Database Key  | Field Type    | Validation |
+| ------------- | ------------- | ------------- | ---------- |
+| name          | name          | CharField    | max_length=20, on_delete=models.CASCADE|
+
+4. **Room Model**
 
 STATUS = ((0, "Public"),(1, "Friends Only"))
 
@@ -338,7 +349,7 @@ STATUS = ((0, "Public"),(1, "Friends Only"))
 | updated  |updated| DateTimeField | auto_now=True    |
 | created  | created| DateTimeField | auto_now_add=True    |
 
-4. **Post Model**
+5. **Post Model**
 
 STATUS = ((0, "Draft"),(1, "Published"))
 
@@ -355,7 +366,7 @@ STATUS = ((0, "Draft"),(1, "Published"))
 | likes  | likes| ManyToMany | User, related_name="post_like", blank= True    |
 | dislikes  | dislikes | ManyToMany| User, related_name="post_dislike", blank= True  |
 
-5. **Comment Model**
+6. **Comment Model**
 
 STATUS = ((0, "Draft"),(1, "Published"))
 
@@ -371,7 +382,7 @@ STATUS = ((0, "Draft"),(1, "Published"))
 | likes  | likes| ManyToMany | User, related_name="post_like", blank= True    |
 | dislikes  | dislikes | ManyToMany| User, related_name="post_dislike", blank= True  |
 
-5. **Friend request Model**
+7. **Friend request Model**
 
 STATUS = ((0, "Pending"),(1, "Accepted"))
 
@@ -386,3 +397,252 @@ STATUS = ((0, "Pending"),(1, "Accepted"))
 Please refer to the [TESTING.md](TESTING.md) file for all test-related documentation.
 ---
 ## Deployment
+
+**The app was initially deployed to Heroku then moved to Render since Heroku has limited free tier services**
+
+- The app was deployed to [Render](https://render.com/).
+- The database was deployed to [ElephantSQL](https://www.elephantsql.com/).
+
+- The app can be reached by the [link](https://chatpost.onrender.com).
+
+### Heroku
+
+The process for deploying the website to Heroku is as follows:
+
+1. Create a Heroku account if you don't already have one.
+
+2. Create a new app on Heroku.
+
+    1. Go to the [Heroku dashboard](https://dashboard.heroku.com/apps).
+    2. Click on the "New" button.
+    3. Click on the "Create new app" button.
+    4. Choose a name for your app.
+    5. Choose a region.
+    6. Click on the "Create app" button.
+
+
+3. In your app go to the "Settings" tab, press "Reveal Config Vars", and add the following config vars if they are not already set:
+
+    1. ```ALLOWED_HOSTS``` = your heroku domain name.
+    2. ```CLOUDINARY_CLOUD_NAME``` = the cloud name you used when creating your cloudinary account.
+    3. ```CLOUDINARY_API_KEY``` = the api key you got when created your cloudinary account.
+    4. ```CLOUDINARY_API_SECRET``` = the api secret you got when created your cloudinary account.
+    5. ```DATABASE_URL``` = the url of your heroku postgres database.
+    6. ```SECRET_KEY``` = a secret key for your app.
+   emails.
+    7. ```DEBUG``` = True during development, False during production.
+    8. ```DISABLE_COLLECTSTATIC``` = 1 during development. Remove this when deploying to production.
+
+4. In your app go to the "Deploy" tab.
+
+    1. If it's already possible, connect your Heroku account to your GitHub account and then click on the "Deploy" button.
+    2. If not, you need to copy the Heroku CLI command to connect your heroku app and your local repository.
+
+        - ```heroku git:remote -a <your-heroku-app-name>```
+
+5. Go to your local repository.
+
+6. Login to your Heroku account in your terminal and connect your local repository to your heroku app.
+
+    1. ```heroku login -i``` - Enter all your Heroku credentials it will ask for.
+    2. Paste the command you copied from step 5 into your terminal.
+
+7. Create Procfile.
+    web: gunicorn chatpost.wsgi
+
+8. Create ```requirements.txt```. This can be done by running the following command:
+
+    - ```pip freeze > requirements.txt```
+    or
+    - ```pipreqs requirements.txt``` - if you have pipreqs installed.
+
+9. Add Heroku to Allowed Hosts in settings.py:
+
+    - ALLOWED_HOSTS = [<your-heroku-app-name>.onrender.com']
+
+10. Add and commit all changes.
+
+
+11. Push your changes to Heroku.
+
+    - ```git push heroku master```
+    or
+    - ```git push heroku main```
+
+12. Check the logs of your app in heroku dashboard and make sure everything is working.
+
+13. After the development is done, you can change the ```DEBUG``` config var to ```False``` and remove the ```DISABLE_COLLECTSTATIC``` config var from the config vars on heroku.
+
+To get cloudinary cloud name, api key, and api secret:
+
+1. Go to the [Cloudinary website](https://cloudinary.com/).
+
+2. Log in to your account or sign up if you don't have an account.
+
+3. Go to the [Cloudinary dashboard](https://cloudinary.com/console/).
+
+4. At the top of the page you will see your cloud name, api key, and api secret.
+
+5. To reveal api secret, hover over the api key container and click on the button that looks like an eye.
+
+6. Copy these values and paste them into the config vars on heroku and into your `env.py` file.
+
+### Render Deployment
+
+#### Create Database on ElephantSQL
+
+1. Go to [ElephantSQL](https://www.elephantsql.com/) and create a new account.
+
+2. Create a new instance of the database.
+
+3. Select a name for your database and select the free plan.
+
+4. Click "Select Region"
+
+5. Select a region close to you.
+
+6. Click "Review"
+
+7. Click "Create Instance"
+
+8. Click on the name of your database to open the dashboard.
+
+9. You will see the dashboard of your database. You will need the URL of your database to connect it to your Django project.
+
+#### Create a new app on Render
+
+Link to the deployed application on Render: [Honeycomb](https://honeycomb-social.onrender.com).
+
+1. Create a new Render account if you don't already have one here [Render](https://render.com/).
+
+2. Create a new application on the following page here [New Render App](https://dashboard.render.com/), choose **Webserver**:
+
+3. Select the GitHub option and connect the application to the repository you created.
+
+4. Search for the repository you created and click "Connect."
+
+5. Create name for the application
+
+6. Select the region where you want to deploy the application.
+
+7. Select branch to deploy.
+
+8. Select environment.
+
+9. Render build command: `./build.sh`
+
+10. Render start command: `gunicorn <NAME OF YOUR APP>.wsgi:application` + You can delete `Procfile` from your repository.
+
+11. Select Free plan.
+
+12. Click on "Advanced" settings.
+
+13. Add the following environment variables:
+
+    - Key: DATABASE_URL Value: *************
+    - Key: SECRET_KEY Value: *************
+    - Key: DEBUG Value: False
+
+    *DATABASE_URL value is takes from ElephantSQL dashboard, SECRET_KEY value is takes from your local env.py file, DEBUG value is set to False.
+
+14. Go to `settings.py` file and add the following code to add Render.com to allowed hosts:
+
+    
+    
+   *If you have heroku in your allowed hosts, delete it*
+
+18. Save the file `settings.py`.
+
+19. Go to `env.py` and change to DATEBASE_URL value to the one you got from ElephantSQL.
+
+    ```python
+        os.environ["DATABASE_URL"] = '*************'
+    ```
+
+20. Create a superuser for your database.
+
+    ```bash
+        python manage.py createsuperuser
+    ```
+
+21. Commit and push the changes to GitHub.
+
+22. Go back to Render and click "Create Web Service."
+
+23. Wait for the completion of the deployment.
+
+### Local Deployment
+
+1. Clone the repository.
+
+    - ```git clone https://github.com/lexach91/Django-social-network-PP4.git```
+
+2. Go to the ```Django-social-network-PP4``` directory.
+
+    - ```cd Django-social-network-PP4```
+
+3. Create a virtual environment.
+
+    - ```python3 -m venv venv```
+
+    - ```source venv/bin/activate```
+
+4. Install all dependencies.
+
+    - ```pip install -r requirements.txt```
+
+5. Create a ```env.py``` file.
+
+    - ```touch env.py```
+
+6. Add the following lines to ```env.py```:
+
+    - ```import os```
+    - ```os.environ["SECRET_KEY"]``` = your secret key.
+    - ```os.environ["DEBUG"]``` = "True" or "False" depending on whether you are in development or production.
+    - ```os.environ["DEVELOPMENT"]``` = "True" or "False" depending on whether you are in development or production.
+    - ```os.environ["ALLOWED_HOSTS"]``` = your domain name.
+    - ```os.environ["DATABASE_URL"]``` = your database url.
+    - ```os.environ["CLOUDINARY_CLOUD_NAME"]``` = your cloudinary cloud name.
+    - ```os.environ["CLOUDINARY_API_KEY"]``` = your cloudinary api key.
+    - ```os.environ["CLOUDINARY_API_SECRET"]``` = your cloudinary api secret.
+    - ```os.environ["REDIS_URL"]``` = your redis url.
+
+7. Create and migrate the database.
+
+    - ```python manage.py makemigrations```
+    - ```python manage.py migrate```
+
+8. Create the superuser.
+
+    - ```python manage.py createsuperuser```
+
+9. Run the server.
+
+    - ```python manage.py runserver```
+
+10. Access the website by the link provided in terminal. Add ```/admin/``` at the end of the link to access the admin panel.
+
+
+P.S. If you are using Gitpod, you can skip steps 1-3 by clicking this [link](https://gitpod.io/#https://github.com/lexach91/Django-social-network-PP4), and start from step 4.
+
+
+
+
+## Credits
+- [Django](https://www.djangoproject.com/) for the framework.
+- [Django-allauth](https://django-allauth.readthedocs.io/) for the authentication library.
+- [Bootstrap](https://fontawesome.com/): for the free access to icons.
+- [Render](https://render.com/): for the free access to the hosting service.
+- [ElephantSQL](https://www.elephantsql.com/): for the free access to the database hosting service.
+- [Cloudinary](https://cloudinary.com/): for the free access to the image hosting service.
+- [Coolors](https://coolors.co/): for providing a free platform to generate your own palette.
+- [Postgresql](https://www.postgresql.org/): for providing a free database.
+- [Responsive Viewer](https://chrome.google.com/webstore/detail/responsive-viewer/inmopeiepgfljkpkidclfgbgbmfcennb/related?hl=en): for providing a free platform to test website responsiveness
+- [Favicon Generator](https://favicon.io//): for providing a free platform to generate favicons.
+*All names are fictional and any resemblance to actual events or locales or persons, living or dead, is accidental.*
+---
+
+## Acknowledgments
+
+- [Gareth McGirr](https://github.com/TravelTimN), my mentor, who guided me through the development of the project with his advice.

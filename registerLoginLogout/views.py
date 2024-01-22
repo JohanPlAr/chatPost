@@ -77,7 +77,7 @@ def create_profile(request, pk):
             instance = form.save(commit=False)
             instance.user = request.user
             if "default_avatar" in str(instance.avatar):
-                instance.avatar = profile.avatar.url
+                instance.avatar = profile.avatar
             instance.save()
             messages.success(request, 'Profile saved successfully')
             return redirect('view_profile', request.user.pk)

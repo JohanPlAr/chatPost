@@ -172,24 +172,23 @@ Usability was tested with the below user acceptance testing, sent to new users t
 ### CSS Validation:
 
 
-
 - Some bootstrap cdn parsing errors and warnings were found when passing through the official [W3C (Jigsaw)](https://jigsaw.w3.org/css-validator/#validate_by_uri) validator. I was not able to find a solution for the parsing errors, however css code works perfectly on various devices. The warnings concern the use of css root variables and webkit css rules also from bootstraps cdn. 
 ![CSS Validation Report](documentation/validation/css_validation.png)
 
 ### JS Validation:
 
-- [JS Validation Report. script.js](documentation/validation/js_validation.png)
+- ![JS Validation Report. script.js](documentation/validation/js_validation.png)
 
 - No errors or warning messages were found when passing through the official [JSHint](https://www.jshint.com/) validator.
 
 ### Python Validation:
 
-- Pep8 validated all .py files witn no errors or warnings.
+- All .py files pep8-validated with no errors or warnings except missing objects warnings when calling get function targets model objects.
 
 ---
 ## Lighthouse Report
 
-- [Full Lighthouse Report](documentation/validation/lighthouse_report.pdf)
+- [Full Lighthouse Report](documentation/validation/lighthouse_report.png)
 
 - Lighthouse report was generated for every pages, using Chrome Dev Tools.
 

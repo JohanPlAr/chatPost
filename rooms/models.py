@@ -8,7 +8,7 @@ STATUS = ((0, "Public"), (1, "Friends Only"))
 
 class Topic(models.Model):
     """Topic Model"""
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=20)
 
     def __str__(self):
         return self.name
@@ -17,7 +17,7 @@ class Topic(models.Model):
 class Room(models.Model):
     """Room Model"""
     host = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    topic = models.ForeignKey(Topic, on_delete=models.SET_NULL, null=True)
+    topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     description = models.TextField(null=True, max_length=150, blank=True)
     status = models.IntegerField(choices=STATUS, default=0)

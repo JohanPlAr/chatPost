@@ -20,6 +20,11 @@
    <a href="{% url 'remove_friend' friend_request.pk %}" class="btn btn-danger btn-sm">Remove Friend</a>
 </div>     
         <br>
+    {%else%}
+    <div class="d-flex justify-content-center mt-3">
+        <a href="{% url 'create_profile' request.user.pk %}" class="btn btn-success btn-sm">Edit Profile</a>
+     </div>     
+             <br>
   {%endif%}
 <div>
 <strong>Email</strong>: {{profile.email}}

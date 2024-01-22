@@ -15,8 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.defaults import page_not_found
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('base.urls')),
 ]
+
+"""Renders custom 500-page when server error occurs"""
+handler500 = 'base.views.custom_500_error'
