@@ -82,15 +82,15 @@ People who find the complexity of modern social media apps overwhelming and pref
     + [PEP8](https://pep8.org/): was used to validate Python code for the website.
 
 
-    ## Features
+## Features
 
-**Home Page**
 
-When the user is logged out, the website will display the a list of discussion rooms and you can search the rooms in a search bar. Clicking on "login" or on a room title will lead to login page. 
+**Log in Page**
 
-![Home page](documentation/features/home_page.png)
 
-At the bottom of the page, the user can see a the name of the coder and links to the coder's email, linkedin, and github.
+When the user is logged out, the website will redirect the home page and display the login view with Username and password fields Clicking the sign up link will display the Sign Up Page.
+
+![Home page](documentation/features/log_in_page.png)
 
 **Sign Up Page**
 
@@ -98,34 +98,40 @@ Sign up page has a box for the user to enter their username, password and passwo
 
 ![Sign up page](documentation/features/sign_up_page.png)
 
-**Login Page**
+**Home Page/Logged in User**
 
-Log in page has a box with 2 inputs where the user can enter their username and password. It has also a link to the sign up page at the bottom of the container. If user clicks on the Sign Up link, the user will be redirected to the Sign Up page.
+When the user enters the correct username/email and password succes message will be displayed and redirects to home page. Home Page contains a list of rooms whith room-details.
+- Host
+- Room Name
+- Access: Public/Friendsonly
+- Topic
+- Number of Posts
+- Edit/Delete buttons: If User is Room Host
 
-![Home page](documentation/features/sign_in_page.png)
-
-When the user enters the correct username/email and password an error message will be displayed and the login/signup page will be reloaded.
+![Home page](documentation/features/signed_in_home_page.png)
 
 
-**Navbar**
+**Navbar/Sidebar**
 
-![Navbar](documentation/features/navbar.png)
+Navbar/Navbar Tablet/Navbar Mobile
 
-Navbar is located on the left side of the screen and has the following buttons:
+![Navbar](documentation/features/navbar.png)![Navbar_tablet](documentation/features/navbar_tablet.png)![Navbar_Mobile](documentation/features/navbar_mobile.png)
 
-- Home button, which leads to the home.html page showing all rooms.
+Navbar is located on the left side of the screen and has the following buttons. For the mobile and Tablet versions, the navbar will be also on the left side of the screen but will show only icons.:
+
+- Logo and Home button, leads to the home.html page showing all rooms.
+![Navbar Logo and Home](documentation/features/navbar_logo_home.png)
 - Topics button, which will drop down a menu containing the topics chosen by the admin.
+![Navbar Topics](documentation/features/navbar_topics.png)
 - Your Rooms button, which will drop down a list of the rooms hosted by logged in user.
+![Navbar Your Rooms](documentation/features/navbar_your_rooms.png)
 - Friends button, which leads to the Friends list page.
-- Profile button, which will expand a menu with choices to Logout, Manage Profile or View Profile.
+![Navbar Friends List](documentation/features/navbar_friends_list.png)
+- Profile button, which will expand a menu with Logout, Manage Profile or View Profile.
+![Navbar Profile Menu](documentation/features/navbar_profile_menu.png)
 
-For the mobile version, the navbar will be also on the left side of the screen but will show only icons and possible incoming messages or friends requests.
 
-![Navbar](documentation/features/navbar_mobile.png)
-
-**Profile Page**
-![Manage Profile page](documentation/features/profile_page.png)
-
+**Manage Profile Page**
 This page has a main container with the input choices of the profile details. Allows the user to share their profile with friends.
 - Avatar
 - Bio
@@ -134,26 +140,14 @@ This page has a main container with the input choices of the profile details. Al
 - Email
 - Save Button
 
-![Profile page](documentation/features/profile_page.png)
+![Manage Profile page](documentation/features/manage_profile_page.png)
 
+**Profile Page**
 This page has a main container in which the user can see their profile information.
 
-At the very top of the page, the user data container has the following information:
+![Profile page](documentation/features/profile_page.png)
 
-![User data container](documentation/features/profile_user_data.png)
-
-If the user is logged in and the user is viewing their own profile, the user can see the following:
-
-- Avatar
-- Bio
-- First Name
-- Last Name
-- Email
-- Hosted rooms
-- Friends List - link button
-
-If user is logged in and viewing a non friended user profile a Friend request button is displayed. Bio, First Name, Last Name, Email are not visible to non friend users. When viewing a friends profile a remove button is plced beneath the avatar, should the user want to terminate the friend status.
-
+**Friends List Page**
 ![Friends page](documentation/features/profile_page.png)
 
 This page displays the following features:
@@ -212,6 +206,11 @@ if the user wants to add comments to the post, the user will see the following:
 
 ![Comment](documentation/features/post_wall_comments_all.png)
 Each comment has author's name, how long ago the comment was made, and the statistics of likes/dislikes. If comment was created by logged in user an edit and a delete button are displayed.
+
+**Footer**
+
+At the bottom of each page below the fold, the user can see a the name of the coder and links to the coder's email, linkedin, and github.
+![Footer](documentation/features/footer.png)
 
 **404 Error Page**
 

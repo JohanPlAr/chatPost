@@ -61,7 +61,7 @@
         {%endif%}
     {%endfor%}
 
-    {%if sent_requests%}       
+    {%if profile.user in sent_requests%}       
         <span class="d-flex justify-content-center">Request pending...</span>
         {%for sent in sent_requests%}
         {%if profile.user == sent.receiver %}

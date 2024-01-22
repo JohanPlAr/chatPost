@@ -13,10 +13,13 @@
 function toggleDisplay(element) {
     element.style.display = element.style.display === 'none' ? 'block' : 'none';
   }
-  
   document.getElementById('toggleLink').addEventListener('click', function() {
     toggleDisplay(document.getElementById('content'));
   });
+function closeMenu() {
+    let element = document.getElementById('content');
+    element.style.display = element.style.display === 'none' ? 'block' : 'none';
+  }
 
 // Set a timeout to remove the alert after 3 seconds
 if (document.querySelector('.alert')) {

@@ -6,7 +6,7 @@ from django import forms
 
 
 class ProfileForm(ModelForm):
-    avatar = CloudinaryFileField()
+    avatar = CloudinaryFileField(required=False)
     class Meta:
         model = Profile
         fields = ('bio','first_name','last_name','email','avatar')
