@@ -198,7 +198,7 @@ Usability was tested with the below user acceptance testing, sent to new users t
 
 Testing was conducted on the following browsers;
 
-- Brave;
+- Edge;
 
 [Compatibility Report](documentation/compatibility/compatibility_edge.png)
 
@@ -224,10 +224,7 @@ The responsiveness was checked manually by using devtools (Chrome) throughout th
 
 ### Solved bugs
 
-![GitHub projects](documentation/testing/projects_list.png)
-
-![Closed issues](documentation/testing/closed_issues.png)
+![Closed issues](documentation/testing/closed_bugs.png)
 
 ### Known bugs
-
 

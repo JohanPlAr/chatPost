@@ -393,6 +393,16 @@ STATUS = ((0, "Pending"),(1, "Accepted"))
 | status  | status| IntegerField | choices=STATUS|
 
 ---
+## Coding accomplishments
+
+- Django Context Engine
+
+I added a django context engine 'context.processors.py' to be able to send all relevant data in a collected manner to all views. This effectivly increased the refactoring of the views modules through the request function. A reference to the py-file was added to the TEMPLATES section under settings.py in order to work.
+
+- Django Message Tags
+
+The colors of the message boxes are set through 'message tags' in the settings.py file. Matching Bootstrap colors to the message tags sent from the views.
+
 ## Testing
 Please refer to the [TESTING.md](TESTING.md) file for all test-related documentation.
 ---
@@ -511,7 +521,7 @@ To get cloudinary cloud name, api key, and api secret:
 
 #### Create a new app on Render
 
-Link to the deployed application on Render: [Honeycomb](https://honeycomb-social.onrender.com).
+Link to the deployed application on Render: [ChatPost](https://chatPost.onrender.com).
 
 1. Create a new Render account if you don't already have one here [Render](https://render.com/).
 
@@ -575,11 +585,11 @@ Link to the deployed application on Render: [Honeycomb](https://honeycomb-social
 
 1. Clone the repository.
 
-    - ```git clone https://github.com/lexach91/Django-social-network-PP4.git```
+    - ```git clone https://github.com/JohanPlAr/chatPost```
 
-2. Go to the ```Django-social-network-PP4``` directory.
+2. Go to the ``chatPost``` directory.
 
-    - ```cd Django-social-network-PP4```
+    - ```cd chatPost```
 
 3. Create a virtual environment.
 
@@ -624,7 +634,7 @@ Link to the deployed application on Render: [Honeycomb](https://honeycomb-social
 10. Access the website by the link provided in terminal. Add ```/admin/``` at the end of the link to access the admin panel.
 
 
-P.S. If you are using Gitpod, you can skip steps 1-3 by clicking this [link](https://gitpod.io/#https://github.com/lexach91/Django-social-network-PP4), and start from step 4.
+P.S. If you are using Gitpod, you can skip steps 1-3 by clicking this [link](https://gitpod.io/#https://github.com/chatPost), and start from step 4.
 
 
 
@@ -645,4 +655,4 @@ P.S. If you are using Gitpod, you can skip steps 1-3 by clicking this [link](htt
 
 ## Acknowledgments
 
-- [Gareth McGirr](https://github.com/TravelTimN), my mentor, who guided me through the development of the project with his advice.
+- [Gareth McGirr](https://github.com/Gareth-McGirr), my mentor, who guided me through the development of the project with his advice.
