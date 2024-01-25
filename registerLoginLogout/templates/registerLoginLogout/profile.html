@@ -69,7 +69,7 @@
         {%if profile.user == sent.receiver%}
         <span class="d-flex justify-content-center">Request pending...</span>
         <div class="d-flex justify-content-center mt-3">
-        <a href="{%url 'remove_friend' sent.pk %}" class="btn btn-sm btn-danger my-3 mr-3">Retract Request</a>  
+        <a href="{%url 'remove_friend' sent.pk %}" class="btn btn-sm btn-danger mb-3 mr-3">Retract Request</a>  
         </div>
         {%endif%}
     {%endfor%}
