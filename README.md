@@ -217,14 +217,14 @@ At the bottom of each page below the fold, the user can see a the name of the co
 **403 Error Page**
 
 This page is shown when the user tries to access a page that they are unauthorized to visit.
-![403 error page](documentation/features/error_page_403)
+![403 error page](documentation/features/error_page_403.png)
 
 **404 Error Page**
 
 This page is shown when the user tries to access a page that doesn't exist.
 It may contain a navbar if the user is logged in.
 
-![404 error page](documentation/features/error_page_404)
+![404 error page](documentation/features/error_page_404.png)
 
 **500 Error Page**
 

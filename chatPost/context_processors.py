@@ -6,9 +6,6 @@ from comments.models import Comment
 from friends.models import FriendRequest
 
 
-
-
-
 def global_context(request):
     """Captures and sends the context to all views, 
 module included in settings TEMPLATES"""

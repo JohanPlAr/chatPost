@@ -148,15 +148,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),
-                    os.path.join(BASE_DIR, "static_admin"),]
+STATICFILES_STORAGE =  'django.contrib.staticfiles.storage.StaticFilesStorage'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
 
 MEDIA_URL = '/media/'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -167,7 +164,6 @@ CLOUDINARY_STORAGE = {
     'cloud_name': os.environ.get('CLOUD_NAME'),
     'api_key': os.environ.get('API_KEY'),
     'api_secret': os.environ.get('API_SECRET'),
-    'secure': True
 }
 
 MESSAGE_TAGS = {
