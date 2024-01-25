@@ -57,7 +57,8 @@
 </div>
     {% for received in received_requests%}
         {%if profile.user == received.sender %}
-        <div class="d-flex justify-content-evenly mt-3">
+        <span class="d-flex justify-content-center">Request pending...</span>
+        <div class="d-flex justify-content-evenly">
             <a href="{%url 'accept_friend_request' received.pk %}" class="btn btn-sm btn-success my-3 mr-3">Accept</a>  
 
             <a href="{%url 'remove_friend' received.pk %}" class="btn btn-sm btn-danger my-3 mr-3">Decline</a>  

@@ -4,8 +4,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from posts.models import Post
 
-STATUS = ((0, "Draft"),(1, "Published"))
-
 class Comment(models.Model):
     """Comment Model """
     author = models.ForeignKey(User, on_delete=models.SET_NULL,
@@ -16,7 +14,6 @@ class Comment(models.Model):
     edited = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    status = models.IntegerField(choices=STATUS, default=0)
     likes = models.ManyToManyField(User, related_name="comment_like", blank=True)
     dislikes = models.ManyToManyField(User, related_name="comment_dislike", blank=True)
 

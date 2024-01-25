@@ -655,6 +655,7 @@ P.S. If you are using Gitpod, you can skip steps 1-3 by clicking this [link](htt
 - [Responsive Viewer](https://chrome.google.com/webstore/detail/responsive-viewer/inmopeiepgfljkpkidclfgbgbmfcennb/related?hl=en): for providing a free platform to test website responsiveness
 - [Favicon Generator](https://favicon.io//): for providing a free platform to generate favicons.
 *All names are fictional and any resemblance to actual events or locales or persons, living or dead, is accidental.*
+- [Entity Data Modeler](https://www.smartdraw.com/entity-relationship-diagram/er-diagram-tool.htm): for the free acces to model drawing tool.
 ---
 
 ## Acknowledgments
