@@ -403,6 +403,10 @@ I added a django context engine 'context.processors.py' to be able to send all r
 
 The colors of the message boxes are set through 'message tags' in the settings.py file. Matching Bootstrap colors to the message tags sent from the views.
 
+- Reduce Image Payload
+
+In order to improve performance regarding pageloads a cloudinary widget was installed to transform all uploaded images to webP-format en max-width and height properties. That way better compression and file size was accomplished through out the app.  
+
 ## Testing
 Please refer to the [TESTING.md](TESTING.md) file for all test-related documentation.
 ---

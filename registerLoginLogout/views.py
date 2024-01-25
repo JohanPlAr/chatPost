@@ -97,18 +97,21 @@ def profile_view(request, pk):
     friends_list = global_context(request)["friends_list"]
     received_requests = global_context(request)["received_requests"]
     sent_requests = global_context(request)["sent_requests"]
+    no_friend_request = True
     if FriendRequest.objects.filter(
                 sender=profile.user, receiver=request.user
             ):
         friend_request = FriendRequest.objects.get(
                 sender=profile.user, receiver=request.user
             )
+        no_friend_request = False
     if FriendRequest.objects.filter(
                 sender=request.user, receiver=profile.user
             ):
         friend_request = FriendRequest.objects.get(
                 sender=request.user, receiver=profile.user
             )
+        no_friend_request = False
     else:
         friend_request = profile
 
@@ -117,7 +120,8 @@ def profile_view(request, pk):
         'friend_request': friend_request,
         'friends_list': friends_list,
         'received_requests': received_requests,
-        'sent_requests': sent_requests
+        'sent_requests': sent_requests,
+        'no_friend_request': no_friend_request
     }
     return render(
         request,

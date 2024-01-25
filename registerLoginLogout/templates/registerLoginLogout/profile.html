@@ -25,7 +25,7 @@
         <a href="{% url 'create_profile' request.user.pk %}" class="btn btn-success btn-sm">Edit Profile</a>
      </div>     
              <br>
-  {%endif%}
+   {%endif%}
 <div>
 <strong>Email</strong>: {{profile.email}}
 </div>
@@ -37,17 +37,15 @@
 <strong>Bio:</strong> {{profile.bio}}
 </div>
 <strong>{{profile.user|capfirst}}'s rooms:</strong><br>
-{%for room in rooms%}
-{%if room.status == 0 and room.host == profile.user %}
+    {%for room in rooms%}
+        {%if room.status == 0 and room.host == profile.user %}
 <a href="{%url 'room_id' room.pk%}">{{room}}</a><br>
-{%elif room.status == 1 and room.host == profile.user%}
+        {%elif room.status == 1 and room.host == profile.user%}
 <a href="{%url 'room_id' room.pk%}">{{room}}</a> <small class="text-success">Friends Only</small>
 <br>
-
-
-{%endif%}
-{%endfor%}
-<!-- Lists reduced details of non friend and offers to send a request-->
+        {%endif%}
+    {%endfor%}
+<!-- Lists reduced details of non friend and non request.user - offers to send a request-->
 {%else%}
 <div>
 <div>
@@ -55,42 +53,29 @@
 </div>
 <div class="profile-image">
     {%load cloudinary%}
-    {% cloudinary profile.avatar.public_id secure=True quality='auto' width=250 height=250 alt="avatar"%}
+    {% cloudinary profile.avatar.public_id secure=True quality='auto' crop='fill' width=250 height=250 alt="avatar"%}
 </div>
     {% for received in received_requests%}
-        {%if profile.user == recieved.sender %}
-   
-            <a href="{%url 'accept_friend_request' received.pk %}" class="btn btn-success my-3 mr-3">Accept Request</a>  
+        {%if profile.user == received.sender %}
+        <div class="d-flex justify-content-evenly mt-3">
+            <a href="{%url 'accept_friend_request' received.pk %}" class="btn btn-sm btn-success my-3 mr-3">Accept</a>  
 
-            <a href="{%url 'remove_friend' received.pk %}" class="btn btn-warning my-3 mr-3">Decline Request</a>  
+            <a href="{%url 'remove_friend' received.pk %}" class="btn btn-sm btn-danger my-3 mr-3">Decline</a>  
+        </div>
+            {%endif%}
+    {%endfor%}
+    {%for sent in sent_requests%}
+        {%if profile.user == sent.receiver%}
+        <span class="d-flex justify-content-center">Request pending...</span>
+        <div class="d-flex justify-content-center mt-3">
+        <a href="{%url 'remove_friend' sent.pk %}" class="btn btn-sm btn-danger my-3 mr-3">Retract Request</a>  
+        </div>
         {%endif%}
     {%endfor%}
-
-    {%if profile.user in sent_requests%}       
-        <span class="d-flex justify-content-center">Request pending...</span>
-        {%for sent in sent_requests%}
-        {%if profile.user == sent.receiver %}
-        <div class="d-flex justify-content-center">
-        <a href="{%url 'remove_friend' sent.pk %}" class="btn btn-danger my-3 mr-3">Remove Request</a>  
-    </div>
-        {%endif%}
-        {%endfor%}    
-    {%elif received_requests%}
-    <span class="d-flex justify-content-center">Request pending...</span>
-    {%for received in received_requests%}
-    {%if profile.user == received.sender %}
-    <div class="d-flex justify-content-evenly">
-    <a href="{%url 'accept_friend_request' received.pk %}" class="btn btn-success my-3 mr-3">Accept</a>  
-    <a href="{%url 'remove_friend' received.pk %}" class="btn btn-danger my-3 mr-3">Decline</a>  
-    </div>
-
-    {%endif%}    
-    {%endfor%}    
-    {%else%}
-    <div class="d-flex justify-content-center">
-        <a href="{%url 'friend_request' profile.user.pk %}" class="btn btn-primary my-3">Friend Request</a>
-    </div>
-     
+{%if no_friend_request%}
+        <div class="d-flex justify-content-center mt-3">
+            <a href="{%url 'friend_request' profile.user.pk %}" class="btn btn-sm btn-primary my-3 mr-3">Friend Request</a>
+            </div>
     {%endif%}
 
     <strong>{{profile.user|capfirst}}'s rooms:</strong><br>
